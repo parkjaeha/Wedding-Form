@@ -3,10 +3,9 @@ HTML5 , Jquery 등을 다양한 API를 이용한 웨딩 사이트
 
 KH 정보교육원 Semi Project
 
-Team_Name: M2
-
 Site Name: W.F   Wedding Form
 
+Team_Name: M2
 Team : 조은비 이응진 정도원 박재하
 
 role: 
@@ -18,6 +17,7 @@ role:
 
 개요 :  결혼을 준비하는 사람들이 여러 웨딩홀의 정보를 한번에 찾아볼 수 있고,
 모바일 청첩장을 이용할 수 있는 편리한 웹사이트
+
 
 구현 기능 :
 반응형 웹을 활용한 모바일 청첩장과 SQL문을 활용한 웨딩홀 비교 & 검색
