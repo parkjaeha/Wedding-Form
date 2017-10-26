@@ -9,6 +9,7 @@
 <body>
 
 	<a href= "./member/memberLogin.member">hello</a>
+	<a href= "./notice/noticeWrite.notice">write</a>
 
 </body>
 </html>
