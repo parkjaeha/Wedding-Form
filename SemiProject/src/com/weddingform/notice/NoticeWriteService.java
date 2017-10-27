@@ -13,7 +13,28 @@ public class NoticeWriteService implements Action {
 	@Override
 	public ActionForward doProcess(HttpServletRequest request, HttpServletResponse response) {
 		ActionForward actionForward=new ActionForward();
-
+         String method=request.getMethod();
+         
+         if(method.equals("POST")) {
+        	 NoticeDAO noticeDAO=new NoticeDAO();
+        	 NoticeDTO noticeDTO=new NoticeDTO();
+        	 noticeDTO.setTitle(request.getParameter("title"));
+        	 noticeDTO.setWriter(request.getParameter("writer"));
+        	 noticeDTO.setContents(request.getParameter("contents"));
+        	 
+        	 try {
+				int result=noticeDAO.insert(noticeDTO);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+        	 request.setAttribute("board", "notice");
+        	 actionForward.setCheck(false);
+        	 actionForward.setPath("./noticeList.notice");
+         }else {
+        	 request.setAttribute("board", "notice");
+        	 actionForward.setCheck(true);
+        	 actionForward.setPath("../WEB-INF/view/board/boardWrite.jsp");
+         }
 		 
 		return actionForward;
 	}

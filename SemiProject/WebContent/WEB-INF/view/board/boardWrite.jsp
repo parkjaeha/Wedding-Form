@@ -6,20 +6,28 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+.col-centered{
+	float: none;
+	margin: 0 auto;
+	margin-bottom: 100px;
+}
+</style>
+
 </head>
 <body>
 		<div class="col-md-8 col-centered">
+		<h1>${board}</h1>
 			<form action="./${requestScope.board}Write.${board}" method="post">
 				<table class="table">
 					<tr>
+						<td colspan="2">TITLE : <input class="form-control" type="text" name="title" placeholder="제목없음"></td>
+						</tr>
 						<tr>
-						<td colspan="2"><%-- 글 제목 --%><input class="form-control" type="text" name="title" placeholder="제목없음"></td>
-						<td colspan="2"><!-- blank --></td>
-						<td id="reg_date"><!-- 날짜 --></td>
-						<td id="writer"><!-- 작성자 --><input class="form-control" type="text" name="writer"></td>
+						<td id="writer">WRITER : <input class="form-control" type="text" name="writer"></td>
 					</tr>
 					<tr>
-					 	<td colspan="6" id="contents"><!-- contents 내용 --><textarea class="form-control" name="contents" placeholder="내용을 입력하세요."></textarea></td>
+					 	<td colspan="6" id="contents">CONTENTS : <textarea class="form-control" name="contents" placeholder="내용을 입력하세요."></textarea></td>
 					</tr>
 				</table>
 				

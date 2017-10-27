@@ -12,8 +12,34 @@ public class NoticeDeleteService implements Action {
 
 	@Override
 	public ActionForward doProcess(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
-		return null;
+	ActionForward actionForward=new ActionForward();
+	NoticeDAO noticeDAO=new NoticeDAO();
+	
+	int num=0;
+	
+	try {
+		num=Integer.parseInt(request.getParameter("num"));
+		
+	}catch (Exception e) {
+		// TODO: handle exception
+	}
+	int result=0;
+	try {
+		result=noticeDAO.delete(num);
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	
+	if(result>0) {
+		request.setAttribute("message", "삭제 성공");
+	}else {
+		request.setAttribute("message", "삭제 실패");
+	}
+	
+	request.setAttribute("path", "./noticeList.notice");
+	actionForward.setCheck(true);
+	actionForward.setPath("../WEB-INF/view/common/result.jsp");
+		return actionForward;
 	}
 
 }

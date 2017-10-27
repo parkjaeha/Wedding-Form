@@ -8,8 +8,10 @@
 </head>
 <body>
 
-	<a href= "./member/memberLogin.member">hello</a>
-	<a href= "./notice/noticeWrite.notice">write</a>
+
+	<p><a href= "./notice/noticeList.notice">Notice</a></p>
+	<p><a href= "./qna/qnaList.qna">Q&A</a></p>
+	
 
 </body>
 </html>

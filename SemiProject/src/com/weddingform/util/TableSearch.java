@@ -7,18 +7,26 @@ public class TableSearch {
 	private String kind;
 	private String search;
 	public String getKind() {
-		return kind;
+		if(kind == null) {
+			return "title";
+		} else {
+			return kind;
+		}
 	}
 	public void setKind(String kind) {
 		this.kind = kind;
 	}
 	public String getSearch() {
-		return search;
+		if(search == null) {
+			return "";
+		} else {
+			return search;
+		}
 	}
 	public void setSearch(String search) {
-		this.search = search;
+			this.search=search;
 	}
 	
-	
+
 	
 }
