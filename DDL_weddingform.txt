@@ -1,11 +1,3 @@
--- USER NAME : weddingform
--- PASSWOED : weddingform
-/* 시퀀스 종류
-      BOARD_SEQ : 모든 공지사항 ( NOTICE, REVIEW, QNA, UPLOAD )
-      REPORT_SEQ : 신고하기 게시판 ( REPORT, BLACKLIST )
-      MEMO_SEQ : 청첩장 방명록 ( MEMO )
-*/
-
 CREATE TABLE common
 (
     ID       VARCHAR2(400)    NOT NULL, 
@@ -20,7 +12,13 @@ CREATE TABLE common
 
 CREATE TABLE member
 (
-    ID             VARCHAR2(400)    NOT NULL, 
+    ID       VARCHAR2(400)    NOT NULL, 
+    PW       VARCHAR2(400)    NULL, 
+    NAME     VARCHAR2(400)    NULL, 
+    ADDR     VARCHAR2(1000)    NULL, 
+    PHONE    VARCHAR2(1000)    NULL, 
+    MAIL     VARCHAR2(1000)    NULL, 
+    JOB      VARCHAR2(20)    NULL,
     BIRTH          VARCHAR2(1000)    NULL, 
     GENDER         VARCHAR2(20)    NULL, 
     WEDDING_DAY    VARCHAR2(1000)    NULL, 
@@ -29,7 +27,13 @@ CREATE TABLE member
 
 CREATE TABLE COMPANY
 (
-    ID                VARCHAR2(400)    NOT NULL, 
+    ID       VARCHAR2(400)    NOT NULL, 
+    PW       VARCHAR2(400)    NULL, 
+    NAME     VARCHAR2(400)    NULL, 
+    ADDR     VARCHAR2(1000)    NULL, 
+    PHONE    VARCHAR2(1000)    NULL, 
+    MAIL     VARCHAR2(1000)    NULL, 
+    JOB      VARCHAR2(20)    NULL, 
     COMPANY_NAME      VARCHAR2(400)    NULL, 
     COMPANY_TEL       VARCHAR2(1000)    NULL, 
     COMPANY_NUMBER    VARCHAR2(400)    NULL, 
@@ -107,7 +111,7 @@ CREATE TABLE INVITATION
 
 CREATE TABLE MEMO
 (
-    NUM         NUMBER(8)             NOT NULL, 
+    NUM         NUMBER(8)        NOT NULL, 
     ID          VARCHAR2(400)    NOT NULL, 
     NAME        VARCHAR2(400)    NULL, 
     PASSWORD    VARCHAR2(400)    NULL, 
@@ -130,7 +134,12 @@ CREATE TABLE notice
 
 CREATE TABLE REVIEW
 (
-    NUM          NUMBER(8)       NOT NULL, 
+    NUM         NUMBER(8)         NOT NULL, 
+    TITLE       VARCHAR2(1000)    NULL, 
+    WRITER      VARCHAR2(400)    NULL, 
+    CONTENTS    VARCHAR2(4000)    NULL, 
+    REG_DATE    VARCHAR2(1000)    NULL, 
+    HIT         NUMBER(8)             NULL, 
     STARSCORE    NUMBER(8)       NULL, 
     KIND         VARCHAR2(400)    NULL   
 )
@@ -138,7 +147,12 @@ CREATE TABLE REVIEW
 
 CREATE TABLE QNA
 (
-    NUM          NUMBER(4)       NOT NULL, 
+    NUM         NUMBER(8)         NOT NULL, 
+    TITLE       VARCHAR2(1000)    NULL, 
+    WRITER      VARCHAR2(400)    NULL, 
+    CONTENTS    VARCHAR2(4000)    NULL, 
+    REG_DATE    VARCHAR2(1000)    NULL, 
+    HIT         NUMBER(8)             NULL,
     REF          NUMBER(4)       NULL, 
     STEP         NUMBER(4)       NULL, 
     DEPTH        NUMBER(4)       NULL, 
@@ -153,15 +167,7 @@ CREATE TABLE UPLOAD
     ONAME    VARCHAR2(2000)    NULL   
 )
 
-CREATE TABLE REPLE
-(
-    NUM      NUMBER(8)    NOT NULL, 
-    REF      NUMBER(8)    NULL, 
-    STEP     NUMBER(8)    NULL, 
-    DEPTH    NUMBER(8)    NULL   
-)
-
-
+commit
 CREATE SEQUENCE BOARD_SEQ INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE REPORT_SEQ INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE MEMO_SEQ INCREMENT BY 1 START WITH 1;
