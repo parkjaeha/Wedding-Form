@@ -15,6 +15,21 @@ public class MemberLoginService implements Action {
 		// TODO Auto-generated method stub
 		ActionForward actionForward = new ActionForward();
 		System.out.println("Login");
+
+		String method = request.getMethod();
+
+		if(method.equals("GET")) {
+			System.out.println("GET");
+			actionForward.setCheck(true);
+			actionForward.setPath("../WEB-INF/view/member/memberLogin.jsp");
+
+		}else {
+			
+			System.out.println("POST");
+			actionForward.setCheck(true);
+			actionForward.setPath("../WEB-INF/view/member/memberLogin.jsp");
+
+		}
 		
 		return actionForward;
 	}

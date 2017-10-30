@@ -6,14 +6,12 @@ import javax.servlet.http.HttpServletResponse;
 import com.weddingform.action.Action;
 import com.weddingform.action.ActionForward;
 
-//사용자 정보 업데이트 서비스
-
-
-public class MemberUpdateService implements Action {
+public class MemberUploadService implements Action {
 
 	@Override
 	public ActionForward doProcess(HttpServletRequest request, HttpServletResponse response) {
-ActionForward actionForward  = new ActionForward();
+
+		ActionForward actionForward  = new ActionForward();
 		
 		System.out.println("Upload");
 
@@ -34,7 +32,7 @@ ActionForward actionForward  = new ActionForward();
 		}
 
 		return actionForward;
-	
+
 	}
 
 }

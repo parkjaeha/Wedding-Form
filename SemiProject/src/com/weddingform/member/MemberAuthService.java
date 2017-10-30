@@ -6,16 +6,13 @@ import javax.servlet.http.HttpServletResponse;
 import com.weddingform.action.Action;
 import com.weddingform.action.ActionForward;
 
-//사용자 정보 업데이트 서비스
-
-
-public class MemberUpdateService implements Action {
+public class MemberAuthService implements Action {
 
 	@Override
 	public ActionForward doProcess(HttpServletRequest request, HttpServletResponse response) {
-ActionForward actionForward  = new ActionForward();
-		
-		System.out.println("Upload");
+		ActionForward actionForward  = new ActionForward();
+
+		System.out.println("Auth");
 
 		
 		String method = request.getMethod();
@@ -23,18 +20,17 @@ ActionForward actionForward  = new ActionForward();
 		if(method.equals("GET")) {
 			System.out.println("GET");
 			actionForward.setCheck(true);
-			actionForward.setPath("../WEB-INF/view/member/memberUpload.jsp");
+			actionForward.setPath("../WEB-INF/view/member/memberAuth.jsp");
 
 		}else {
 			
 			System.out.println("POST");
 			actionForward.setCheck(true);
-			actionForward.setPath("../WEB-INF/view/member/memberUpload.jsp");
+			actionForward.setPath("../WEB-INF/view/member/memberAuth.jsp");
 
 		}
 
 		return actionForward;
-	
 	}
 
 }
