@@ -1,0 +1,8 @@
+@charset "UTF-8";
+.paging-button {
+  visibility: hidden;
+}
+
+.button-container {
+  clear: both;
+}
