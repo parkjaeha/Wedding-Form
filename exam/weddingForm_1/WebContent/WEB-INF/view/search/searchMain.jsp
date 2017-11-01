@@ -50,17 +50,8 @@
 					type: "GET",
 					url: "./searchTable.search",
 					data : allData,
-					/* data: {
-						region: $("#region01").val() +" "+ $("#region02").val(),
-						subway: $("#subway01").val() +" "+ $("#subway02").val(),
-						type: JSON.stringify(checkType),
-						meal_cost: $("input:checkbox[name=meal_cost]").val(),
-						meal_menu: $("input:checkbox[name=meal_menu]").val(),
-						visitor: $("input:checkbox[name=visitor]").val(),
-						hall_name: $("#hall_name").val()
-					}, */
 					success:function(data) {
-						alert(data);
+						$("#result").html(data);
 					}
 				});
 			}); // End #btn
@@ -136,11 +127,11 @@
 					<td>웨딩홀 타입</td>
 					<td>
 						<input type="checkbox" name="type" id="type" value="All"><label for="type">전체</label>
-						<input type="checkbox" name="type" id="type01" value="A"><label for="type01">일반웨딩홀</label>
-						<input type="checkbox" name="type" id="type02" value="B"><label for="type02">야외웨딩홀</label>
-						<input type="checkbox" name="type" id="type03" value="C"><label for="type03">전통웨딩홀</label>
-						<input type="checkbox" name="type" id="type04" value="D"><label for="type04">호텔웨딩홀</label>
-						<input type="checkbox" name="type" id="type05" value="E"><label for="type05">공공기관</label>
+						<input type="checkbox" name="type" id="type01" value="일반웨딩홀"><label for="type01">일반웨딩홀</label>
+						<input type="checkbox" name="type" id="type02" value="야외웨딩홀"><label for="type02">야외웨딩홀</label>
+						<input type="checkbox" name="type" id="type03" value="전통웨딩홀"><label for="type03">전통웨딩홀</label>
+						<input type="checkbox" name="type" id="type04" value="호텔웨딩홀"><label for="type04">호텔웨딩홀</label>
+						<input type="checkbox" name="type" id="type05" value="공공기관"><label for="type05">공공기관</label>
 					</td>
 				</tr>
 				
@@ -149,13 +140,13 @@
 					<td>식사가격</td>
 					<td>
 						<input type="checkbox" name="meal_cost" id="meal_cost" value="All"><label for="meal_cost">전체</label>
-						<input type="checkbox" name="meal_cost" id="meal_cost01" value="1"><label for="meal_cost01">1~2만원</label>
-						<input type="checkbox" name="meal_cost" id="meal_cost02" value="2"><label for="meal_cost02">2~3만원</label>
-						<input type="checkbox" name="meal_cost" id="meal_cost03" value="3"><label for="meal_cost03">3~4만원</label>
-						<input type="checkbox" name="meal_cost" id="meal_cost04" value="4"><label for="meal_cost04">4~5만원</label>
-						<input type="checkbox" name="meal_cost" id="meal_cost05" value="5"><label for="meal_cost05">5~6만원</label>
-						<input type="checkbox" name="meal_cost" id="meal_cost06" value="6"><label for="meal_cost06">6~7만원</label>
-						<input type="checkbox" name="meal_cost" id="meal_cost07" value="7"><label for="meal_cost07">7만원이상</label>
+						<input type="checkbox" name="meal_cost" id="meal_cost01" value="1~2만원"><label for="meal_cost01">1~2만원</label>
+						<input type="checkbox" name="meal_cost" id="meal_cost02" value="2~3만원"><label for="meal_cost02">2~3만원</label>
+						<input type="checkbox" name="meal_cost" id="meal_cost03" value="3~4만원"><label for="meal_cost03">3~4만원</label>
+						<input type="checkbox" name="meal_cost" id="meal_cost04" value="4~5만원"><label for="meal_cost04">4~5만원</label>
+						<input type="checkbox" name="meal_cost" id="meal_cost05" value="5~6만원"><label for="meal_cost05">5~6만원</label>
+						<input type="checkbox" name="meal_cost" id="meal_cost06" value="6~7만원"><label for="meal_cost06">6~7만원</label>
+						<input type="checkbox" name="meal_cost" id="meal_cost07" value="7만원이상"><label for="meal_cost07">7만원이상</label>
 					</td>
 				</tr>
 				
@@ -176,13 +167,13 @@
 				<tr>
 					<td>하객수</td>
 					<td>
-						<input type="checkbox" name="visitor" id="visitor" value="All"><label for="type">전체</label>
-						<input type="checkbox" name="visitor" id="visitor01" value="A"><label for="type01">50~100명</label>
-						<input type="checkbox" name="visitor" id="visitor02" value="B"><label for="type02">100~200명</label>
-						<input type="checkbox" name="visitor" id="visitor03" value="C"><label for="type03">200~300명</label>
-						<input type="checkbox" name="visitor" id="visitor04" value="D"><label for="type04">300~400명</label>
-						<input type="checkbox" name="visitor" id="visitor05" value="E"><label for="type05">400~500명</label>
-						<input type="checkbox" name="visitor" id="visitor06" value="F"><label for="type06">500명이상</label>
+						<input type="checkbox" name="visitor" id="visitor" value="All"><label for="visitor">전체</label>
+						<input type="checkbox" name="visitor" id="visitor01" value="50~100명"><label for="visitor01">50~100명</label>
+						<input type="checkbox" name="visitor" id="visitor02" value="100~200명"><label for="visitor02">100~200명</label>
+						<input type="checkbox" name="visitor" id="visitor03" value="200~300명"><label for="visitor03">200~300명</label>
+						<input type="checkbox" name="visitor" id="visitor04" value="300~400명"><label for="visitor04">300~400명</label>
+						<input type="checkbox" name="visitor" id="visitor05" value="400~500명"><label for="visitor05">400~500명</label>
+						<input type="checkbox" name="visitor" id="visitor06" value="500명이상"><label for="visitor06">500명이상</label>
 					</td>
 				</tr>
 				
@@ -200,23 +191,25 @@
 	
 	<br>
 	
-	<div id="result" class="container">
-		<c:forEach items="${list}" var="dto">
-			<div class="card">
-				<img class="card-img-top" src="../image/hall/wedding_main.jpg" alt="Card image" style="width:100%">
-			    <div class="card-body">
-			    	<p class="card-text addr">${dto.region} / ${dto.type}</p>
-			    	<h4 class="card-title name">${list[0].hall_name}</h4>
-			    	<div class="info">
-				     	<p style="line-height: 5px;">홀 사용료 : ${dto.hall_cost}</p>
-						<p style="line-height: 5px;">하객수 : ${dto.visitor}</p>
-						<p style="line-height: 5px;">식사종류 : ${dto.meal_menu}</p>
-						<p style="line-height: 5px;">식사가격 : ${dto.meal_cost}</p>
-			    	</div>
-			      	<a href="#" class="btn btn-primary">See Profile</a>
-			    </div>
-			</div>
-		</c:forEach>
+	<div id="result">
+		<div class="container">
+			<c:forEach items="${list}" var="dto">
+				<div class="card">
+					<img class="card-img-top" src="../image/hall/wedding_main.jpg" alt="Card image" style="width:100%">
+				    <div class="card-body">
+				    	<p class="card-text addr">${dto.region} / ${dto.type}</p>
+				    	<h4 class="card-title name">${list[0].hall_name}</h4>
+				    	<div class="info">
+					     	<p style="line-height: 5px;">홀 사용료 : ${dto.hall_cost}</p>
+							<p style="line-height: 5px;">하객수 : ${dto.visitor}</p>
+							<p style="line-height: 5px;">식사종류 : ${dto.meal_menu}</p>
+							<p style="line-height: 5px;">식사가격 : ${dto.meal_cost}</p>
+				    	</div>
+				      	<a href="#" class="btn btn-primary">See Profile</a>
+				    </div>
+				</div>
+			</c:forEach>
+		</div>
 		
 		<div>
 			<ul class="pagination">

@@ -53,26 +53,26 @@ public class ExtraDAO {
 		sb.append("select * ");
 		sb.append("from (select ROWNUM R, N.* ");
 		sb.append("from (select * from extra ");
-		sb.append("where region like ? and type like ? and MEAL_COST like ? and MEAL_MENU like ? and SUBWAY like ? and visitor like ? and hall_name like ?) N) ");
+		sb.append("where REGEXP_LIKE (region, ?) and REGEXP_LIKE (type, ?) and REGEXP_LIKE (meal_cost, ?) and REGEXP_LIKE (meal_menu, ?) and REGEXP_LIKE (subway, ?) and REGEXP_LIKE (visitor, ?) and REGEXP_LIKE (hall_name, ?)) N) ");
 		sb.append("where R between ? and ?");
 
 		PreparedStatement st = con.prepareStatement(sb.toString());
 		
-		st.setString(1, "%"+ "" +"%");
-		st.setString(2, "%"+"" +"%");
-		st.setString(3, "%"+ "" +"%");
-		st.setString(4, "%"+ "" +"%");
-		st.setString(5, "%"+ "" +"%");
-		st.setString(6, "%"+"" +"%");
-		st.setString(7, "%"+ "" +"%");
+		/*st.setString(1, "|");
+		st.setString(2, "|");
+		st.setString(3, "|");
+		st.setString(4, "|");
+		st.setString(5, "|");
+		st.setString(6, "|");
+		st.setString(7, "|");*/
 		
-		st.setString(1, "%"+ weddingSearch.getRegion() +"%");
-		st.setString(2, "%"+ weddingSearch.getType() +"%");
-		st.setString(3, "%"+ weddingSearch.getMeal_cost() +"%");
-		st.setString(4, "%"+ weddingSearch.getMeal_menu() +"%");
-		st.setString(5, "%"+ weddingSearch.getSubway() +"%");
-		st.setString(6, "%"+ weddingSearch.getVisitor() +"%");
-		st.setString(7, "%"+ weddingSearch.getHall_name() +"%");
+		st.setString(1, weddingSearch.getRegion());
+		st.setString(2, weddingSearch.getType());
+		st.setString(3, weddingSearch.getMeal_cost());
+		st.setString(4, weddingSearch.getMeal_menu());
+		st.setString(5, weddingSearch.getSubway());
+		st.setString(6, weddingSearch.getVisitor());
+		st.setString(7, weddingSearch.getHall_name());
 		st.setInt(8, makeRow.getStartRow());
 		st.setInt(9, makeRow.getLastRow());
 		

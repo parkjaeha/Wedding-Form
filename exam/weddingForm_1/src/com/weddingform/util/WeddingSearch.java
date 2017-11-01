@@ -15,7 +15,7 @@ public class WeddingSearch {
 	}
 	public void setRegion(String region) {
 		if(region == null) {
-			this.region = "";
+			this.region = "|";
 		} else {
 			this.region = region;
 		}
@@ -25,7 +25,7 @@ public class WeddingSearch {
 	}
 	public void setSubway(String subway) {
 		if(subway == null) {
-			this.subway = "";
+			this.subway = "|";
 		} else {
 			this.subway = subway;
 		}
@@ -35,7 +35,7 @@ public class WeddingSearch {
 	}
 	public void setType(String type) {
 		if(type == null) {
-			this.type = "";
+			this.type = "|";
 		} else {
 			this.type = type;
 		}
@@ -45,7 +45,7 @@ public class WeddingSearch {
 	}
 	public void setMeal_cost(String meal_cost) {
 		if(meal_cost == null) {
-			this.meal_cost = "";
+			this.meal_cost = "|";
 		} else {
 			this.meal_cost = meal_cost;
 		}
@@ -55,7 +55,7 @@ public class WeddingSearch {
 	}
 	public void setMeal_menu(String meal_menu) {
 		if(meal_menu == null) {
-			this.meal_menu = "";
+			this.meal_menu = "|";
 		} else {
 			this.meal_menu = meal_menu;
 		}
@@ -65,7 +65,7 @@ public class WeddingSearch {
 	}
 	public void setVisitor(String visitor) {
 		if(visitor == null) {
-			this.visitor = "";
+			this.visitor = "|";
 		} else {
 			this.visitor = visitor;
 		}
@@ -75,7 +75,7 @@ public class WeddingSearch {
 	}
 	public void setHall_name(String hall_name) {
 		if(hall_name == null) {
-			this.hall_name = "";
+			this.hall_name = "|";
 		} else {
 			this.hall_name = hall_name;
 		}
