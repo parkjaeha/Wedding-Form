@@ -16,6 +16,8 @@
     </div>
     
     <script>
+    var check = false;
+    
       function onSignIn(googleUser) {
         // Useful data for your client-side scripts:
         var profile = googleUser.getBasicProfile();
@@ -25,20 +27,36 @@
 		document.getElementById("myImg").src= imagurl;
 		document.getElementById("name").innerHTML= name;
 		document.getElementById("status").innerHTML ='Welcome' + name+'!<a href = success.jsp?>'
+		check =true;
 		
       };
-    </script>
+  
+      function myFunction(){
+      	gapi.auth2.getAuthInstance().disconnect();
+        document.location.reload();
+		
+	//window.location = "http://localhost/SemiProject/google.jsp/localhost/u/0/?logout&hl=en";
+      }
+      
+      </script>
     
     
     <button onclick="myFunction()">Sign out</button>
     
+  
+    
+    
     <script type="text/javascript">
-    function myFunction(){
-    	gapi.auth2.getAuthInstance().disconnect();
-    	loaction.reload();
-    }
+    
+    function checkLoginState() {
+        FB.getLoginStatus(function(response) {
+          statusChangeCallback(response);
+        });
+      }
     
     </script>
+    
+    
     
   </body>
 </html>
