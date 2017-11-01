@@ -30,6 +30,22 @@ public class ExtraDAO {
 		
 	}*/
 	
+	public int getTotal() throws Exception {
+		Connection con = DBConnector.getConnect();
+		
+		String sql = "select count(*) from extra";
+		PreparedStatement st = con.prepareStatement(sql);
+		
+		ResultSet rs = st.executeQuery();
+		
+		int result = 0;
+		if(rs.next()) {
+			result = rs.getInt(1);
+		}
+		
+		return result;
+	}
+	
 	public ArrayList<ExtraDTO> searchList(WeddingSearch weddingSearch, MakeRow makeRow) throws Exception {
 		Connection con = DBConnector.getConnect();
 		

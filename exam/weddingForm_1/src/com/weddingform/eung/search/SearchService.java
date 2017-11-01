@@ -16,18 +16,28 @@ public class SearchService implements Action {
 	public ActionForward doProcess(HttpServletRequest request, HttpServletResponse response) {
 		ActionForward actionForward = new ActionForward();
 		ArrayList<ExtraDTO> ar = new ArrayList<>();
-		
 		WeddingSearch weddingSearch = this.getSearch(request);
-		
 		ExtraDAO extraDAO = new ExtraDAO();
-		PageMaker pageMaker = new PageMaker(1, 6, 20);
+
+		int curPage;
 		try {
+			curPage = Integer.parseInt(request.getParameter("curPage"));
+		} catch (Exception e) {
+			curPage = 1;
+		}
+		
+		try {
+			PageMaker pageMaker = new PageMaker(curPage, 6, extraDAO.getTotal());
 			ar = extraDAO.searchList(weddingSearch, pageMaker.getMakeRow());
+			
+			request.setAttribute("list", ar);
+			request.setAttribute("page", pageMaker.getMakePage());
+			request.setAttribute("search", weddingSearch);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		request.setAttribute("list", ar);
 		actionForward.setCheck(true);
 		actionForward.setPath("../WEB-INF/view/search/searchMain.jsp");
 		
@@ -44,14 +54,6 @@ public class SearchService implements Action {
 		ws.setHall_name(request.getParameter("hall_name"));
 		ws.setMeal_cost(request.getParameter("meal_cost"));
 		ws.setVisitor(request.getParameter("visitor"));
-		
-		/*System.out.println("hall_name: "+ws.getHall_name());
-		System.out.println("meal_cost: "+ws.getMeal_cost());
-		System.out.println("meal_menu: " +ws.getMeal_menu());
-		System.out.println("region: " +ws.getRegion());
-		System.out.println("subway: " +ws.getSubway());
-		System.out.println("type :" +ws.getType());
-		System.out.println("visitor: "+ws.getVisitor());*/
 		
 		return ws;
 	}
