@@ -2,18 +2,21 @@ package com.weddingform.control;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Properties;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.weddingform.action.Action;
+import com.weddingform.action.ActionForward;
 
 /**
  * Servlet implementation class SearchController
@@ -32,6 +35,7 @@ public class SearchController extends HttpServlet {
     }
     
     @Override
+    @SuppressWarnings("rawtypes")
     public void init(ServletConfig config) throws ServletException {
     	map = new HashMap<>();
     	
@@ -76,6 +80,19 @@ public class SearchController extends HttpServlet {
 		int startIndex = request.getContextPath().length();
 		int lastIndex = request.getRequestURI().lastIndexOf('.');
 		uri = uri.substring(startIndex, lastIndex);
+		
+		Action action = null;
+		ActionForward actionForward = new ActionForward();
+		
+		action = (Action)map.get(uri);
+		actionForward = action.doProcess(request, response);
+		
+		if(actionForward.isCheck()) {
+			RequestDispatcher view = request.getRequestDispatcher(actionForward.getPath());
+			view.forward(request, response);
+		} else {
+			response.sendRedirect(actionForward.getPath());
+		}
 	
 	}
 
