@@ -13,8 +13,28 @@ public class MemberUpdateService implements Action {
 
 	@Override
 	public ActionForward doProcess(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
-		return null;
+ActionForward actionForward  = new ActionForward();
+		
+		System.out.println("Upload");
+
+		
+		String method = request.getMethod();
+
+		if(method.equals("GET")) {
+			System.out.println("GET");
+			actionForward.setCheck(true);
+			actionForward.setPath("../WEB-INF/view/member/memberUpload.jsp");
+
+		}else {
+			
+			System.out.println("POST");
+			actionForward.setCheck(true);
+			actionForward.setPath("../WEB-INF/view/member/memberUpload.jsp");
+
+		}
+
+		return actionForward;
+	
 	}
 
 }
