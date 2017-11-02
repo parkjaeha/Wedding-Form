@@ -85,11 +85,11 @@ public class ExtraDAO {
 			extraDTO.setId(rs.getString("id"));
 			extraDTO.setRegion(rs.getString("region"));
 			extraDTO.setType(rs.getString("type"));
-			extraDTO.setMeal_cost(rs.getInt("meal_cost"));
+			extraDTO.setMeal_cost(rs.getString("meal_cost"));
 			extraDTO.setMeal_menu(rs.getString("meal_menu"));
-			extraDTO.setVisitor(rs.getInt("visitor"));
+			extraDTO.setVisitor(rs.getString("visitor"));
 			extraDTO.setSubway(rs.getString("subway"));
-			extraDTO.setHall_cost(rs.getInt("hall_cost"));
+			extraDTO.setHall_cost(rs.getString("hall_cost"));
 			extraDTO.setHall_name(rs.getString("hall_name"));
 			ar.add(extraDTO);
 		}

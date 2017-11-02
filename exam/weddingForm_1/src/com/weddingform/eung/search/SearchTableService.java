@@ -28,14 +28,13 @@ public class SearchTableService implements Action {
 		}
 		
 		WeddingSearch weddingSearch = this.searchParse(map);
-		System.out.println(weddingSearch.getHall_name());
-		System.out.println(weddingSearch.getRegion());
-		System.out.println(weddingSearch.getSubway());
 		try {
 			PageMaker pageMaker = new PageMaker(1, 6, extraDAO.getTotal());
 			ArrayList<ExtraDTO> ar = extraDAO.searchList(weddingSearch, pageMaker.getMakeRow());
 			
 			request.setAttribute("list", ar);
+			request.setAttribute("search", weddingSearch);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -57,7 +56,7 @@ public class SearchTableService implements Action {
 			if( ((String[])map.get("type[]")).length > 1 ) {
 				temp="";
 				for(int i = 0; i < ((String[])map.get("type[]")).length; i++) {
-					temp += ((String[])map.get("type[]"))[i];
+					temp += (((String[])map.get("type[]"))[i]).toUpperCase();
 					if( i != ((String[])map.get("type[]")).length - 1) {
 						temp += "|";
 					}
@@ -66,7 +65,7 @@ public class SearchTableService implements Action {
 				
 				
 			} else {
-				weddingSearch.setType(((String[])map.get("type[]"))[0]+"| ");
+				weddingSearch.setType((((String[])map.get("type[]"))[0]).toUpperCase());
 			}
 		}
 		// END Type
@@ -78,7 +77,7 @@ public class SearchTableService implements Action {
 			if( ((String[])map.get("meal_menu[]")).length > 1 ) {
 				temp="";
 				for(int i = 0; i < ((String[])map.get("meal_menu[]")).length; i++) {
-					temp += ((String[])map.get("meal_menu[]"))[i];
+					temp += (((String[])map.get("meal_menu[]"))[i]).toUpperCase();
 					if( i != ((String[])map.get("meal_menu[]")).length - 1) {
 						temp += "|";
 					}
@@ -87,7 +86,7 @@ public class SearchTableService implements Action {
 				
 				
 			} else {
-				weddingSearch.setMeal_menu(((String[])map.get("meal_menu[]"))[0]+"| ");
+				weddingSearch.setMeal_menu(((String[])map.get("meal_menu[]"))[0].toUpperCase());
 			}
 		}
 		//End meal_menu
@@ -100,7 +99,7 @@ public class SearchTableService implements Action {
 			if( ((String[])map.get("meal_cost[]")).length > 1 ) {
 				temp="";
 				for(int i = 0; i < ((String[])map.get("meal_cost[]")).length; i++) {
-					temp += ((String[])map.get("meal_cost[]"))[i];
+					temp += ((String[])map.get("meal_cost[]"))[i].toUpperCase();
 					if( i != ((String[])map.get("meal_cost[]")).length - 1) {
 						temp += "|";
 					}
@@ -109,7 +108,7 @@ public class SearchTableService implements Action {
 				
 				
 			} else {
-				weddingSearch.setMeal_cost(((String[])map.get("meal_cost[]"))[0]+"| ");
+				weddingSearch.setMeal_cost(((String[])map.get("meal_cost[]"))[0].toUpperCase());
 			}
 		}
 		// End meal_cost
@@ -122,7 +121,7 @@ public class SearchTableService implements Action {
 			if( ((String[])map.get("visitor[]")).length > 1 ) {
 				temp="";
 				for(int i = 0; i < ((String[])map.get("visitor[]")).length; i++) {
-					temp += ((String[])map.get("visitor[]"))[i];
+					temp += ((String[])map.get("visitor[]"))[i].toUpperCase();
 					if( i != ((String[])map.get("visitor[]")).length - 1) {
 						temp += "|";
 					}
@@ -131,7 +130,7 @@ public class SearchTableService implements Action {
 				
 				
 			} else {
-				weddingSearch.setVisitor(((String[])map.get("visitor[]"))[0]+"| ");
+				weddingSearch.setVisitor(((String[])map.get("visitor[]"))[0].toUpperCase());
 			}
 		}
 		//End visitor
@@ -139,22 +138,22 @@ public class SearchTableService implements Action {
 		if(((String[])map.get("region"))[0].equals("")) {
 			weddingSearch.setRegion("|");
 		} else {
-			weddingSearch.setRegion(((String[])map.get("region"))[0]+ "| ");
+			weddingSearch.setRegion(((String[])map.get("region"))[0].toUpperCase());
 		} // End region
 		
 		if(((String[])map.get("subway"))[0].equals("")) {
 			weddingSearch.setSubway("|");
 		} else {
-			weddingSearch.setSubway(((String[])map.get("subway"))[0]+ "| ");
+			weddingSearch.setSubway(((String[])map.get("subway"))[0].toUpperCase());
 		} // End subway
 		
 		if(((String[])map.get("hall_name"))[0].equals("")) {
 			weddingSearch.setHall_name("|");
 		} else {
-			weddingSearch.setHall_name(((String[])map.get("hall_name"))[0]+ "| ");
+			weddingSearch.setHall_name(((String[])map.get("hall_name"))[0].toUpperCase());
 		} // End hall_name
 		
 		return weddingSearch;
 	}
-
+	
 }

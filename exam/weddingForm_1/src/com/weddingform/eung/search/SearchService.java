@@ -31,7 +31,6 @@ public class SearchService implements Action {
 			ar = extraDAO.searchList(weddingSearch, pageMaker.getMakeRow());
 			
 			request.setAttribute("list", ar);
-			request.setAttribute("page", pageMaker.getMakePage());
 			request.setAttribute("search", weddingSearch);
 			
 		} catch (Exception e) {

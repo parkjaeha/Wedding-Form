@@ -16,7 +16,52 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
 	
 	<script type="text/javascript">
+		var cur_Page = 1; 
 		$(function() {
+			$("#btn_add").on({
+				click: function() {
+					cur_Page++;
+					$.ajax({
+						type: "GET",
+						url: "searchAdd.search",
+						data: {
+							curPage: cur_Page,
+							type: "${search.type}",
+							region: "${search.region}",
+							subway: "${search.subway}",
+							meal_cost: "${search.meal_cost}",
+							meal_menu: "${search.meal_menu}",
+							visitor: "${search.visitor}",
+							hall_name: "${search.hall_name}"
+						},
+						success:function(data) {
+							$("#result").html(data);
+						}
+					});
+				}
+			});
+			
+			$("#result").on("click", ".btn_add", function() {
+				cur_Page++;
+				$.ajax({
+					type: "GET",
+					url: "searchAdd.search",
+					data: {
+						curPage: cur_Page,
+						type: "${search.type}",
+						region: "${search.region}",
+						subway: "${search.subway}",
+						meal_cost: "${search.meal_cost}",
+						meal_menu: "${search.meal_menu}",
+						visitor: "${search.visitor}",
+						hall_name: "${search.hall_name}"
+					},
+					success:function(data) {
+						$("#result").html(data);
+					}
+				});
+			});
+			
 			$("#btn").click(function() {
 				var checkType = [];
 				$("input:checkbox[name='type']:checked").each(function(index) {
@@ -202,6 +247,7 @@
 				    	<div class="info">
 					     	<p style="line-height: 5px;">홀 사용료 : ${dto.hall_cost}</p>
 							<p style="line-height: 5px;">하객수 : ${dto.visitor}</p>
+							<p style="line-height: 5px;">인근 지하철 : ${dto.subway}</p>
 							<p style="line-height: 5px;">식사종류 : ${dto.meal_menu}</p>
 							<p style="line-height: 5px;">식사가격 : ${dto.meal_cost}</p>
 				    	</div>
@@ -210,22 +256,10 @@
 				</div>
 			</c:forEach>
 		</div>
-		
-		<div>
-			<ul class="pagination">
-				<c:if test="${page.curBlock > 1}">
-					<li><a href="./searchMain.search?curPage=${page.startNum-1}">[이전]</a></li>
-				</c:if>
-			
-				<c:forEach begin="${page.startNum}" end="${page.lastNum}" var="i">
-					<li><a href="./searchMain.search?curPage=${i}">${i}</a></li>
-				</c:forEach>
-				
-				<c:if test="${page.curBlock < page.totalBlock}">
-					<li><a href="./searchMain.search?curPage=${page.lastNum+1}">[다음]</a></li>
-				</c:if>
-			</ul>
+		<div class="container" style="text-align: center;">
+			<button id="btn_add" class="btn btn_add">더보기</button>
 		</div>
 	</div>
+	
 </body>
 </html>
