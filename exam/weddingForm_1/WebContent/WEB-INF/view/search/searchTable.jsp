@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="container">
 	<c:forEach items="${list}" var="dto" varStatus="count">
-		<c:set value="${count.count}" var="length"/>
+		<c:set value="${count.count}" var="length" />
 		<div class="card">
 			<img class="card-img-top" src="../image/hall/wedding_main.jpg" alt="Card image" style="width:100%">
 		    <div class="card-body">
@@ -20,11 +20,10 @@
 		    </div>
 		</div>
 	</c:forEach>
+	
+	<c:if test="${length mod 6 eq 0}">
+		<div class="container" style="text-align: center;">
+			<button id="btn_add" class="btn btn_add">더보기</button>
+		</div>
+	</c:if>
 </div>
-<h1>${length}</h1>
-<h1>${list.size()}</h1>
-<c:if test="${list.size() != length}">
-	<div class="container" style="text-align: center;">
-		<button id="btn_add" class="btn btn_add">더보기</button>
-	</div>
-</c:if>

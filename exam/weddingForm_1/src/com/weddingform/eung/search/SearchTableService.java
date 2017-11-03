@@ -29,9 +29,9 @@ public class SearchTableService implements Action {
 		
 		WeddingSearch weddingSearch = this.searchParse(map);
 		try {
-			PageMaker pageMaker = new PageMaker(1, 6, extraDAO.getTotal());
+			PageMaker pageMaker = new PageMaker(1, 6, extraDAO.getTotal(weddingSearch));
 			ArrayList<ExtraDTO> ar = extraDAO.searchList(weddingSearch, pageMaker.getMakeRow());
-			
+
 			request.setAttribute("list", ar);
 			request.setAttribute("search", weddingSearch);
 			

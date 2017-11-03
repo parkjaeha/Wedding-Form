@@ -27,7 +27,7 @@ public class SearchAddService implements Action {
 		WeddingSearch weddingSearch = this.getWeddingParameter(request);
 		ExtraDAO extraDAO = new ExtraDAO();
 		try {
-			PageMaker pageMaker = new PageMaker(1, curPage*6, extraDAO.getTotal());
+			PageMaker pageMaker = new PageMaker(1, curPage*6, extraDAO.getTotal(weddingSearch));
 			ArrayList<ExtraDTO> ar = extraDAO.searchList(weddingSearch, pageMaker.getMakeRow());
 			
 			request.setAttribute("list", ar);
@@ -38,11 +38,8 @@ public class SearchAddService implements Action {
 			e.printStackTrace();
 		}
 		
-		
-		
-		
 		actionForward.setCheck(true);
-		actionForward.setPath("../WEB-INF/view/search/searchAdd.jsp");
+		actionForward.setPath("../WEB-INF/view/search/searchTable.jsp");
 		
 		return actionForward;
 	}

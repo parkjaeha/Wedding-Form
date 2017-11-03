@@ -30,11 +30,18 @@ public class ExtraDAO {
 		
 	}*/
 	
-	public int getTotal() throws Exception {
+	public int getTotal(WeddingSearch weddingSearch) throws Exception {
 		Connection con = DBConnector.getConnect();
 		
-		String sql = "select count(*) from extra";
+		String sql = "select count(*) from extra where REGEXP_LIKE (region, ?) and REGEXP_LIKE (type, ?) and REGEXP_LIKE (meal_cost, ?) and REGEXP_LIKE (meal_menu, ?) and REGEXP_LIKE (subway, ?) and REGEXP_LIKE (visitor, ?) and REGEXP_LIKE (hall_name, ?)";
 		PreparedStatement st = con.prepareStatement(sql);
+		st.setString(1, weddingSearch.getRegion());
+		st.setString(2, weddingSearch.getType());
+		st.setString(3, weddingSearch.getMeal_cost());
+		st.setString(4, weddingSearch.getMeal_menu());
+		st.setString(5, weddingSearch.getSubway());
+		st.setString(6, weddingSearch.getVisitor());
+		st.setString(7, weddingSearch.getHall_name());
 		
 		ResultSet rs = st.executeQuery();
 		

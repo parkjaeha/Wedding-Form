@@ -27,7 +27,7 @@ public class SearchService implements Action {
 		}
 		
 		try {
-			PageMaker pageMaker = new PageMaker(curPage, 6, extraDAO.getTotal());
+			PageMaker pageMaker = new PageMaker(curPage, 6, extraDAO.getTotal(weddingSearch));
 			ar = extraDAO.searchList(weddingSearch, pageMaker.getMakeRow());
 			
 			request.setAttribute("list", ar);

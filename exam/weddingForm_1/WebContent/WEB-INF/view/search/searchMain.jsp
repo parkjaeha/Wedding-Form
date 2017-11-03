@@ -18,29 +18,6 @@
 	<script type="text/javascript">
 		var cur_Page = 1; 
 		$(function() {
-			$("#btn_add").on({
-				click: function() {
-					cur_Page++;
-					$.ajax({
-						type: "GET",
-						url: "searchAdd.search",
-						data: {
-							curPage: cur_Page,
-							type: "${search.type}",
-							region: "${search.region}",
-							subway: "${search.subway}",
-							meal_cost: "${search.meal_cost}",
-							meal_menu: "${search.meal_menu}",
-							visitor: "${search.visitor}",
-							hall_name: "${search.hall_name}"
-						},
-						success:function(data) {
-							$("#result").html(data);
-						}
-					});
-				}
-			});
-			
 			$("#result").on("click", ".btn_add", function() {
 				cur_Page++;
 				$.ajax({
@@ -256,10 +233,12 @@
 				</div>
 			</c:forEach>
 		</div>
+		
 		<div class="container" style="text-align: center;">
 			<button id="btn_add" class="btn btn_add">더보기</button>
 		</div>
 	</div>
+	
 	
 </body>
 </html>
