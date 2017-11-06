@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 
 $(function(){ 
 
@@ -29,7 +29,7 @@ alert("EE"); }
 }); 
 });
 
-</script>
+</script> -->
 
 
 </head>
@@ -38,10 +38,10 @@ alert("EE"); }
 <h1>Upload</h1>
 
 <form id="ajaxform" action="memberUploadResult.member" method="post" enctype="multipart/form-data">
-		<input type="text" name="test2"/><br/>
-		<textarea rows="10" cols="10" name="test3"></textarea><br/>
-		<input type="file" name="test4" />
+		
+		<input type="file" name="f1" />
 		<input type="button" id="btn" value="전송" />
+		<button>click</button>
 </form>
 
 

@@ -9,6 +9,8 @@
 <body>
 
 	<h1>Upload RESULT</h1>
+	
+	${message}
 
 
 </body>

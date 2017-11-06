@@ -37,6 +37,7 @@ Latest compiled JavaScript
 	<a href= "./member/memberSelPhone.member">selphone</a> <br><br>
 	<a href= "./member/memberAuth.member">Authorization</a> <br><br>
 	<a href= "./member/memberUpload.member">Upload</a> <br><br>
+		<a href= "./function/functionCalendar.function">Calendar</a> <br><br>
 	
 
   <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" id="myP"></div>
