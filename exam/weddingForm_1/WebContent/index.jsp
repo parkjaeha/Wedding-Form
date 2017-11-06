@@ -8,6 +8,6 @@
 </head>
 <body>
 	<a href="search/searchMain.search">Search_Page</a>
-	<a href="search/searchMap.search">Search By Map</a>
+	<a href="search/searchTotalMap.search">Search By Map</a>
 </body>
 </html>
