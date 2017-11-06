@@ -48,7 +48,7 @@
 			// Geocoding *****************************************************
 		    var marker = null;
 		    var content = null;
-		    var infowindow = [];
+		    var infowindow = null;
 		   
 		    var index = 0;
 		    for(var i=0; i<${list.size()}; i++) {
@@ -65,11 +65,11 @@
 				           	contentsArr.push(content);
 				           	
 				            // 마커를 클릭했을 때의 이벤트. 말풍선 뿅~
-				            infowindow.push(new google.maps.InfoWindow({ content: contentsArr[index] }));
+				            infowindow = new google.maps.InfoWindow({ content: contentsArr[index] });
 				            
 				            google.maps.event.addListener(marker, 'click', (function(marker, index) {
 				                return function() {
-				                  	infowindow[index].open(map, marker);
+				                  	infowindow.open(map, marker);
 				                }
 				            })(marker, index));
 				            

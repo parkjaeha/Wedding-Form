@@ -59,14 +59,15 @@
 			  	  if (status == 'OK') {
 			  		var location = {lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng()};
 			  		locations[index] = location;
-			  		console.log(locations[index]);
 			  		index++;
+			  		/* if(index == 10) {
+			  			return locations;
+			  		} */
 	   	          } else {
 	   	            alert('Geocode was not successful for the following reason: ' + status);
 	   	          }
 		      });
     	  }
-    	  return locations;
    	  }
       
       var locationArr = [
