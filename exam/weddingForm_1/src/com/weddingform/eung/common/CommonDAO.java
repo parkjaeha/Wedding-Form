@@ -17,7 +17,7 @@ public class CommonDAO {
 		StringBuffer sb = new StringBuffer();
 		sb.append("select * from ");
 		sb.append("(select ROWNUM R, N.* from ");
-		sb.append("(select * from common)N)");
+		sb.append("(select * from common order by name)N)");
 		
 		PreparedStatement st = con.prepareStatement(sb.toString());
 		

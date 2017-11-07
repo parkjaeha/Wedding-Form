@@ -34,15 +34,13 @@
 	   	      geocoder.geocode( { 'address': addr[i].textContent}, function(results, status) {
 			  	  if (status == 'OK') {
 			  		  var latLng = new google.maps.LatLng(results[0].geometry.location.lat(), results[0].geometry.location.lng());
-			  		  var marker = new google.maps.Marker({
-			  			 position: latLng 
-			  		  });
-			  		  markers.push(marker);
+			  		 
 	   	          } else {
 	   	            alert('Geocode was not successful for the following reason: ' + status);
 	   	          }
 		      });
     	  }
+    	  return 
    	  }
       
       google.maps.event.addDomListener(window, 'load', initialize);

@@ -43,7 +43,6 @@
     	  var contents = [];
     	  var positions = [];
     	  var infoWindow = null;
-    	  var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     	  for(var i=0; i<${list.size()}; i++) {
 	   	      geocoder.geocode( { 'address': addrs[i].textContent}, function(results, status) {
 			  	  if (status == 'OK') {
@@ -53,7 +52,6 @@
 			  		
 			  		var marker = new google.maps.Marker({
 			  			position: positions[index],
-			  			label: labels[i % labels.length],
 			  			title: names[index].textContent,
 			  		});
 			  		var content = names[index].textContent +"<br>"+ phones[index].textContent +"<br>"+ mails[index].textContent;
@@ -79,6 +77,8 @@
 			  			for(var j=0; j<${list.size()}; j++) {
 				  			$("#"+j).click(function() {
 				  				var num = $(this).attr('id');
+				  				resultMap.setZoom(14);
+				  				resultMap.setCenter(markers[num-1].getPosition);
 				  				infoWindow.setContent(contents[num-1]);
 				  				infoWindow.setPosition(positions[num-1]);
 				  				infoWindow.open(resultMap, markers[num-1]);
@@ -86,9 +86,14 @@
 			  			}
 			  		}
 			  		
+	   	          } else if(status == google.maps.GeocoderStatus.OVER_QUERY_LIMIT) {
+	   	        	  delay++;
+	   	        	  setTimeout(function() {
+	   	        		  codeAddress(geocoder, resultMap, addrs, names, phones, mails);
+	   	        	  }, 200);
+	   	        	  
 	   	          } else {
 	   	            alert('Geocode was not successful for the following reason: ' + status);
-	   	            return  locations;
 	   	          }
 		      });
     	  }
