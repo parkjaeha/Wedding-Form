@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>index main</title>
 <!-- 
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
@@ -33,67 +33,16 @@ Latest compiled JavaScript
 
 	<a href= "./member/memberLogin.member">login</a> <br><br>
 	<a href= "./member/memberPw.member">pw</a> <br><br>
-	<a href= "./member/memberEmail.member">email</a> <br><br>
-	<a href= "./member/memberSelPhone.member">selphone</a> <br><br>
-	<a href= "./member/memberAuth.member">Authorization</a> <br><br>
-	<a href= "./member/memberUpload.member">Upload</a> <br><br>
-		<a href= "./function/functionCalendar.function">Calendar</a> <br><br>
+	<a href= "./member/memberEmail.member">email</a> <br><br>			<!-- email -->
+	<a href= "./member/memberSelPhone.member">selphone</a> <br><br>		<!-- 결제 -->
+	<a href= "./member/memberUpload.member">Upload</a> <br><br>			
+		<a href= "./function/functionCalendar.function">Calendar</a> <br><br>  <!-- 달력 -->
+		<a href= "./progressbar3.jsp">drag&drop</a> <br><br>					<!-- drag&drop upload -->
+		<a href= "./google_login.jsp">google_login</a> <br><br>					<!-- google_login -->
+		<a href= "./facebook.jsp">facebook</a> <br><br>							<!-- facebook login -->
+		<a href= "./address.jsp">home_staition_address</a> <br><br>				<!-- 우변주소 -->
 	
 
-  <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" id="myP"></div>
-    
-    <div id="signin"></div>
-    
-    <img id="myImg"> <br>
-    <p id="name"></p>
-    
-    <div id="status">
-    </div>
-    
-    <script>
-      function onSignIn(googleUser) {
-        // Useful data for your client-side scripts:
-        		alert(name);
-        var profile = googleUser.getBasicProfile();
-		var imagurl = profile.getImageUrl();
-		var name= profile.getName();
-		var email = profile.getEmail();
-		
-		console.log(imagurl);
-		console.log(name);
-		console.log(email);
-	
-		
-		document.getElementById("myImg").src= imagurl;
-		document.getElementById("name").innerHTML= name;
-		document.getElementById("myP").style.visibility ="hidden";
-		document.getElementById("status").innerHTML ='Welcome' + name+'!<a href = success.jsp?email='+email+'&name='+name+'>';
-		
-      };
-    </script>
-    
-    
-    <button onclick="myFunction()">Sign out</button>
-   
-
-
-<script> 
-function myFunction(){
-gapi.load('auth2',function(){
-	
-	gapi.auth2.init();
-	
-	
-});    
-}
-
-/* function myFunction(){
-	gapi.auth2.getAuthInstance().disconnect();
-	location.reload();
-	alert("logout");
-}
- */
-</script>
 
 
 </body>
