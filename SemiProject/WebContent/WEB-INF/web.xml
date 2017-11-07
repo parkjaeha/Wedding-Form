@@ -96,4 +96,16 @@
     <servlet-name>function</servlet-name>
     <url-pattern>*.function</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>sms</servlet-name>
+    <servlet-class>com.weddingform.control.SmsController</servlet-class>
+    <init-param>
+      <param-name>properties</param-name>
+      <param-value>sms.properties</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>sms</servlet-name>
+    <url-pattern>*.sms</url-pattern>
+  </servlet-mapping>
 </web-app>
