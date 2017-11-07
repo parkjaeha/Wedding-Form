@@ -1,10 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!doctype html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>MarkerClusterer v3 Speed Test Example</title>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOUu60DDyAcyY5lpmQY1go7BuBibCGqhI&callback=speedTest.init"></script>
+    <script src="data_photo.json"></script>
+    <script type="text/javascript" src="./src/markerclusterer.js"></script>
+    <script src="speed_test.js"></script>
+	
+    <!-- 
+    https://maps.googleapis.com/maps/api/geocode/json?address=경기도 안산시 단원구 광덕서로 19&key=AIzaSyAOUu60DDyAcyY5lpmQY1go7BuBibCGqhI
+     -->
+     
+    <script>
+      google.maps.event.addDomListener(window, 'load', speedTest.init);
+    </script>
+    
+    
+    <script>
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-12846745-20']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' === document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
     
     <style>
       body {
@@ -68,21 +94,10 @@
         width: 200px;
       }
     </style>
-
- <!-- jQuery library -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOUu60DDyAcyY5lpmQY1go7BuBibCGqhI&callback=speedTest.init"></script>
-	<script type="text/javascript" src="./src/markerclusterer.js"></script>
-    <script src="data.json"></script>
-    <script src="speedTest.js"></script>
-
-    <script>
-      google.maps.event.addDomListener(window, 'load', speedTest.init);
-    </script>
-  </head>
-
-  <body>
-    <div id="panel">
+    
+</head>
+<body>
+	<div id="panel">
       <h3>An example of MarkerClusterer v3</h3>
 
       <div>
@@ -93,9 +108,9 @@
       <div>
         Markers:
         <select id="nummarkers">
-          <option value="19" selected="selected">20</option>
+          <option value="10">10</option>
           <option value="50">50</option>
-          <option value="100">100</option>
+          <option value="100" selected="selected">100</option>
           <option value="500">500</option>
           <option value="1000">1000</option>
         </select>
@@ -111,5 +126,5 @@
     <div id="map-container">
       <div id="map"></div>
     </div>
-  </body>
+</body>
 </html>
