@@ -18,7 +18,6 @@ public class SearchAddService implements Action {
 		
 		int curPage;
 		try {
-			System.out.println(request.getParameter("curPage"));
 			curPage = Integer.parseInt(request.getParameter("curPage"));
 		} catch (Exception e) {
 			curPage = 1;
@@ -34,7 +33,6 @@ public class SearchAddService implements Action {
 			request.setAttribute("search", weddingSearch);
 			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

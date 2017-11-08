@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!doctype html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<meta charset="utf-8">
+<title>MarkerClusterer v3 Speed Test Example</title>
+
 <style>
 body {
 	margin: 0;
@@ -81,21 +82,18 @@ body {
 </style>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOUu60DDyAcyY5lpmQY1go7BuBibCGqhI&callback=weddingMap.init"></script>
-<script type="text/javascript" src="../src/markerclusterer.js"></script>
-<script src="../json/data.json"></script>
-<script src="../js/weddingMap.js"></script>
+<script type="text/javascript" src="./src/markerclusterer.js"></script>
+<script src="data.json"></script>
+<script src="weddingMap.js"></script>
 
 <script>
       google.maps.event.addDomListener(window, 'load', weddingMap.init);
-</script>
+    </script>
 </head>
-<body>
-	<div id="floating-panel">
-      <input id="search" type="text" value="Sydney, NSW">
-      <input id="submit" type="button" value="Geocode">
-    </div>
 
+<body>
 	<div id="panel">
+
 		<!-- <select id="cido">
 			<option value="">시/도</option>
 			<option value="서울특별시">서울특별시</option>
@@ -105,6 +103,7 @@ body {
 		<select id="gungu">
 			<option value="">군/구</option>
 		</select> -->
+
 		<strong>Wedding Hall List</strong>
 		<div id="markerlist"></div>
 	</div>
