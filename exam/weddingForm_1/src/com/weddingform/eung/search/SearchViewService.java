@@ -12,9 +12,22 @@ public class SearchViewService implements Action {
 	public ActionForward doProcess(HttpServletRequest request, HttpServletResponse response) {
 		ActionForward actionForward = new ActionForward();
 		
-		System.out.println("Search View Service");
+		ExtraDTO extraDTO = new ExtraDTO();
+		extraDTO.setId(request.getParameter("id"));
+		
+		ExtraDAO extraDAO = new ExtraDAO();
+		try {
+			extraDTO = extraDAO.searchOne(extraDTO);
+			
+			request.setAttribute("view", extraDTO);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		actionForward.setCheck(true);
+		actionForward.setPath("../WEB-INF/view/search/searchView.jsp");
 		
 		return actionForward;
 	}
-
 }

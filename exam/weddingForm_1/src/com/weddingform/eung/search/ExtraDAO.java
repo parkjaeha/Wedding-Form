@@ -30,6 +30,33 @@ public class ExtraDAO {
 		
 	}*/
 	
+	public ExtraDTO searchOne(ExtraDTO extraDTO) throws Exception {
+		Connection con = DBConnector.getConnect();
+		
+		String sql = "select * from extra where id=?";
+		PreparedStatement st = con.prepareStatement(sql);
+		
+		st.setString(1, extraDTO.getId());
+		
+		ResultSet rs = st.executeQuery();
+		
+		if(rs.next()) {
+			extraDTO.setHall_cost(rs.getString("hall_cost"));
+			extraDTO.setHall_name(rs.getString("hall_name"));
+			extraDTO.setId(rs.getString("id"));
+			extraDTO.setMeal_cost(rs.getString("meal_cost"));
+			extraDTO.setMeal_menu(rs.getString("meal_menu"));
+			extraDTO.setRegion(rs.getString("region"));
+			extraDTO.setSubway(rs.getString("subway"));
+			extraDTO.setType(rs.getString("type"));
+			extraDTO.setVisitor(rs.getString("visitor"));
+		}
+		
+		DBConnector.disConnect(rs, st, con);
+
+		return extraDTO;
+	}
+	
 	public int getTotal(WeddingSearch weddingSearch) throws Exception {
 		Connection con = DBConnector.getConnect();
 		
@@ -105,20 +132,4 @@ public class ExtraDAO {
 		
 		return ar;
 	}
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
