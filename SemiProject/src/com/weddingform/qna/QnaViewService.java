@@ -3,6 +3,7 @@ package com.weddingform.qna;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.weddingform.Board.BoardDTO;
 import com.weddingform.action.Action;
 import com.weddingform.action.ActionForward;
 
@@ -12,8 +13,26 @@ public class QnaViewService implements Action {
 
 	@Override
 	public ActionForward doProcess(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
-		return null;
+		ActionForward actionForward=new ActionForward();
+		QnaDAO qnaDAO=new QnaDAO();
+		int num=0;
+		try {
+			num=Integer.parseInt(request.getParameter("num"));
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		BoardDTO boardDTO=null;
+		try {
+			qnaDAO.hitUpdate(num);
+			boardDTO=qnaDAO.selectOne(num);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		request.setAttribute("view", boardDTO);
+		request.setAttribute("board", "qna");
+		actionForward.setCheck(true);
+		actionForward.setPath("../WEB-INF/view/board/boardView.jsp");
+		return actionForward;
 	}
 
 }

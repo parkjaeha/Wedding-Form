@@ -37,6 +37,7 @@ public class QnaDTO extends BoardDTO{
 	public void setDepth(int depth) {
 		this.depth = depth;
 	}
+	
 	public String getPassword() {
 		return password;
 	}

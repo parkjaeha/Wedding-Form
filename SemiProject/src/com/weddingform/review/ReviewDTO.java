@@ -8,7 +8,7 @@ public class ReviewDTO extends BoardDTO{
 
 	private int num;
 	private int star_score;
-	private String kind;
+	private String type;
 	
 	public int getNum() {
 		return num;
@@ -22,11 +22,11 @@ public class ReviewDTO extends BoardDTO{
 	public void setStar_score(int star_score) {
 		this.star_score = star_score;
 	}
-	public String getKind() {
-		return kind;
+	public String getType() {
+		return type;
 	}
-	public void setKind(String kind) {
-		this.kind = kind;
+	public void setType(String type) {
+		this.type = type;
 	}
 	
 }

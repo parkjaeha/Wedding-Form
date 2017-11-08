@@ -12,8 +12,33 @@ public class QnaWriteService implements Action {
 
 	@Override
 	public ActionForward doProcess(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
-		return null;
+		ActionForward actionForward=new ActionForward();
+		String method=request.getMethod();
+		
+		if(method.equals("POST")) {
+			QnaDAO qnaDAO=new QnaDAO();
+			QnaDTO qnaDTO=new QnaDTO();
+			qnaDTO.setTitle(request.getParameter("title"));
+			qnaDTO.setWriter(request.getParameter("writer"));
+			qnaDTO.setContents(request.getParameter("contents"));
+			qnaDTO.setOpencheck(request.getParameter("opencheck"));
+			qnaDTO.setPassword(request.getParameter("password"));
+			
+			try {
+				int result=qnaDAO.insert(qnaDTO);
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			actionForward.setCheck(false);
+			actionForward.setPath("./qnaList.qna");
+		}else {
+			request.setAttribute("board", "qna");
+			actionForward.setCheck(true);
+			actionForward.setPath("../WEB-INF/view/board/boardWrite.jsp");
+			
+		}
+		return actionForward;
 	}
 
 }

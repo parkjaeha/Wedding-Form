@@ -12,8 +12,40 @@ public class QnaDeleteService implements Action {
 
 	@Override
 	public ActionForward doProcess(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
-		return null;
+		ActionForward actionForward=new ActionForward();
+		
+		QnaDAO qnaDAO=new QnaDAO();
+		int ref=0;
+	
+		try {
+			ref=Integer.parseInt(request.getParameter("ref"));
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		int result=0;
+		
+		try {
+			result=qnaDAO.delete(ref);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		if(result>0) {
+			request.setAttribute("message", "success");
+			
+		}else {
+			request.setAttribute("message", "fail");
+		}
+		
+		
+		request.setAttribute("path", "./qnaList.qna");
+		actionForward.setCheck(true);
+		actionForward.setPath("../WEB-INF/view/common/result.jsp");
+		
+		return actionForward;
 	}
 
 }

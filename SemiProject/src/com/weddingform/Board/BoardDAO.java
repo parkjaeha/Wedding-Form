@@ -1,6 +1,6 @@
 package com.weddingform.Board;
 
-import java.util.List;
+import java.util.List; 
 
 import com.weddingform.util.MakeRow;
 import com.weddingform.util.TableSearch;
@@ -29,5 +29,7 @@ public interface BoardDAO {
 	
 	//selectList
 	public List<BoardDTO> selectList(MakeRow makeRow, TableSearch tableSearch)throws Exception;
+
+
 
 }
