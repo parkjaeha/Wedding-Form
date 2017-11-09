@@ -40,7 +40,8 @@ import org.json.JSONObject;
 */
 
 public final class SendSMS {
-    public static void main(String[] args) {
+	
+    public void Send(int auth,String phone){
         String hostname = "api.bluehouselab.com";
         String url = "https://"+hostname+"/smscenter/v1.0/sendsms";
 
@@ -64,7 +65,7 @@ public final class SendSMS {
         try {
             HttpPost httpPost = new HttpPost(url);
             httpPost.setHeader("Content-type", "application/json; charset=utf-8");
-            String json = "{\"sender\":\""+Config.sender+"\",\"receivers\":[\""+Config.receiver+"\"],\"content\":\""+Config.content+"\"}";
+            String json = "{\"sender\":\""+Config.sender+"\",\"receivers\":[\""+phone+"\"],\"content\":\""+"인증번호 :"+auth+"\"}";
 
             StringEntity se = new StringEntity(json, "UTF"
             		+ "-8");
@@ -87,5 +88,6 @@ public final class SendSMS {
             client.getConnectionManager().shutdown();
         }
 
+       
     }
 }

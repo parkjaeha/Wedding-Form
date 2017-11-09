@@ -14,9 +14,9 @@
 <!-- jQuery와 Postcodify를 로딩한다 -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
-
 <!-- "검색" 단추를 누르면 팝업 레이어가 열리도록 설정한다 -->
 <script> $(function() { $("#postcodify_search_button").postcodifyPopUp(); }); </script>
+<!-- ------------------------------------------------------------------------------------------ -->
 
 </head>
 <body>
@@ -40,10 +40,10 @@
 <!-- 위에서 생성한 <div>에 검색 기능을 표시하고, 결과를 입력할 <input>들과 연동한다 -->
 <script>
     $(function() { $("#postcodify").postcodify({
-        insertPostcode5 : "#postcode",
+        //insertPostcode5 : "#postcode",
         insertAddress : "#address",
-        insertDetails : "#details",
-        insertExtraInfo : "#extra_info",
+        //insertDetails : "#details",
+        //insertExtraInfo : "#extra_info",
         hideOldAddresses : false
     }); });
 </script>
