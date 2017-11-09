@@ -15,15 +15,14 @@
 <c:forEach items="${requestScope.list}" var="dto">
 	
 	
-	<pre style="background-color: #fff">
+
+        <div id="li"></div>
 		
-		WRITER : ${dto.writer}  
-		DATE :  ${dto.reg_date}
-		CONTENTS : ${dto.contents}	
+		 <p> (아이디) ${dto.writer}  | ${dto.reg_date}</p>
+		 <p> (내용) ${dto.contents}</p>	
 		
-		<a href="../reply/replyUpdate.reply?num=${dto.num}&&type=${dto.type}"><button class="btn btn-default">수정</button></a>
-		<a href="../reply/replyDelete.reply?num=${dto.num}&&type=${dto.type}&&reviewNum=${dto.reviewNum}"><button class="btn btn-default">삭제</button></a>
-	</pre>
+		  <a href="../reply/replyUpdate.reply?num=${dto.num}&&type=${dto.type}"><button class="btn btn-default">수정</button></a>
+		 <a href="../reply/replyDelete.reply?num=${dto.num}&&type=${dto.type}&&reviewNum=${dto.reviewNum}"><button class="btn btn-default">삭제</button></a> 
 	
 	
  </c:forEach>

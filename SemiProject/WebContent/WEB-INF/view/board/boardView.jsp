@@ -8,10 +8,10 @@
 <title>Insert title here</title>
 
 <style type="text/css">
-.d{
+.contents{
 	float: none;
-	width:300px;
-	height : 500px;
+	width:1000px;
+	height : 700px;
 	margin: 0 auto;
 	
 }
@@ -34,27 +34,45 @@ height: 100px;
 	border-top : 1px solid black;
 	margin: 0 auto;
 }
+#border{
+
+border-bottom: 1px solid gray;
+}
+
+#t{
+font-size: 30px;
+text-align: center;
+}
 </style>
 </head>
 <body>
-<article class="write_1">${board }</article>
+ <c:import url="../../../temp/header.jsp"></c:import>
+ 	<div class=blank></div>
+ 		
+<article class="write_1">${board}</article>
   <article class="write_2"></article>
-<div class="d">
-<p>TITLE : ${view.title}</p>
+<div class="contents">
+
+<div id="border"></div>
+
+<p id="t"> (제목) ${view.title}</p>
+<p>WRTIER : ${view.writer}</p>
 <p>DATE : ${view.reg_date}</p>
 <p>HIT : ${view.hit}</p>
-<p>WRTIER : ${view.writer}</p>
-<p>CONTENTS : ${view.contents}</p>
+
+<div id="border"></div>
+<div class=blank></div>
+<p>(내용) ${view.contents}</p>
 
 
 				
-	<a href="./${board}List.${board}"><img alt="" src="../image/list.gif"></a>
-	<a href="./${board}Update.${board}?num=${view.num}"><img alt="" src="../image/su.gif"></a>
+	<a href="./${board}List.${board}">목록</a>
+	<a href="./${board}Update.${board}?num=${view.num}">수정</a>
 	<c:if test="${board eq 'notice'}" >
-	<a href="./${board}Delete.${board}?num=${view.num}"><img alt="" src="../image/delete.gif"></a>
+	<a href="./${board}Delete.${board}?num=${view.num}">삭제</a>
 	</c:if>
 	<c:if test="${board eq 'qna'}" >
-	<a href="./${board}Delete.${board}?ref=${view.ref}"><img alt="" src="../image/delete.gif"></a>
+	<a href="./${board}Delete.${board}?ref=${view.ref}">삭제</a>
 	</c:if>
 	
 	<div class=blank></div>
@@ -74,7 +92,7 @@ height: 100px;
 			
 	<table>
 	<tr>
-						<td colspan="2">--------------------댓글-------------------</td>
+						<td colspan="2">--------------------답글-------------------</td>
 						</tr>
 	<tr>
 						<td colspan="2">TITLE : <input class="form-control" type="text" name="title" placeholder="제목"></td>
@@ -99,6 +117,6 @@ height: 100px;
 	
 	</div>
 	
-
+ <c:import url="../../../temp/footer.jsp"></c:import>
 </body>
 </html>

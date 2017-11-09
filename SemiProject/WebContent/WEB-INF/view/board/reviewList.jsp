@@ -63,6 +63,7 @@
 
 		<tr>
 			<td>num</td>
+			<td></td>
 			<td>title</td>
 			<td>writer</td>
 			<td>date</td>
@@ -74,6 +75,12 @@
      
 		<tr>
 			<td>${dto.num}</td>
+			<td>
+			<div id="star">
+        <c:forEach begin="1" end="${dto.star_score}" >
+                      ★
+        </c:forEach></p>
+</div></td>
 			<td>
 			<a href="./reviewView.review?num=${dto.num}" id="a">${dto.title}</a>
 			</td>
@@ -114,7 +121,7 @@
 	<%-- <c:if test="${not empty member}">
 	</c:if> --%>
 	
-		<a href="./reviewWrite.review?type=${param.type}"><img alt="" src="../images/write.png"></a>
+		<a href="./reviewWrite.review?type=${param.type}">write</a>
 	</div>
  <c:import url="../../../temp/footer.jsp"></c:import> 
 </body>

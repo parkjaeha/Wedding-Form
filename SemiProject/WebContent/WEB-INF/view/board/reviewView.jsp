@@ -21,8 +21,8 @@
 <style type="text/css">
 .d{
 	float: none;
-	width:500px;
-	height : 500px;
+	width:1000px;
+	height : 1000px;
 	margin: 0 auto;
 
 	
@@ -51,6 +51,25 @@ height: 50px;
 #star{
 font-size:22px;
 }
+
+#panel{
+width: 1000px;
+height: 80px;
+}
+
+#li{
+width:970px;
+border : 1px dotted gray;
+margin: 0 auto;
+}
+#border{
+
+border-bottom: 1px solid gray;
+}
+#t{
+font-size: 30px;
+text-align: center;
+}
 </style>
 
 <script type="text/javascript">
@@ -77,21 +96,22 @@ font-size:22px;
 
 
 <body>
+ <c:import url="../../../temp/header.jsp"></c:import>
 <div id="blank"></div>
 	<article class="write_1">${view.type}</article>
        <article class="write_2"></article>
 <div class="d">
-<p>TITLE : ${view.title}</p>
-<p>DATE : ${view.reg_date}</p>
-<p>HIT : ${view.hit}</p>
+<div id="border"></div>
+<p id="t">${view.title}</p>
+<p>WRTIER : ${view.writer}</p>
 
-<p>STAR SCORE  
-<div id="star">
+<p> <div id="star">
 <c:forEach begin="1" end="${view.star_score}" >
 ★
 </c:forEach></p>
 </div>
-<p>WRTIER : ${view.writer}</p>
+<p>DATE : ${view.reg_date} | HIT : ${view.hit}</p>
+<div id="border"></div>
 <p>CONTENTS : ${view.contents}</p>
 
 
@@ -103,46 +123,30 @@ font-size:22px;
 
 	
 	<div id=blank></div>
-	
+	<div id=blank></div>
 	
 	
 
 		
-			
+	<div class="panel panel-default">		
 			<form action="../reply/replyWrite.reply?num=${view.num}" method="post">
 		<input type="hidden" value="${view.type}" name="type">
-	<table>
-	<tr>
-						<td colspan="2">----------------댓글---------------</td>
-						</tr>
-	<tr>
-						
-		
-						 <td id="writer">WRITER : <input class="form-control" type="text" name="writer" placeholder="writer"></td>
-					</tr>
-					<tr>
-					 	<td colspan="6" id="contents">CONTENTS : <textarea class="form-control" name="contents" placeholder="내용을 입력하세요."></textarea></td>
-					</tr>
-					
 	
-	</table>
-	<button  class="btn btn-default">글쓰기</button>
+<!-- writer 는 hidden타입으로!!!! -->	
+  <input type="text" name="writer" placeholder="writer">
+  <p class="panel-body"> <textarea  cols="120" rows="5" name="contents" placeholder="내용을 입력하세요."></textarea>
+  <button  class="btn btn-default">글쓰기</button></p>
 	</form>
 	
-<div id=blank></div>
+<!-- 댓글 -->
+<div id="result"></div>
+	
+	</div>
 
-<div id="result">
-<%-- 	<h1>LIST : ${list}</h1>
-	 <c:forEach items="${requestScope.list}" var="dto">
-	<p>------------------------------------------------------</p>
-	<p>TITLE : ${dto.title}  WRITER : ${dto.writer}  DATE :  ${dto.reg_date} </p>
-	<p>CONTENTS : ${dto.contents}</p>
-	<p>------------------------------------------------------</p>
-	 </c:forEach> --%>
-</div>
+
 	
 	</div>
 	
-
+ <c:import url="../../../temp/footer.jsp"></c:import>
 </body>
 </html>

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-  
+  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC>
 <html>
 <head>
@@ -26,6 +26,7 @@
 </style>
 </head>
 <body>
+ <c:import url="../../../temp/header.jsp"></c:import>
 		<div class="col-md-8 col-centered">
 			<form action="./${board}Update.${board}" method="post">
 				<table class="table">
@@ -46,6 +47,6 @@
 				<button>글쓰기</button>
 			</form>
 			</div>
-
+ <c:import url="../../../temp/footer.jsp"></c:import>
 </body>
 </html>

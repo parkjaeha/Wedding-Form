@@ -154,7 +154,8 @@ public  class ReplyDAO implements BoardDAO{
 	public List<BoardDTO> selectList(String type, int num) throws Exception {
 		Connection con=DBConnector.getConnect();
 		List<BoardDTO> ar=new ArrayList<>();
-		String sql="select * from reply where reviewnum=(select num from review where type=? and num=?)";
+		String sql="select * from reply where reviewnum=(select num from review where type=? and num=?) "
+				+ "order by num desc";
 		PreparedStatement st=con.prepareStatement(sql);
 		st.setString(1, type);
 		st.setInt(2, num);

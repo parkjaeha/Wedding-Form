@@ -61,7 +61,7 @@ a:hover {
     position: absolute;
     background-color: white;
     opacity: 0.9;
-    width : 1200px;
+    width: 1200px;
     height : 350px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
@@ -73,7 +73,7 @@ a:hover {
 }
 
 #line{
-width : 1000px;
+width : 1100px;
 border-top: 1px solid gray;
 }
 
@@ -85,7 +85,7 @@ float: left ;
 }
 .hiden p{
 font-size:20px;
-
+text-align: center;
 }
 pre{
 font-family: 맑은 고딕;
@@ -96,23 +96,36 @@ font-size:18px;
 
 footer{
 width: 100%;
-height: 150px;
+height: 200px;
 border-top: 1px solid #EAEAEA;
 border-bottom: 1px solid #EAEAEA;
 }
 #footer_1{
+width: 100%;
+height: 50px;
+border-bottom: 1px solid #EAEAEA;
+}
+
+#info{
+width: 1100px;
+height: 50px;
+background-color: red;
+margin: 0 auto;	
+	
+}
+#footer_2{
 width: 1100px;
 height: 150px;
 margin: 0 auto;
 
 }
-#footer_2{
+#footer_3{
 width: 1100px;
 height: 50px;
 margin: 0 auto;
 
 }
-#footer_1 p,h3{
+#footer_2 p,h3{
     padding-top : 10px;
 	font-size: 15px;
 	text-align: left;

@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
 <footer>
 <div id="footer_1">
+<div id="info"></div>
+</div>
+<div id="footer_2">
 <h3>(주)WEDDING FORM</h3>
 
      <p>서울특별시 강남구 테헤란로 14길 6 남도빌딩 | 6, Teheran-ro 14-gil, Gangnam-gu, Seoul, Republic of Korea </p>
@@ -11,7 +14,7 @@
 
 </div>
 </footer>
-<div id="footer_2">
+<div id="footer_3">
 <img alt="" src="${pageContext.request.contextPath}/img/1.gif">
 <img alt="" src="${pageContext.request.contextPath}/img/2.gif">
 <img alt="" src="${pageContext.request.contextPath}/img/3.gif">

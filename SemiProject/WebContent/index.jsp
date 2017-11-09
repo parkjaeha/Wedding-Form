@@ -33,18 +33,38 @@ margin: 0 auto;
 </head>
 <body>
 <c:import url="./temp/header.jsp"></c:import>
+
+<!-- 메인 슬라이드 이미지 -->
 <div class="contents">
-<div class="img w3-display-container " >
-<img class="mySlides w3-animate-fading" src="./img/wedding.jpg" style="width:100%; height:450px;">
-<img class="mySlides w3-animate-fading" src="./img/wedding4.jpg" style="width:100%;height:450px;">
-<img class="mySlides w3-animate-fading" src="./img/모바일.PNG" style="width:100%; height:450px;">
+<div class="img w3-display-container">
+<img class="mySlides w3-animate-opacity" src="./img/wedding.jpg" style="width:100%; height:450px;">
+<img class="mySlides w3-animate-opacity" src="./img/wedding4.jpg" style="width:100%;height:450px;">
+<img class="mySlides w3-animate-opacity" src="./img/모바일.PNG" style="width:100%; height:450px;">
 
 <img class="next w3-padding w3-display-left " src="./img/prev.png" onclick="plusDivs(1)">
 <img class="next w3-padding w3-display-right" src="./img/next.png" onclick="plusDivs(-1)">
 </div>
 <script>
-var slideIndex = 1;
-showDivs(slideIndex);
+/* 메인 슬라이드 */
+   var myIndex = 0;
+  carousel();
+
+function carousel() {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";  
+    }
+    myIndex++;
+    if (myIndex > x.length) {myIndex = 1}    
+    x[myIndex-1].style.display = "block";  
+    setTimeout(carousel, 3500); 
+}    
+
+
+/*     var slideIndex = 1;
+  showDivs(slideIndex);
 
 function plusDivs(n) {
   showDivs(slideIndex += n);
@@ -59,8 +79,7 @@ function showDivs(n) {
      x[i].style.display = "none";  
   }
   x[slideIndex-1].style.display = "block";  
-
-}
+}  */
 </script>
 </div>
 </div>
