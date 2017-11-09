@@ -1,2 +1,0 @@
-${dto.id}:${dto.data}
-
