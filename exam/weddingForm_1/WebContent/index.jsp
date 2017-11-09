@@ -9,7 +9,6 @@
 <body>
 	<ul>
 		<li><a href="search/searchMain.search">Search_Page</a></li>
-		<li><a href="search/searchMain.search">Search</a></li>
 		<li><a href="search/searchTotalMap.search">Search By Map</a></li>
 	</ul>
 </body>

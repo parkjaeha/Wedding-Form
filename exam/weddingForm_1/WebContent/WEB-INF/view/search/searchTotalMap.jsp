@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -34,15 +34,42 @@ body {
 	overflow: auto;
 }
 
+#searchInput {
+	  background-image: url('../image/common/searchicon.gif');
+	  background-position: 10px 12px;
+	  background-repeat: no-repeat;
+	  width: 100%;
+	  font-size: 16px;
+	  padding: 12px 20px 12px 40px;
+	  border: 1px solid #ddd;
+	  margin-bottom: 12px;
+}
+
+#myUL {
+	  list-style-type: none;
+	  padding: 0;
+	  margin: 0;
+	}
+	
+#myUL li a {
+	  border: 1px solid #ddd;
+	  margin-top: -1px; /* Prevent double borders */
+	  padding: 12px;
+	  text-decoration: none;
+	  font-size: 18px;
+	  color: black;
+	  display: block
+}
+
+#myUL li a:hover:not(.header) {
+	background-color: #eee;
+}
+
 .title {
 	border-bottom: 1px solid #e0ecff;
 	overflow: hidden;
 	width: 256px;
 	cursor: pointer;
-	padding: 2px 0;
-	display: block;
-	color: #000;
-	text-decoration: none;
 }
 
 .title:visited {
@@ -51,32 +78,6 @@ body {
 
 .title:hover {
 	background: #e0ecff;
-}
-
-#timetaken {
-	color: #f00;
-}
-
-.info {
-	width: 200px;
-}
-
-.info img {
-	border: 0;
-}
-
-.info-body {
-	width: 200px;
-	height: 200px;
-	line-height: 200px;
-	margin: 2px 0;
-	text-align: center;
-	overflow: hidden;
-}
-
-.info-img {
-	height: 220px;
-	width: 200px;
 }
 </style>
 
@@ -90,23 +91,33 @@ body {
 </script>
 </head>
 <body>
-	<div id="floating-panel">
-      <input id="search" type="text" value="Sydney, NSW">
-      <input id="submit" type="button" value="Geocode">
-    </div>
-
 	<div id="panel">
-		<!-- <select id="cido">
-			<option value="">시/도</option>
-			<option value="서울특별시">서울특별시</option>
-			<option value="경기도">경기도</option>
-		</select>
-
-		<select id="gungu">
-			<option value="">군/구</option>
-		</select> -->
+		<input type="text" id="searchInput" onkeyup="searchFunction()" placeholder="웨딩홀 이름을 입력해주세요">
+		
 		<strong>Wedding Hall List</strong>
-		<div id="markerlist"></div>
+		<ul id="myUL">
+		</ul>
+		<script>
+		function searchFunction() {
+		    var input, filter, ul, li, a, i;
+		    input = document.getElementById("searchInput");
+		    filter = input.value.toUpperCase();
+		    ul = document.getElementById("myUL");
+		    li = ul.getElementsByTagName("li");
+		    console.log("li.length: " + li.length);
+		    for (i = 0; i < li.length; i++) {
+		        a = li[i].getElementsByTagName("a")[0];
+		        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+		            li[i].style.display = "";
+		        } else {
+		            li[i].style.display = "none";
+		
+		        }
+		    }
+		}
+		</script>
+		
+		
 	</div>
 	<div id="map-container">
 		<div id="map"></div>

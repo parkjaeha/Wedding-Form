@@ -26,14 +26,6 @@ weddingMap.init = function() {
 	weddingMap.map = new google.maps.Map($('map'), options); // google 지도 생성(초기화)
 	weddingMap.pics = data.weddings;	// 데이터제이슨에서 자료를 pics에 저장
 	
-	weddingMap.geocoder = new google.maps.Geocoder();
-	
-	///////////////////////////////////////////////////////////////////////////
-	var btn = document.getElementById('submit');
-	//var geo = weddingMap.search(weddingMap.geocoder, weddingMap.map);
-	google.maps.event.addDomListener(btn, 'click', weddingMap.search(weddingMap.geocoder, weddingMap.map));
-	
-	
 	weddingMap.infoWindow = new google.maps.InfoWindow();	// infowWindow() 객체 생성
 
 	weddingMap.showMarkers();	// showMarkers() 호출
@@ -42,7 +34,7 @@ weddingMap.init = function() {
 weddingMap.showMarkers = function() {
 	weddingMap.markers = [];	// markers 배열 생성
 	
-	var panel = $('markerlist');	// makerlist
+	var panel = $('myUL');	// makerlist
 	panel.innerHTML = '';
 	
 	for (var i = 0; i < data.count; i++) { // numMarkers = 10 | 50 | 100 | 500 | 1000 의 숫자에 따라 list 갯수가 달라짐
@@ -53,6 +45,7 @@ weddingMap.showMarkers = function() {
 			titleText = 'No title';
 		}
 		
+		/*
 		var item = document.createElement('DIV'); 	// div 생성
 		var title = document.createElement('A');	// A태그 생성
 		title.href = '#';							// A 태그 href="#" 속성 추가
@@ -61,6 +54,18 @@ weddingMap.showMarkers = function() {
 		
 		item.appendChild(title);					// <div><a href="#" class="title">titleText</a></div>
 		panel.appendChild(item);					// panel div에 <div><a href="#" class="title">titleText</a></div> 추가 
+		 */	
+		/*var ul = document.createElement('ul');
+		ul.id="myUL";*/
+		var li = document.createElement('li');
+		var title = document.createElement('A');	// A태그 생성
+		title.href = '#';							// A 태그 href="#" 속성 추가
+		title.className = 'title';					// A 태그 class="title" 클래스 추가
+		title.innerHTML = titleText;				// A 태그 titleText 문자열 추가
+		
+		li.appendChild(title);
+		panel.appendChild(li);
+		
 		
 		var latLng = new google.maps.LatLng(weddingMap.pics[i].latitude,		// 위도 경도
 				weddingMap.pics[i].longitude);
@@ -125,20 +130,4 @@ weddingMap.change1 = function() {
 weddingMap.change2 = function() {
 	weddingMap.clear();
 	weddingMap.showMarkers();
-};
-
-weddingMap.search = function(geocoder, map) {
-	alert("test");
-	var address = document.getElementById('search').value;
-	geocoder.geocode({'address': search}, function(results, status) {
-		if (status === 'OK') {
-			resultsMap.setCenter(results[0].geometry.location);
-			var marker = new google.maps.Marker({
-				map: map,
-				position: results[0].geometry.location
-			});
-		} else {
-			alert('Geocode was not successful for the following reason: ' + status);
-		}
-	});
 };

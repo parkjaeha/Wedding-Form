@@ -11,16 +11,29 @@
   </welcome-file-list>
   
   <servlet>
-  	<servlet-name>search</servlet-name>
-  	<servlet-class>com.weddingform.control.SearchController</servlet-class>
+  	<servlet-name>reservation</servlet-name>
+  	<servlet-class>com.weddingform.control.ReservationController</servlet-class>
   	<init-param>
   		<param-name>property</param-name>
-  		<param-value>search.properties</param-value>
+  		<param-value>reservation.properties</param-value>
   	</init-param>
   </servlet>
   
   <servlet-mapping>
-  	<servlet-name>search</servlet-name>
-  	<url-pattern>*.search</url-pattern>
+  	<servlet-name>reservation</servlet-name>
+  	<url-pattern>*.reservation</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>search</servlet-name>
+    <servlet-class>com.weddingform.control.SearchController</servlet-class>
+    <init-param>
+      <param-name>property</param-name>
+      <param-value>search.properties</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>search</servlet-name>
+    <url-pattern>*.search</url-pattern>
   </servlet-mapping>
 </web-app>
