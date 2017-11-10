@@ -28,9 +28,11 @@ public class SearchTableService implements Action {
 		}
 		
 		WeddingSearch weddingSearch = this.searchParse(map);
+		String sort = ((String[])map.get("sort"))[0];
+		
 		try {
 			PageMaker pageMaker = new PageMaker(1, 6, extraDAO.getTotal(weddingSearch));
-			ArrayList<ExtraDTO> ar = extraDAO.searchList(weddingSearch, pageMaker.getMakeRow());
+			ArrayList<ExtraDTO> ar = extraDAO.searchList(weddingSearch, pageMaker.getMakeRow(), sort);
 
 			request.setAttribute("list", ar);
 			request.setAttribute("search", weddingSearch);
@@ -135,17 +137,21 @@ public class SearchTableService implements Action {
 		}
 		//End visitor
 		
-		if(((String[])map.get("region"))[0].equals("")) {
+		if(((String[])map.get("region"))[0].trim().equals("")) {
 			weddingSearch.setRegion("|");
 		} else {
-			weddingSearch.setRegion(((String[])map.get("region"))[0].toUpperCase());
+			weddingSearch.setRegion(((String[])map.get("region"))[0].trim().toUpperCase());
 		} // End region
 		
-		if(((String[])map.get("subway"))[0].equals("")) {
+		
+		if(((String[])map.get("subway"))[0].trim().equals("")) {
 			weddingSearch.setSubway("|");
 		} else {
-			weddingSearch.setSubway(((String[])map.get("subway"))[0].toUpperCase());
+			weddingSearch.setSubway(((String[])map.get("subway"))[0].trim().toUpperCase());
 		} // End subway
+		
+		System.out.println(((String[])map.get("subway"))[0]);
+		System.out.println(weddingSearch.getSubway());
 		
 		if(((String[])map.get("hall_name"))[0].equals("")) {
 			weddingSearch.setHall_name("|");

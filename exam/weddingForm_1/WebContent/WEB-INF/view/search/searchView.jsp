@@ -283,7 +283,7 @@
 	
 	<div class="container">
 			<h3 style="text-align: right;">기본정보</h3>
-			<table class=".table inherit">
+			<table class=".table">
 				<tr>
 					<td>홀타입:</td>
 					<td><span>${view.type}</span></td>
@@ -316,6 +316,26 @@
 			</table>
 		</div>
 		
+		<div class="container">
+			<h3 style="text-align: right;">웨딩홀 정보</h3>
+			<table class=".table inherit">
+				<tr>
+					<td>주소:</td>
+					<td><span>${company.company_addr}</span></td>
+				</tr>
+				
+				<tr>
+					<td>전화번호:</td>
+					<td><span>${company.company_tel}</span></td>
+				</tr>
+				
+				<tr>
+					<td>사업자번호: </td>
+					<td><span>${company.company_number}</span></td>
+				</tr>
+			</table>
+		</div>
+		
 		<div class="container textCenter">
 			<button id="myBtn" class="btn btn-primary">예약하기</button>
 			<button class="btn btn-primary">예약현황</button>
@@ -330,7 +350,7 @@
 		  <div class="modal-content">
 		    <span class="closer">&times;</span>
 		    <h3>상담신청</h3>
-		    <form action="../reservation/reservationInsert.reservation" method="post">
+		    <form action="./searchView.search" method="post">
 		    <input type="hidden" value="${view.id}" name="company_id">
 		    <table class="table">
 		    	<tr>

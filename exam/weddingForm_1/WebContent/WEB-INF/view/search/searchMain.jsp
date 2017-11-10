@@ -22,21 +22,26 @@
 <script type="text/javascript">
 	var cur_Page = 1;
 	$(function() {
-		$("#result").on("click", ".btn_add", function() {
-			cur_Page++;
+		$(".nav-link").click(function() {
+			var allData = data();
 			$.ajax({
 				type : "GET",
-				url : "searchAdd.search",
-				data : {
-					curPage : cur_Page,
-					type : "${search.type}",
-					region : "${search.region}",
-					subway : "${search.subway}",
-					meal_cost : "${search.meal_cost}",
-					meal_menu : "${search.meal_menu}",
-					visitor : "${search.visitor}",
-					hall_name : "${search.hall_name}"
-				},
+				url : "./searchAdd.search",
+				data : allData,
+				success : function(data) {
+					$("#result").html(data);
+				}
+			});
+		});
+		
+		
+		$("#result").on("click", ".btn_add", function() {
+			cur_Page++;
+			var allData = data();
+			$.ajax({
+				type : "GET",
+				url : "./searchAdd.search",
+				data : allData,
 				success : function(data) {
 					$("#result").html(data);
 				}
@@ -44,40 +49,8 @@
 		});
 
 		$("#btn").click(function() {
-			var checkType = [];
-			$("input:checkbox[name='type']:checked").each(function(index) {
-				checkType.push($(this).val());
-			});
-
-			var checkCost = [];
-			$("input:checkbox[name='meal_cost']:checked").each(function(index) {
-				checkCost.push($(this).val());
-			});
-
-			var checkMenu = [];
-			$("input:checkbox[name='meal_menu']:checked").each(function(index) {
-				checkMenu.push($(this).val());
-			});
-
-			var checkVisitor = [];
-			$("input:checkbox[name='visitor']:checked").each(function(index) {
-				checkVisitor.push($(this).val());
-			});
-
-			var region = $("#region01").val() + " " + $("#region02").val();
-			var subway = $("#subway01").val() + " " + $("#subway02").val();
-			var hall_name = $("#hall_name").val();
-
-			var allData = {
-				"type" : checkType,
-				"meal_cost" : checkCost,
-				"meal_menu" : checkMenu,
-				"visitor" : checkVisitor,
-				"hall_name" : hall_name,
-				"region" : region,
-				"subway" : subway
-			};
-
+			cur_Page = 1;
+			var allData = data();
 			$.ajax({
 				type : "GET",
 				url : "./searchTable.search",
@@ -89,7 +62,7 @@
 		}); // End #btn
 
 		// 시도 군구
-		var area0 = [ "시/도", "서울특별시", "인천광역시", "대전광역시", "광주광역시", "대구광역시", "울산광역시", "부산광역시", "경기도", "강원도", "충청북도", "충청남도", "전라북도", "전라남도", "경상북도", "경상남도", "제주도" ];
+		var area0 = [ "서울특별시", "인천광역시", "대전광역시", "광주광역시", "대구광역시", "울산광역시", "부산광역시", "경기도", "강원도", "충청북도", "충청남도", "전라북도", "전라남도", "경상북도", "경상남도", "제주도" ];
 		var area1 = [ "군/구", "강남구", "강동구", "강북구", "강서구", "관악구", "광진구", "구로구", "금천구", "노원구", "도봉구", "동대문구", "동작구", "마포구", "서대문구", "서초구", "성동구", "성북구", "송파구", "양천구", "영등포구", "용산구", "은평구", "종로구", "중구", "중랑구" ];
 		var area2 = [ "군/구", "계양구", "남구", "남동구", "동구", "부평구", "서구", "연수구", "중구", "강화군", "옹진군" ];
 		var area3 = [ "군/구", "대덕구", "동구", "서구", "유성구", "중구" ];
@@ -113,35 +86,38 @@
 			$.each(eval(area0), function() {
 				$selsido.append("<option value='" + this + "'>" + this + "</option>");
 			});
-			$selsido.next().append("<option value=''>군/구</option>");
 		});
 
-		// 시/도 선택시 구/군 설정
+		// 시/도 선택시 군/구 설정
 		$("select[name^=sido]").change(function() {
 			var area = "area" + $("option", $(this)).index($("option:selected", $(this))); // 선택지역의 구군 Array
 			var $gugun = $(this).next(); // 선택영역 군구 객체
 			$("option", $gugun).remove(); // 구군 초기화
 			if (area == "area0")
-				$gugun.append("<option value=''>구/군</option>");else {
+				$gugun.append("<option value=' '>군/구</option>");else {
 				$.each(eval(area), function() {
-					$gugun.append("<option value='" + this + "'>" + this + "</option>");
+					if(this == '군/구') {
+						$gugun.append("<option value=' '>" + this + "</option>");
+					} else {
+						$gugun.append("<option value='" + this + "'>" + this + "</option>");
+					}
 				});
 			}
 		});
 		
-		var subway0 = [ "지하철", "1호선", "2호선", "3호선", "4호선", "5호선", "6호선", "7호선", "8호선", "9호선", "경부선", "경의선", "경원선", "장안선", "경축선", "중앙선", "경인선", "안산선", "과천선", "분당선", "일산선", "공항철도선", "인천1호선", "분당선", "신분당선"];
+		// 지하철
+		var subway0 = [ "1호선", "2호선", "3호선", "4호선", "5호선", "6호선", "7호선", "8호선", "9호선", "경부선", "경의선", "경원선", "장안선", "경축선", "중앙선", "경인선", "안산선", "과천선", "분당선", "일산선", "공항철도선", "인천1호선", "분당선", "신분당선"];
 		
 		$("select[name=subway01]").each(function() {
 			$selssub = $(this);
 			$.each(eval(subway0), function() {
 				$selssub.append("<option value='" + this + "'>" + this + "</option>");
 			});
-			$selssub.next().append("<option value=''>역선택</option>");
 		});
 		
 		$("#subway01").change(function() {
 			$("#subway02 option").remove();
-			$("#subway02").append("<option value=''>역선택</option>");
+			$("#subway02").append("<option value=' '>역선택</option>");
 			var index = 0;
 			$.ajax({
 				url: "../json/subway.json",
@@ -157,6 +133,47 @@
 			});
 		});
 	});
+	
+	function data() {
+		var checkType = [];
+		$("input:checkbox[name='type']:checked").each(function(index) {
+			checkType.push($(this).val());
+		});
+
+		var checkCost = [];
+		$("input:checkbox[name='meal_cost']:checked").each(function(index) {
+			checkCost.push($(this).val());
+		});
+
+		var checkMenu = [];
+		$("input:checkbox[name='meal_menu']:checked").each(function(index) {
+			checkMenu.push($(this).val());
+		});
+
+		var checkVisitor = [];
+		$("input:checkbox[name='visitor']:checked").each(function(index) {
+			checkVisitor.push($(this).val());
+		});
+
+		var region = $("#sido1").val() + " " + $("#gungu1").val();
+		var subway = $("#subway01").val() + " " + $("#subway02").val();
+		var hall_name = $("#hall_name").val();
+		var active = $(".active").attr("title");
+
+		var allData = {
+			"type" : checkType,
+			"meal_cost" : checkCost,
+			"meal_menu" : checkMenu,
+			"visitor" : checkVisitor,
+			"hall_name" : hall_name,
+			"region" : region,
+			"subway" : subway,
+			"sort" : active,
+			"curPage" : cur_Page
+		};
+		
+		return allData;
+	}
 </script>
 
 <style type="text/css">
@@ -211,116 +228,149 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="">
-		<div class="container">
-			<table class="table">
-				<!-- 웨딩홀 지역 -->
-				<tr>
-					<td>웨딩홀 지역</td>
-					<td>
-						<select name="sido1" id="sido1"></select>
-						<select name="gugun1" id="gugun1"></select>
-					</td>
-				</tr>
+	<div class="container">
+		<table class="table">
+			<!-- 웨딩홀 지역 -->
+			<tr>
+				<td>웨딩홀 지역</td>
+				<td>
+					<select name="sido1" id="sido1">
+						<option value=" ">시/도</option>
+					</select>
+					<select name="gungu1" id="gungu1">
+						<option value=" ">군/구</option>
+					</select>
+				</td>
+			</tr>
 
-				<!-- 지하철 노선 -->
-				<tr>
-					<td>지하철 노선</td>
-					<td>
-						<select id="subway01" name="subway01"></select> 
-						<select id="subway02" name="subway02"></select>
-					</td>
-				</tr>
+			<!-- 지하철 노선 -->
+			<tr>
+				<td>지하철 노선</td>
+				<td>
+					<select id="subway01" name="subway01">
+						<option value=" ">지하철</option>
+					</select> 
+					<select id="subway02" name="subway02">
+						<option value=" ">역선택</option>
+					</select>
+				</td>
+			</tr>
 
-				<!-- 웨딩홀 타입 -->
-				<tr>
-					<td>웨딩홀 타입</td>
-					<td>
-						<input type="checkbox" name="type" id="type" value="All">
-						<label for="type">전체</label> 
-						<input type="checkbox" name="type" id="type01" value="일반웨딩홀">
-						<label for="type01">일반웨딩홀</label>
-						<input type="checkbox" name="type" id="type02" value="야외웨딩홀">
-						<label for="type02">야외웨딩홀</label> 
-						<input type="checkbox" name="type" id="type03" value="전통웨딩홀">
-						<label for="type03">전통웨딩홀</label>
-						<input type="checkbox" name="type" id="type04" value="호텔웨딩홀">
-						<label for="type04">호텔웨딩홀</label> 
-						<input type="checkbox" name="type" id="type05" value="공공기관"><label for="type05">공공기관</label>
-					</td>
-				</tr>
+			<!-- 웨딩홀 타입 -->
+			<tr>
+				<td>웨딩홀 타입</td>
+				<td>
+					<input type="checkbox" name="type" id="type" value="All">
+					<label for="type">전체</label> 
+					<input type="checkbox" name="type" id="type01" value="일반웨딩홀">
+					<label for="type01">일반웨딩홀</label>
+					<input type="checkbox" name="type" id="type02" value="야외웨딩홀">
+					<label for="type02">야외웨딩홀</label> 
+					<input type="checkbox" name="type" id="type03" value="전통웨딩홀">
+					<label for="type03">전통웨딩홀</label>
+					<input type="checkbox" name="type" id="type04" value="호텔웨딩홀">
+					<label for="type04">호텔웨딩홀</label> 
+					<input type="checkbox" name="type" id="type05" value="공공기관"><label for="type05">공공기관</label>
+				</td>
+			</tr>
 
-				<!-- 식사 가격 -->
-				<tr>
-					<td>식사가격</td>
-					<td>
-					<input type="checkbox" name="meal_cost" id="meal_cost" value="All">
-					<label for="meal_cost">전체</label> 
-					<input type="checkbox" name="meal_cost" id="meal_cost01" value="1~2만원">
-					<label for="meal_cost01">1~2만원</label> 
-					<input type="checkbox" name="meal_cost" id="meal_cost02" value="2~3만원">
-					<label for="meal_cost02">2~3만원</label> 
-					<input type="checkbox" name="meal_cost" id="meal_cost03" value="3~4만원">
-					<label for="meal_cost03">3~4만원</label> 
-					<input type="checkbox" name="meal_cost" id="meal_cost04" value="4~5만원">
-					<label for="meal_cost04">4~5만원</label> 
-					<input type="checkbox" name="meal_cost" id="meal_cost05" value="5~6만원">
-					<label for="meal_cost05">5~6만원</label> 
-					<input type="checkbox" name="meal_cost" id="meal_cost06" value="6~7만원">
-					<label for="meal_cost06">6~7만원</label> 
-					<input type="checkbox" name="meal_cost" id="meal_cost07" value="7만원이상">
-					<label for="meal_cost07">7만원이상</label></td>
-				</tr>
+			<!-- 식사 가격 -->
+			<tr>
+				<td>식사가격</td>
+				<td>
+				<input type="checkbox" name="meal_cost" id="meal_cost" value="All">
+				<label for="meal_cost">전체</label> 
+				<input type="checkbox" name="meal_cost" id="meal_cost01" value="1~2만원">
+				<label for="meal_cost01">1~2만원</label> 
+				<input type="checkbox" name="meal_cost" id="meal_cost02" value="2~3만원">
+				<label for="meal_cost02">2~3만원</label> 
+				<input type="checkbox" name="meal_cost" id="meal_cost03" value="3~4만원">
+				<label for="meal_cost03">3~4만원</label> 
+				<input type="checkbox" name="meal_cost" id="meal_cost04" value="4~5만원">
+				<label for="meal_cost04">4~5만원</label> 
+				<input type="checkbox" name="meal_cost" id="meal_cost05" value="5~6만원">
+				<label for="meal_cost05">5~6만원</label> 
+				<input type="checkbox" name="meal_cost" id="meal_cost06" value="6~7만원">
+				<label for="meal_cost06">6~7만원</label> 
+				<input type="checkbox" name="meal_cost" id="meal_cost07" value="7만원이상">
+				<label for="meal_cost07">7만원이상</label></td>
+			</tr>
 
-				<!-- 식사 메뉴 -->
-				<tr>
-					<td>식사메뉴</td>
-					<td><input type="checkbox" name="meal_menu" id="meal_menu"
-						value="All"><label for="meal_menu">전체</label> <input
-						type="checkbox" name="meal_menu" id="meal_menu01" value="양식"><label
-						for="meal_menu01">양식</label> <input type="checkbox"
-						name="meal_menu" id="meal_menu02" value="한식"><label
-						for="meal_menu02">한식</label> <input type="checkbox"
-						name="meal_menu" id="meal_menu03" value="일식"><label
-						for="meal_menu03">일식</label> <input type="checkbox"
-						name="meal_menu" id="meal_menu04" value="중식"><label
-						for="meal_menu04">중식</label> <input type="checkbox"
-						name="meal_menu" id="meal_menu05" value="뷔페"><label
-						for="meal_menu05">뷔페</label></td>
-				</tr>
+			<!-- 식사 메뉴 -->
+			<tr>
+				<td>식사메뉴</td>
+				<td><input type="checkbox" name="meal_menu" id="meal_menu"
+					value="All"><label for="meal_menu">전체</label> <input
+					type="checkbox" name="meal_menu" id="meal_menu01" value="양식"><label
+					for="meal_menu01">양식</label> <input type="checkbox"
+					name="meal_menu" id="meal_menu02" value="한식"><label
+					for="meal_menu02">한식</label> <input type="checkbox"
+					name="meal_menu" id="meal_menu03" value="일식"><label
+					for="meal_menu03">일식</label> <input type="checkbox"
+					name="meal_menu" id="meal_menu04" value="중식"><label
+					for="meal_menu04">중식</label> <input type="checkbox"
+					name="meal_menu" id="meal_menu05" value="뷔페"><label
+					for="meal_menu05">뷔페</label></td>
+			</tr>
 
-				<!-- 하객수 -->
-				<tr>
-					<td>하객수</td>
-					<td><input type="checkbox" name="visitor" id="visitor"
-						value="All"><label for="visitor">전체</label> <input
-						type="checkbox" name="visitor" id="visitor01" value="50~100명"><label
-						for="visitor01">50~100명</label> <input type="checkbox"
-						name="visitor" id="visitor02" value="100~200명"><label
-						for="visitor02">100~200명</label> <input type="checkbox"
-						name="visitor" id="visitor03" value="200~300명"><label
-						for="visitor03">200~300명</label> <input type="checkbox"
-						name="visitor" id="visitor04" value="300~400명"><label
-						for="visitor04">300~400명</label> <input type="checkbox"
-						name="visitor" id="visitor05" value="400~500명"><label
-						for="visitor05">400~500명</label> <input type="checkbox"
-						name="visitor" id="visitor06" value="500명이상"><label
-						for="visitor06">500명이상</label></td>
-				</tr>
+			<!-- 하객수 -->
+			<tr>
+				<td>하객수</td>
+				<td><input type="checkbox" name="visitor" id="visitor"
+					value="All"><label for="visitor">전체</label> <input
+					type="checkbox" name="visitor" id="visitor01" value="50~100명"><label
+					for="visitor01">50~100명</label> <input type="checkbox"
+					name="visitor" id="visitor02" value="100~200명"><label
+					for="visitor02">100~200명</label> <input type="checkbox"
+					name="visitor" id="visitor03" value="200~300명"><label
+					for="visitor03">200~300명</label> <input type="checkbox"
+					name="visitor" id="visitor04" value="300~400명"><label
+					for="visitor04">300~400명</label> <input type="checkbox"
+					name="visitor" id="visitor05" value="400~500명"><label
+					for="visitor05">400~500명</label> <input type="checkbox"
+					name="visitor" id="visitor06" value="500명이상"><label
+					for="visitor06">500명이상</label></td>
+			</tr>
 
-				<tr>
-					<td>웨딩홀명</td>
-					<td><input type="text" name="hall_name" id="hall_name"></td>
-				</tr>
-			</table>
-		</div>
-	</form>
+			<tr>
+				<td><label for="hall_name">웨딩홀명</label></td>
+				<td><input type="text" name="hall_name" id="hall_name" value=""></td>
+			</tr>
+		</table>
+	</div>
 
 	<div class="container" style="text-align: center">
 		<input type="button" id="btn" class="btn btn-primary"
 			value="위 조건으로 검색하기">
 	</div>
 
+	<br>
+	<div class="container">
+		<ul class="nav nav-tabs">
+		    <li class="nav-item">
+		      <a class="nav-link active" id="sort1" title="hall_name asc" onclick="changeActive(1)">가나다순</a>
+		    </li>
+		    <li class="nav-item">
+		      <a class="nav-link" id="sort2" title="meal_cost asc" onclick="changeActive(2)">낮은 식대순</a>
+		    </li>
+		    <li class="nav-item">
+		      <a class="nav-link" id="sort3" title="meal_cost desc" onclick="changeActive(3)">높은 식대순</a>
+		    </li>
+		</ul>
+		
+		<script type="text/javascript">
+			function changeActive(index) {
+				var len = document.getElementsByTagName("li").length;
+				for(var i=0; i<len; i++) {
+					if(i == index-1) {
+						document.getElementById("sort"+(i+1)).setAttribute("class", "nav-link active");
+					} else {
+						document.getElementById("sort"+(i+1)).setAttribute("class", "nav-link");
+					}
+				}
+			}
+		</script>
+	</div>
 	<br>
 
 	<div id="result">
@@ -345,9 +395,11 @@
 			</c:forEach>
 		</div>
 
-		<div class="container" style="text-align: center;">
-			<button id="btn_add" class="btn btn_add">더보기</button>
-		</div>
+		<c:if test="${curPage != total}">
+			<div class="container" style="text-align: center;">
+				<button id="btn_add" class="btn btn_add">더보기</button>
+			</div>
+		</c:if>
 	</div>
 
 

@@ -9,6 +9,30 @@ import com.weddingform.util.DBConnector;
 
 public class CommonDAO {
 	
+	public CommonDTO selectOne(CommonDTO commonDTO) throws Exception {
+	      Connection con = DBConnector.getConnect();
+	      String sql ="select * from common where id=?";
+	      PreparedStatement st = con.prepareStatement(sql);
+	      st.setString(1, commonDTO.getId());
+	      st.setString(2, commonDTO.getPw());
+	      st.setString(3, commonDTO.getJob());
+	      ResultSet rs = st.executeQuery();
+	      if(rs.next()) {
+	    	 commonDTO.setId(rs.getString("id"));
+	         commonDTO.setName(rs.getString("name"));
+	         commonDTO.setAddr(rs.getString("addr"));
+	         commonDTO.setPhone(rs.getString("phone"));
+	         commonDTO.setMail(rs.getString("mail"));
+	         
+	      }else {
+	         commonDTO= null;
+	      }
+	      
+	      DBConnector.disConnect(rs, st, con);
+	      
+	      return commonDTO;
+	   }
+	
 	public ArrayList<CommonDTO> selectList() throws Exception {
 		Connection con = DBConnector.getConnect();
 		ArrayList<CommonDTO> ar = new ArrayList<>();

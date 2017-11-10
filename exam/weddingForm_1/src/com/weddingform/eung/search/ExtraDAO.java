@@ -80,14 +80,24 @@ public class ExtraDAO {
 		return result;
 	}
 	
-	public ArrayList<ExtraDTO> searchList(WeddingSearch weddingSearch, MakeRow makeRow) throws Exception {
+	public ArrayList<ExtraDTO> searchList(WeddingSearch weddingSearch, MakeRow makeRow, String sort) throws Exception {
 		Connection con = DBConnector.getConnect();
+		
+		/*System.out.println("region: "+weddingSearch.getRegion());
+		System.out.println("type: "+weddingSearch.getType());
+		System.out.println("name: "+weddingSearch.getHall_name());
+		System.out.println("meal_cost: "+weddingSearch.getMeal_cost());
+		System.out.println(weddingSearch.getMeal_menu());
+		System.out.println(weddingSearch.getSubway());
+		System.out.println(weddingSearch.getVisitor());*/
 		
 		StringBuffer sb = new StringBuffer();
 		sb.append("select * ");
 		sb.append("from (select ROWNUM R, N.* ");
 		sb.append("from (select * from extra ");
-		sb.append("where REGEXP_LIKE (region, ?) and REGEXP_LIKE (type, ?) and REGEXP_LIKE (meal_cost, ?) and REGEXP_LIKE (meal_menu, ?) and REGEXP_LIKE (subway, ?) and REGEXP_LIKE (visitor, ?) and REGEXP_LIKE (hall_name, ?)) N) ");
+		sb.append("where REGEXP_LIKE (region, ?) and REGEXP_LIKE (type, ?) and REGEXP_LIKE (meal_cost, ?) ");
+		sb.append("and REGEXP_LIKE (meal_menu, ?) and REGEXP_LIKE (subway, ?) and REGEXP_LIKE (visitor, ?) ");
+		sb.append("and REGEXP_LIKE (hall_name, ?) order by "+sort+") N) ");
 		sb.append("where R between ? and ?");
 
 		PreparedStatement st = con.prepareStatement(sb.toString());

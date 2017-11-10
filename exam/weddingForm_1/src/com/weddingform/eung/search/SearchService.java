@@ -26,10 +26,17 @@ public class SearchService implements Action {
 			curPage = 1;
 		}
 		
+		String sort = request.getParameter("sort");
+		if(sort == null) {
+			sort = "hall_name asc";
+		}
+		
 		try {
 			PageMaker pageMaker = new PageMaker(curPage, 6, extraDAO.getTotal(weddingSearch));
-			ar = extraDAO.searchList(weddingSearch, pageMaker.getMakeRow());
+			ar = extraDAO.searchList(weddingSearch, pageMaker.getMakeRow(), sort);
 			
+			request.setAttribute("total", (extraDAO.getTotal(weddingSearch)/6)+1);
+			request.setAttribute("curPage", curPage);
 			request.setAttribute("list", ar);
 			request.setAttribute("search", weddingSearch);
 			
