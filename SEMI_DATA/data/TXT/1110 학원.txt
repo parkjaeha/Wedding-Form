@@ -1,7 +1,7 @@
 더보기	clear
 가나다순 식대순 정렬 clear
 view 페이지 지도
-company 테이블 위도 경도 추가
+company 테이블 위도 경도 추가 clear
 비교
 
 
