@@ -10,6 +10,7 @@
 	<ul>
 		<li><a href="search/searchMain.search">Search_Page</a></li>
 		<li><a href="search/searchTotalMap.search">Search By Map</a></li>
+		<li><a href="company/companyInsert.company">Company Join</a>
 	</ul>
 </body>
 </html>
