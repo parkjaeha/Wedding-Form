@@ -160,6 +160,12 @@
 		});
 	});
 	
+	////////////////////////////////////////함수들////////////////////////////////////////////////////
+	
+	function openWindow() {
+		var myWindow = window.open("./searchCompare.search", "", "width=1000,height=800");
+	}
+	
 	function changeType(title) {
 		if(title.attr("title") == "grid") {
 			document.getElementById("img_grid").setAttribute("class", "nav-link watch-type watch active");
@@ -231,6 +237,10 @@
 </script>
 
 <style type="text/css">
+.container {
+	position: relative;
+}
+
 .card {
 	display: inline-block;
 	width: 300px;
@@ -288,6 +298,46 @@
 	    color: #000;
 	    text-decoration: none;
 	    cursor: pointer;
+	}
+	
+	.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    border-right: 1px solid black;
+}
+	/************************side nav*************************************/
+	.sidenav a {
+	    padding: 8px 8px 8px 32px;
+	    text-decoration: none;
+	    font-size: 25px;
+	    color: #818181;
+	    display: block;
+	    transition: 0.3s;
+	}
+	
+	.sidenav a:hover {
+	    color: #f1f1f1;
+	}
+	
+	.sidenav .closebtn {
+	    position: absolute;
+	    top: 0;
+	    right: 25px;
+	    font-size: 36px;
+	    margin-left: 50px;
+	}
+	
+	@media screen and (max-height: 450px) {
+	  .sidenav {padding-top: 15px;}
+	  .sidenav a {font-size: 18px;}
 	}
 	</style>
 
@@ -426,7 +476,7 @@
 		
 		<div class="positionRight">
 			<ul class="nav nav-pills">
-				<li class="nav-item"><a class="nav-link">비교하기</a></li>
+				<li class="nav-item"><a class="nav-link" onclick="openWindow()">비교하기</a></li>
 				<li class="nav-item">
 					<a id="img_grid" class="nav-link watch-type watch active" title="grid">그리드</a>
 				</li>
@@ -459,7 +509,7 @@
 						alt="Card image" style="width: 100%">
 					<div class="card-body">
 						<p class="card-text addr">${dto.region}/ ${dto.type}</p>
-						<h4 class="card-title name">${list[0].hall_name}</h4>
+						<h4 class="card-title name">${dto.hall_name}</h4>
 						<div class="info">
 							<p style="line-height: 5px;">홀 사용료 : ${dto.hall_cost}</p>
 							<p style="line-height: 5px;">하객수 : ${dto.visitor}</p>
@@ -467,7 +517,8 @@
 							<p style="line-height: 5px;">식사종류 : ${dto.meal_menu}</p>
 							<p style="line-height: 5px;">식사가격 : ${dto.meal_cost}</p>
 						</div>
-						<a href="./searchView.search?id=${dto.id}" class="btn btn-primary">See Profile</a> 
+						<a href="./searchView.search?id=${dto.id}" class="btn btn-primary">See Profile</a>
+						<a class="btn btn-primary" onclick="openNav()">비교</a> 
 					</div>
 				</div>
 			</c:forEach>
@@ -479,6 +530,25 @@
 			</div>
 		</c:if>
 	</div>
+	
+	<div id="sidenav" class="sidenav">
+	  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+	  <!-- <a href="#">About</a> -->
+	</div>
+	
+	<script>
+	var count = 0;
+	function openNav(name) {
+		count++;
+		var nav = document.getElementById("sidenav");
+	    nav.style.width = "250px";
+	    nav.innerHTML="<span>name</span>";
+	}
+	
+	function closeNav() {
+	    document.getElementById("sidenav").style.width = "0";
+	}
+	</script>
 
 
 </body>

@@ -20,6 +20,11 @@ public class SearchTableService implements Action {
 		HashMap<String, Object> map = new HashMap<>();
 		ExtraDAO extraDAO = new ExtraDAO();
 		
+		int curPage = 1;
+		try {
+			curPage = Integer.parseInt( ((String[])map.get("curPage"))[0] );
+		} catch (Exception e) {}
+		
 		Enumeration<String> em = request.getParameterNames();
 		while(em.hasMoreElements()) {
 			String name = em.nextElement();
@@ -38,20 +43,32 @@ public class SearchTableService implements Action {
 		try {
 			PageMaker pageMaker = new PageMaker(1, perNumber, extraDAO.getTotal(weddingSearch));
 			ArrayList<ExtraDTO> ar = extraDAO.searchList(weddingSearch, pageMaker.getMakeRow(), sort);
+			System.out.println(ar);
 
-			request.setAttribute("list", ar);
-			request.setAttribute("search", weddingSearch);
+			if(ar.size() > 0) {
+				request.setAttribute("total", (extraDAO.getTotal(weddingSearch)/6)+1);
+				request.setAttribute("curPage", curPage);
+				request.setAttribute("list", ar);
+				request.setAttribute("search", weddingSearch);
+				
+				if(watch_type.equals("grid")) {
+					actionForward.setCheck(true);
+					actionForward.setPath("../WEB-INF/view/search/searchTable.jsp");
+				} else {
+					actionForward.setCheck(true);
+					actionForward.setPath("../WEB-INF/view/search/searchList.jsp");
+				}
+				
+			} else {
+				request.setAttribute("message", "예기치 못한 오류가 발생하였습니다.");
+				request.setAttribute("paht", "./searchMain.search");
+				
+				actionForward.setCheck(true);
+				actionForward.setPath("../WEB-INF/view/common/result.jsp");
+			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
-		
-		if(watch_type.equals("grid")) {
-			actionForward.setCheck(true);
-			actionForward.setPath("../WEB-INF/view/search/searchTable.jsp");
-		} else {
-			actionForward.setCheck(true);
-			actionForward.setPath("../WEB-INF/view/search/searchList.jsp");
 		}
 		
 		return actionForward;
