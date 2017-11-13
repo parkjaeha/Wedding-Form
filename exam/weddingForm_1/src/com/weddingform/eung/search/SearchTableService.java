@@ -37,9 +37,6 @@ public class SearchTableService implements Action {
 		String watch_type = ((String[])map.get("watch_type"))[0];
 		int perNumber = Integer.parseInt( ((String[])map.get("perNumber"))[0] );
 		
-		System.out.println(watch_type);
-		System.out.println(sort);
-
 		try {
 			PageMaker pageMaker = new PageMaker(1, perNumber, extraDAO.getTotal(weddingSearch));
 			ArrayList<ExtraDTO> ar = extraDAO.searchList(weddingSearch, pageMaker.getMakeRow(), sort);

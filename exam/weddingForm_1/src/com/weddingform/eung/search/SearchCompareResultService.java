@@ -22,13 +22,10 @@ public class SearchCompareResultService implements Action {
 		while(em.hasMoreElements()) {
 			String name = em.nextElement();
 			String[] values = request.getParameterValues(name);
-			System.out.println("NAME: " + name + ", VALUE: " + request.getParameterValues(name));
 			map.put(name, values);
 		}
 		
 		String[] compare = ((String[])map.get("compare[]"));
-		
-		System.out.println(compare);
 		
 		String str = "";
 		for(int i = 0; i < compare.length; i++) {
