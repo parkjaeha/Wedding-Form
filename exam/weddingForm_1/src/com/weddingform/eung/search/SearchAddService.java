@@ -33,14 +33,16 @@ public class SearchAddService implements Action {
 			curPage = 1;
 		}
 		
+		int perNumber = Integer.parseInt( ((String[])map.get("perNumber"))[0] );		
 		String sort = request.getParameter("sort");
-		System.out.println(sort);
+		String watch_type = ((String[])map.get("watch_type"))[0];
 		
 		WeddingSearch weddingSearch = this.searchParse(map);
 		ExtraDAO extraDAO = new ExtraDAO();
 		
+		
 		try {
-			PageMaker pageMaker = new PageMaker(1, curPage*6, extraDAO.getTotal(weddingSearch));
+			PageMaker pageMaker = new PageMaker(1, curPage*perNumber, extraDAO.getTotal(weddingSearch));
 			ArrayList<ExtraDTO> ar = extraDAO.searchList(weddingSearch, pageMaker.getMakeRow(), sort);
 			
 			
@@ -50,8 +52,14 @@ public class SearchAddService implements Action {
 				request.setAttribute("list", ar);
 				request.setAttribute("search", weddingSearch);
 
-				actionForward.setCheck(true);
-				actionForward.setPath("../WEB-INF/view/search/searchTable.jsp");
+				if(watch_type.equals("grid")) {
+					actionForward.setCheck(true);
+					actionForward.setPath("../WEB-INF/view/search/searchTable.jsp");
+				} else {
+					actionForward.setCheck(true);
+					actionForward.setPath("../WEB-INF/view/search/searchList.jsp");
+				}
+				
 			} else {
 				request.setAttribute("message", "예기치 못한 오류가 발생하였습니다.");
 				request.setAttribute("paht", "./searchMain.search");

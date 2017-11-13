@@ -41,6 +41,8 @@ public class CompanyDAO {
 	          companyDTO.setCompany_name(rs.getString("company_name"));
 	          companyDTO.setCompany_number(rs.getString("company_number"));
 	          companyDTO.setCompany_tel(rs.getString("company_tel"));
+	          companyDTO.setLatitude(rs.getDouble("latitude"));
+	          companyDTO.setLongitude(rs.getDouble("longitude"));
 	         
 	      }else {
 	    	  companyDTO= null;

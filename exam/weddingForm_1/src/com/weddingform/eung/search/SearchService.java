@@ -31,8 +31,13 @@ public class SearchService implements Action {
 			sort = "hall_name asc";
 		}
 		
+		int perNumber =  6;
 		try {
-			PageMaker pageMaker = new PageMaker(curPage, 6, extraDAO.getTotal(weddingSearch));
+			perNumber = Integer.parseInt(request.getParameter("perNumber"));
+		} catch (Exception e) {	}
+		
+		try {
+			PageMaker pageMaker = new PageMaker(curPage, perNumber, extraDAO.getTotal(weddingSearch));
 			ar = extraDAO.searchList(weddingSearch, pageMaker.getMakeRow(), sort);
 			
 			request.setAttribute("total", (extraDAO.getTotal(weddingSearch)/6)+1);

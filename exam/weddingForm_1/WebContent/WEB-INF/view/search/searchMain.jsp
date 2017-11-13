@@ -22,7 +22,33 @@
 <script type="text/javascript">
 	var cur_Page = 1;
 	$(function() {
-		$(".nav-link").click(function() {
+		$(".watch-type").click(function() {
+			changeType($(this));
+			
+			var allData = data();
+			$.ajax({
+				type : "GET",
+				url : "./searchTable.search",
+				data : allData,
+				success : function(data) {
+					$("#result").html(data);
+				}
+			});
+		});
+		
+		$("#perNumber").change(function() {
+			var allData = data();
+			$.ajax({
+				type : "GET",
+				url : "./searchAdd.search",
+				data : allData,
+				success : function(data) {
+					$("#result").html(data);
+				}
+			});
+		});
+		
+		$(".sort").click(function() {
 			var allData = data();
 			$.ajax({
 				type : "GET",
@@ -134,6 +160,28 @@
 		});
 	});
 	
+	function changeType(title) {
+		if(title.attr("title") == "grid") {
+			document.getElementById("img_grid").setAttribute("class", "nav-link watch-type watch active");
+			document.getElementById("img_list").setAttribute("class", "nav-link watch-type")
+		} else {
+			document.getElementById("img_grid").setAttribute("class", "nav-link watch-type");
+			document.getElementById("img_list").setAttribute("class", "nav-link watch-type watch active")
+		}
+	}
+	
+	function changeActive(index) {
+		var len = document.getElementsByClassName("sort").length;
+		for(var i=0; i<len; i++) {
+			if(i == index-1) {
+				document.getElementById("sort"+(i+1)).setAttribute("class", "nav-link active");
+			} else {
+				document.getElementById("sort"+(i+1)).setAttribute("class", "nav-link");
+			}
+		}
+	}
+	
+	////////////////////////////데이터///////////////////////////////////////////////////
 	function data() {
 		var checkType = [];
 		$("input:checkbox[name='type']:checked").each(function(index) {
@@ -159,6 +207,10 @@
 		var subway = $("#subway01").val() + " " + $("#subway02").val();
 		var hall_name = $("#hall_name").val();
 		var active = $(".active").attr("title");
+		
+		var perNumber = $("#perNumber").val();
+		
+		var watch_type = $(".watch").attr("title");
 
 		var allData = {
 			"type" : checkType,
@@ -169,7 +221,9 @@
 			"region" : region,
 			"subway" : subway,
 			"sort" : active,
-			"curPage" : cur_Page
+			"curPage" : cur_Page,
+			"perNumber" : perNumber,
+			"watch_type" : watch_type
 		};
 		
 		return allData;
@@ -179,9 +233,21 @@
 <style type="text/css">
 .card {
 	display: inline-block;
-	width: 350px;
+	width: 300px;
+	margin: 0 30px 15px	30px;
 	text-align: center;
 }
+
+.position {
+	position: relative;
+}
+
+.positionRight {
+	position: absolute;
+	top:0;
+	right: 0;
+}
+
 </style>
 
 <style>
@@ -345,32 +411,44 @@
 	</div>
 
 	<br>
-	<div class="container">
-		<ul class="nav nav-tabs">
-		    <li class="nav-item">
+	<div class="container position">
+		<ul class="nav nav-tabs ul-size">
+		    <li class="nav-item sort">
 		      <a class="nav-link active" id="sort1" title="hall_name asc" onclick="changeActive(1)">가나다순</a>
 		    </li>
-		    <li class="nav-item">
+		    <li class="nav-item sort">
 		      <a class="nav-link" id="sort2" title="meal_cost asc" onclick="changeActive(2)">낮은 식대순</a>
 		    </li>
-		    <li class="nav-item">
+		    <li class="nav-item sort">
 		      <a class="nav-link" id="sort3" title="meal_cost desc" onclick="changeActive(3)">높은 식대순</a>
 		    </li>
 		</ul>
 		
-		<script type="text/javascript">
-			function changeActive(index) {
-				var len = document.getElementsByTagName("li").length;
-				for(var i=0; i<len; i++) {
-					if(i == index-1) {
-						document.getElementById("sort"+(i+1)).setAttribute("class", "nav-link active");
-					} else {
-						document.getElementById("sort"+(i+1)).setAttribute("class", "nav-link");
-					}
-				}
-			}
-		</script>
+		<div class="positionRight">
+			<ul class="nav nav-pills">
+				<li class="nav-item"><a class="nav-link">비교하기</a></li>
+				<li class="nav-item">
+					<a id="img_grid" class="nav-link watch-type watch active" title="grid">그리드</a>
+				</li>
+				<li class="nav-item">	
+					<a id="img_list" class="nav-link watch-type" title="list">리스트</a>
+				</li>
+				<li>
+					<select id="perNumber">
+						<option value="6">6개보기</option>
+						<option value="9">9개보기</option>
+						<option value="12">12개보기</option>
+					</select>
+				</li>
+			</ul>
+			
+			<script type="text/javascript">
+			
+			</script>
+		</div>
+		
 	</div>
+	
 	<br>
 
 	<div id="result">

@@ -29,9 +29,14 @@ public class SearchTableService implements Action {
 		
 		WeddingSearch weddingSearch = this.searchParse(map);
 		String sort = ((String[])map.get("sort"))[0];
+		String watch_type = ((String[])map.get("watch_type"))[0];
+		int perNumber = Integer.parseInt( ((String[])map.get("perNumber"))[0] );
 		
+		System.out.println(watch_type);
+		System.out.println(sort);
+
 		try {
-			PageMaker pageMaker = new PageMaker(1, 6, extraDAO.getTotal(weddingSearch));
+			PageMaker pageMaker = new PageMaker(1, perNumber, extraDAO.getTotal(weddingSearch));
 			ArrayList<ExtraDTO> ar = extraDAO.searchList(weddingSearch, pageMaker.getMakeRow(), sort);
 
 			request.setAttribute("list", ar);
@@ -41,8 +46,13 @@ public class SearchTableService implements Action {
 			e.printStackTrace();
 		}
 		
-		actionForward.setCheck(true);
-		actionForward.setPath("../WEB-INF/view/search/searchTable.jsp");
+		if(watch_type.equals("grid")) {
+			actionForward.setCheck(true);
+			actionForward.setPath("../WEB-INF/view/search/searchTable.jsp");
+		} else {
+			actionForward.setCheck(true);
+			actionForward.setPath("../WEB-INF/view/search/searchList.jsp");
+		}
 		
 		return actionForward;
 	}
@@ -149,9 +159,6 @@ public class SearchTableService implements Action {
 		} else {
 			weddingSearch.setSubway(((String[])map.get("subway"))[0].trim().toUpperCase());
 		} // End subway
-		
-		System.out.println(((String[])map.get("subway"))[0]);
-		System.out.println(weddingSearch.getSubway());
 		
 		if(((String[])map.get("hall_name"))[0].equals("")) {
 			weddingSearch.setHall_name("|");

@@ -35,7 +35,7 @@ public class SearchViewService implements Action {
 					actionForward.setCheck(true);
 					actionForward.setPath("../WEB-INF/view/search/searchView.jsp");
 				} else {
-					request.setAttribute("message", "잘못된 접근입니다.");
+					request.setAttribute("message", "데이터를 가져오는 도중에 예상치 못한 오류가 발생하였습니다.");
 					request.setAttribute("path", "./searchMain.search");
 					
 					actionForward.setCheck(true);

@@ -140,26 +140,43 @@
 		
 		.inherit {
 			width: inherit;
+		}
+		
+		.basicTable {
 			margin-top: 25px;
 			border-top: 1px solid lightgray;
 			border-bottom: 1px solid lightgray;
 		}
 		
-		.inherit td {
+		.basicTable td {
 			padding: 5px;
 		}
 		
-		.inherit td:first-child {
+		.basicTable td:first-child {
 			text-align: left;
 			font-weight: bold;
 		}
 		
-		.inherit td:last-child {
+		.basicTable td:last-child {
 			text-align: right;
 		}
 		
 		.textCenter {
 			text-align: center;
+		}
+		
+		.leftCenter {
+			width: 40%;
+			float: left;
+			margin: 25px 0 10px;
+		}
+		
+		.clear {
+			clear: both;
+		}
+		
+		#map {
+			float: right;
 		}
 	</style>
 	
@@ -242,9 +259,9 @@
 		<br>
 
 		<div id="create_dot" style="text-align: center">
-			<!-- <span class="dot" onclick="currentSlide(1)"></span> 
+			<span class="dot" onclick="currentSlide(1)"></span> 
 			<span class="dot" onclick="currentSlide(2)"></span> 
-			<span class="dot" onclick="currentSlide(3)"></span> -->
+			<span class="dot" onclick="currentSlide(3)"></span>
 		</div>
 
 		<script>
@@ -283,7 +300,7 @@
 	
 	<div class="container">
 			<h3 style="text-align: right;">기본정보</h3>
-			<table class=".table">
+			<table class=".table leftCenter basicTable">
 				<tr>
 					<td>홀타입:</td>
 					<td><span>${view.type}</span></td>
@@ -314,11 +331,33 @@
 					<td><span>${view.hall_cost}</span></td>
 				</tr>
 			</table>
+			<div id="map" style="width: 50%; height: 250px"></div>
+			
+			<!-- Google Map Script -->
+			 <script>
+		      function initMap() {
+		    	  var latLng = new google.maps.LatLng(${company.latitude}, ${company.longitude}) 
+				  var option= {
+				      center: latLng,
+				      zoom: 15,
+				  };
+				  var map=new google.maps.Map(document.getElementById("map"),option);
+				
+				  var marker = new google.maps.Marker({
+				       position: latLng,
+				       map: map
+				  });
+		      }
+		    </script>
+		    <script async defer
+		    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOUu60DDyAcyY5lpmQY1go7BuBibCGqhI&callback=initMap">
+		    </script>
+			
 		</div>
 		
-		<div class="container">
+		<div class="container clear">
 			<h3 style="text-align: right;">웨딩홀 정보</h3>
-			<table class=".table inherit">
+			<table class=".table inherit basicTable">
 				<tr>
 					<td>주소:</td>
 					<td><span>${company.company_addr}</span></td>
