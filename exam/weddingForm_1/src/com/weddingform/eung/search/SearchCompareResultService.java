@@ -25,24 +25,26 @@ public class SearchCompareResultService implements Action {
 			map.put(name, values);
 		}
 		
+		String str = "";
+
 		String[] compare = ((String[])map.get("compare[]"));
 		
-		String str = "";
-		for(int i = 0; i < compare.length; i++) {
-			str += "id='";
-			str += compare[i];
-			str += "'";
-			if(i != compare.length -1) {
-				str += " or ";
+		if(compare != null) {
+			for(int i = 0; i < compare.length; i++) {
+				str += "id='";
+				str += compare[i];
+				str += "'";
+				if(i != compare.length -1) {
+					str += " or ";
+				}
 			}
 		}
+		
 		
 		try {
 			ArrayList<ExtraDTO> ar = extraDAO.compareList(str);
 			
-			if(ar.size() > 0) {
-				request.setAttribute("compare", ar);
-			}
+			request.setAttribute("compare", ar);
 			
 		} catch (Exception e) {
 			e.printStackTrace();

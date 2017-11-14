@@ -7,7 +7,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
+<link href='https://fonts.googleapis.com/css?family=Antic Slab' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Alfa Slab One' rel='stylesheet'>
+
 <style type="text/css">
+h1 {
+	font-family: 'Antic Slab';
+}
+
 /* Style the tab */
 div.tab {
     overflow: hidden;
@@ -39,44 +46,46 @@ div.tab button.active {
 
 /* Style the tab content */
 .tabcontent {
-    display: none;
-    height: 500px;
-    padding: 6px 12px;
-    border: 1px solid #ccc;
-    border-top: none;
-    overflow: auto;
+	display: none;
+	height: 500px;
+	padding: 6px 12px;
+	border: 1px solid #ccc;
+	border-top: none;
+	overflow: auto;
 }
 
 #searchInput {
-  background-image: url('../image/common/searchicon.gif');
-  background-position: 10px 10px;
-  background-repeat: no-repeat;
-  width: 100%;
-  font-size: 16px;
-  padding: 12px 20px 12px 40px;
-  border: 1px solid #ddd;
-  margin-bottom: 12px;
+	
+	background-image: url('../image/common/searchicon.gif');
+	background-position: 10px 10px;
+	background-repeat: no-repeat;
+	width: 100%;
+	font-size: 16px;
+	padding: 12px 20px 12px 40px;
+	border: 1px solid #ddd;
+	margin-bottom: 12px;
 }
 
 #weddingTable {
-  border-collapse: collapse;
-  width: 100%;
-  border: 1px solid #ddd;
-  font-size: 18px;
+  	border-collapse: collapse;
+  	width: 100%;
+  	border: 1px solid #ddd;
+  	font-size: 18px;
 }
 
 #weddingTable th, #myTable td {
-  text-align: left;
-  padding: 12px;
+  	text-align: left;
+  	padding: 12px;
 }
 
 #weddingTable tr {
-  border-bottom: 1px solid #ddd;
+  	border-bottom: 1px solid #ddd;
 }
 
 #weddingTable tr.header, #myTable tr:hover {
-  background-color: #f1f1f1;
+  	background-color: #f1f1f1;
 }
+
 </style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -89,13 +98,19 @@ $(function() {
 		$("input:checkbox[name='compare']:checked").each(function(index) {
 			compare.push($(this).val());
 		});
+		while(compare.length > 5) {
+			compare.pop();
+			if(compare.length == 5) {
+				alert("5개까지 비교할 수 있습니다.");
+			}
+		}
+		
 		var Data = {"compare" : compare};
 		$.ajax({
 			type : "post",
 			url : "./searchCompareResult.search",
 			data : Data,
 			success : function(data) {
-				alert("success");
 				$("#result").html(data);
 			}
 		});
@@ -125,7 +140,7 @@ function searchFunction() {
 	  table = document.getElementById("weddingTable");
 	  tr = table.getElementsByTagName("tr");
 	  for (i = 0; i < tr.length; i++) {
-	    td = tr[i].getElementsByTagName("td")[1];
+	    td = tr[i].getElementsByTagName("td")[2];
 	    if (td) {
 	      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
 	        tr[i].style.display = "";
@@ -145,7 +160,7 @@ function searchRegion() {
 	table = document.getElementById("weddingTable");
 	tr = table.getElementsByTagName("tr");
 	for (i = 0; i < tr.length; i++) {
-	    td = tr[i].getElementsByTagName("td")[0];
+	    td = tr[i].getElementsByTagName("td")[1];
 	    if (td) {
 	      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
 	        tr[i].style.display = "";
@@ -160,7 +175,7 @@ function searchRegion() {
 
 </head>
 <body>
-	<h1>SEARCH COMPARE PAGE</h1>
+	<h1>WEDDING HALL COMPARE</h1>
 	<div class="tab">
 	  <button class="tablinks" onclick="openTab(event, 'list')">LIST</button>
 	  <button class="tablinks" onclick="openTab(event, 'compare')" id="tab_compare">COMPARE</button>
@@ -186,16 +201,16 @@ function searchRegion() {
 		
 		<table id="weddingTable">
 		<tr class="header">
+		    <th style="width:10%; text-align: center;">Select</th>
 		    <th style="width:40%;">Region</th>
 		    <th style="width:50%;">Hall_Name</th>
-		    <th style="width:10%;">Select</th>
 		</tr>
 		
 		<c:forEach items="${list}" var="dto" varStatus="count">
 			<tr>
+				<td style="text-align: center;"><input type="checkbox" name="compare" value="${dto.id}"></td>
 				<td>${dto.region}</td>
 				<td>${dto.hall_name}</td>
-				<td><input type="checkbox" name="compare" value="${dto.id}"></td>
 			</tr>
 		</c:forEach>
 		

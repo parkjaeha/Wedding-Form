@@ -24,14 +24,8 @@ body {
 }
 
 #map {
-	width: 100%;
-	height: 550px;
-}
-
-#markerlist {
-	height: 400px;
-	margin: 10px 5px 0 10px;
-	overflow: auto;
+	width: 90%;
+	height: 700px;
 }
 
 #searchInput {
@@ -45,13 +39,15 @@ body {
 	  margin-bottom: 12px;
 }
 
-#myUL {
+#markerlist {
+	  height: 700px;
+	  overflow: auto;
 	  list-style-type: none;
-	  padding: 0;
 	  margin: 0;
+	  padding: 0;
 	}
 	
-#myUL li a {
+#markerlist li a {
 	  border: 1px solid #ddd;
 	  margin-top: -1px; /* Prevent double borders */
 	  padding: 12px;
@@ -61,7 +57,7 @@ body {
 	  display: block
 }
 
-#myUL li a:hover:not(.header) {
+#markerlist li a:hover:not(.header) {
 	background-color: #eee;
 }
 
@@ -89,36 +85,34 @@ body {
 <script>
       google.maps.event.addDomListener(window, 'load', weddingMap.init);
 </script>
+
+<script type="text/javascript">
+	function searchFunction() {
+	    var input, filter, ul, li, a, i;
+	    input = document.getElementById("searchInput");
+	    filter = input.value.toUpperCase();
+	    ul = document.getElementById("markerlist");
+	    li = ul.getElementsByTagName("li");
+	    console.log("li.length: " + li.length);
+	    for (i = 0; i < li.length; i++) {
+	        a = li[i].getElementsByTagName("a")[0];
+	        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+	            li[i].style.display = "";
+	        } else {
+	            li[i].style.display = "none";
+	
+	        }
+	    }
+	}
+</script>
 </head>
 <body>
+	<input type="text" id="searchInput" onkeyup="searchFunction()" placeholder="웨딩홀 이름을 입력해주세요">
 	<div id="panel">
-		<input type="text" id="searchInput" onkeyup="searchFunction()" placeholder="웨딩홀 이름을 입력해주세요">
-		
 		<strong>Wedding Hall List</strong>
-		<ul id="myUL">
-		</ul>
-		<script>
-		function searchFunction() {
-		    var input, filter, ul, li, a, i;
-		    input = document.getElementById("searchInput");
-		    filter = input.value.toUpperCase();
-		    ul = document.getElementById("myUL");
-		    li = ul.getElementsByTagName("li");
-		    console.log("li.length: " + li.length);
-		    for (i = 0; i < li.length; i++) {
-		        a = li[i].getElementsByTagName("a")[0];
-		        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
-		            li[i].style.display = "";
-		        } else {
-		            li[i].style.display = "none";
-		
-		        }
-		    }
-		}
-		</script>
-		
-		
+		<ul id="markerlist"></ul>
 	</div>
+	
 	<div id="map-container">
 		<div id="map"></div>
 	</div>

@@ -34,7 +34,7 @@ weddingMap.init = function() {
 weddingMap.showMarkers = function() {
 	weddingMap.markers = [];	// markers 배열 생성
 	
-	var panel = $('myUL');	// makerlist
+	var panel = $('markerlist');	// makerlist
 	panel.innerHTML = '';
 	
 	for (var i = 0; i < data.count; i++) { // numMarkers = 10 | 50 | 100 | 500 | 1000 의 숫자에 따라 list 갯수가 달라짐
@@ -45,18 +45,6 @@ weddingMap.showMarkers = function() {
 			titleText = 'No title';
 		}
 		
-		/*
-		var item = document.createElement('DIV'); 	// div 생성
-		var title = document.createElement('A');	// A태그 생성
-		title.href = '#';							// A 태그 href="#" 속성 추가
-		title.className = 'title';					// A 태그 class="title" 클래스 추가
-		title.innerHTML = titleText;				// A 태그 titleText 문자열 추가
-		
-		item.appendChild(title);					// <div><a href="#" class="title">titleText</a></div>
-		panel.appendChild(item);					// panel div에 <div><a href="#" class="title">titleText</a></div> 추가 
-		 */	
-		/*var ul = document.createElement('ul');
-		ul.id="myUL";*/
 		var li = document.createElement('li');
 		var title = document.createElement('A');	// A태그 생성
 		title.href = '#';							// A 태그 href="#" 속성 추가
