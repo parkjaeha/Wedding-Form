@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
@@ -27,10 +28,12 @@
 	float: none;
 	margin: 0 auto;
 	margin-bottom: 100px;
+	width: 1100px;
 }
 
 a {
 	text-decoration: none;
+	color : gray;
 }
 
 
@@ -47,32 +50,20 @@ a {
 	border-top : 1px solid black;
 	margin: 0 auto;
 }
-
-.contents{
-width: 1100px;
-height: 300px;
-margin: 0 auto;
-
 }
-.contents li{
-list-style : none;
-width:150px;
-height: 60px;
-border : 1px solid gray;
+
+.w3-bar{
+margin : 0 auto;
 text-align : center;
-margin-left : 50px;
-float: left;
 }
-.contents li a{
-text-decoration: none;
-font-size: 13px;
-color: black;
-}
-.contents li:hover {
 
-background-color: #EAEAEA;
 
+
+.blank{
+width: 100%;
+height: 50px;
 }
+
 </style>
 
 </head>
@@ -82,30 +73,28 @@ $(function(){
 	$("#btn").click(function(){
 	 document.frm.submit();	
 	});
+	
 });
 </script>
 <body>
+ 	 <c:import url="../../../temp/sideMenu.jsp"></c:import>
+    
+<!-- main -->
+	<div id="main">
  <c:import url="../../../temp/header.jsp"></c:import>
+ 
  <div id="blank"></div>
  <div id="blank"></div>
-	
-	
-	<article class="contents">
 
-<ul>
-<li class="w3-display-container"><a href="${pageContext.request.contextPath}/notice/noticeList.notice" class="w3-display-middle">공지사항</a></li>
-<li class="w3-display-container"><a href="${pageContext.request.contextPath}/qna/qnaList.qna" class="w3-display-middle">Q&A</a></li>
-<li class="w3-display-container"><a href="#" class="w3-display-middle">실시간 상담</a></li>
-<li class="w3-display-container"><a href="${pageContext.request.contextPath}/report/reportPage.report" class="w3-display-middle">신고하기</a></li>
-<li class="w3-display-container"><a href="${pageContext.request.contextPath}/review/reviewPage.review" class="w3-display-middle">리뷰</a></li>
-</ul>	
-	</article>
-	
-	<div class="col-md-8 col-centered">
 <div id="blank"></div>
+	<div class="col-md-8 col-centered">
 
+  <a onclick="openNav()">Community</a>
 			<table class="table table-hover">
-			
+
+
+
+
 		<c:if test="${board eq 'notice'}">
 		<article class="write_1">NOTICE</article>
          <article class="write_2"></article>
@@ -114,10 +103,10 @@ $(function(){
 				<tr>
 					<td>num</td>
 					<td></td>
-					<td>title</td>
-					<td>writer</td>
-					<td>date</td>
-					<td>hit</td>
+					<td>Title</td>
+					<td>Writer</td>
+					<td>Date</td>
+					<td>Hit</td>
 				</tr>
 				<c:forEach items="${requestScope.list}" var="dto">
 
@@ -158,8 +147,9 @@ $(function(){
 			 						<c:forEach begin="0" end="${dto.depth-1}">
 			                            <img alt="" src="../img/reply.gif">
 			</c:forEach>
-								</c:catch> <!-- 관리자면 그냥보기, 회원이면 pw입력 페이지로 이동 --> <c:if
-									test="${dto.opencheck eq 'hide'}">
+								</c:catch> 
+								<!-- 관리자면 그냥보기, 회원이면 pw입력 페이지로 이동 --> 
+								<c:if test="${dto.opencheck eq 'hide'}">
 	                    <a href="./qnaPwCheck.qna?num=${dto.num}">
 										<img alt="" src="../img/자물쇠.gif"> ${dto.title}
 									</a>
@@ -178,7 +168,7 @@ $(function(){
 				
 			</table>
 			
-			
+			<!-- search -->
 			<form name="frm" action="./${board}List.${board}" method="post">
 				<select name="kind">
 					<option value="title">TITLE</option>
@@ -188,23 +178,33 @@ $(function(){
 					type="button" id="btn" class="btn btn-default" value="SEARCH">
 			</form>
 
-			<div>
-				<ul class="pagination">
+
+
+      <!-- 페이징 처리 -->
+			<div class="w3-bar">
+				 <c:if test="${page.curBlock>1}"> 
+					
+						<a href="./${requestScope.board}List.${requestScope.board}?curPage=${requestScope.page.StartNum==1}" class="w3-button">«</a>
+					</c:if> 
+					
 					<c:if test="${page.curBlock>1}">
-						<li><button class="go" id="${page.startNum-1}">[이전]</button></li>
+					
+						<a href="./${requestScope.board}List.${requestScope.board}?curPage=${requestScope.page.StartNum-1}" class="w3-button">«</a>
 					</c:if>
 
 					<c:forEach begin="${page.startNum}" end="${page.lastNum}" var="i">
-						<li><a
-							href="./${requestScope.board}List.${requestScope.board}?curPage=${i}">${i}</a></li>
+						<a href="./${requestScope.board}List.${requestScope.board}?curPage=${i}" class="w3-button">${i}</a>
 					</c:forEach>
 
 					<c:if test="${page.curBlock < page.totalBlock}">
-						<li><a
-							href="./${requestScope.board}List.${requestScope.board}?curPage=${requestScope.page.lastNum+1}">[다음]</a></li>
+						<a	href="./${requestScope.board}List.${requestScope.board}?curPage=${requestScope.page.lastNum+1}" class="w3-button">»</a>
+					</c:if>
+					
+					<c:if test="${page.curBlock < page.totalBlock}">
+						<a	href="./${requestScope.board}List.${requestScope.board}?curPage=${requestScope.page.lastNum}" class="w3-button">»</a>
 					</c:if>
 
-				</ul>
+			
 
 
 
@@ -213,6 +213,7 @@ $(function(){
 			<a href="./${requestScope.board}Write.${requestScope.board}">write</a>
 	</div>
  <c:import url="../../../temp/footer.jsp"></c:import> 
+ </div>
 </body>
 </html>
 

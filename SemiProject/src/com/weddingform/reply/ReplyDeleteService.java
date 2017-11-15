@@ -11,23 +11,23 @@ public class ReplyDeleteService implements Action{
 public ActionForward doProcess(HttpServletRequest request, HttpServletResponse response) {
 	ActionForward actionForward=new ActionForward();
 	ReplyDAO replyDAO=new ReplyDAO();
-	System.out.println("in");
+
 	
 	int num=0;
 	String type="";
 	int reviewNum=0;
+	int ref=0;
 	try {
 		num=Integer.parseInt(request.getParameter("num"));
 		reviewNum=Integer.parseInt(request.getParameter("reviewNum"));
 		type=request.getParameter("type");
-		System.out.println(num);
-		System.out.println(type);
+		ref=Integer.parseInt(request.getParameter("ref"));
 	} catch (Exception e) {
 		e.printStackTrace();
 	}
 	int result=0;
 	try {
-		result=replyDAO.delete(num, type);
+		result=replyDAO.delete1(ref);
 	} catch (Exception e) {
 		// TODO: handle exception
 	}

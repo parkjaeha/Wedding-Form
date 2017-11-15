@@ -7,6 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -21,14 +22,16 @@
 
 
 <style type="text/css">
-	.col-centered {
-		float: none;
-		margin: 0 auto;
-		margin-bottom: 100px;
-	}
+.col-centered {
+	float: none;
+	margin: 0 auto;
+	margin-bottom: 100px;
+	width: 1100px;
+}
 
 	a {
 		text-decoration: none;
+		color:gray;
 	}
 #blank {
 	height: 50px;
@@ -47,14 +50,25 @@
 	border-top : 1px solid black;
 	margin: 0 auto;
 }
+.w3-bar{
+margin : 0 auto;
+
+text-align : center;
+}
+
+
 </style>
 
 </head>
 <body>
+ 	 <c:import url="../../../temp/sideMenu.jsp"></c:import>
+<!-- main -->
+	<div id="main">
  <c:import url="../../../temp/header.jsp"></c:import> 
  <div id="blank"></div>
   <div id="blank"></div>
 	<div class="col-md-8 col-centered">
+<p> <a onclick="openNav()">Community</a></p>
 
 	<table class="table table-hover">
 <div id="blank"></div>
@@ -64,10 +78,10 @@
 		<tr>
 			<td>num</td>
 			<td></td>
-			<td>title</td>
-			<td>writer</td>
-			<td>date</td>
-			<td>hit</td>
+			<td>Title</td>
+			<td>Writer</td>
+			<td>Date</td>
+			<td>Hit</td>
 		</tr>
 
 		<c:forEach items="${requestScope.list}" var="dto">
@@ -95,35 +109,44 @@
 
 	</table>
 	
+	<!-- search -->
+			<form name="frm" action="./reviewList.review" method="post">
+				<select name="kind">
+					<option value="title">TITLE</option>
+					<option value="contents">CONTENTS</option>
+
+				</select> <input type="text" id="search" name="search"> 
+				<input type="button" id="btn" class="btn btn-default" value="SEARCH">
+			</form>
 	
-	<div>
-		<ul class="pagination">
-			<c:if test="${page.curBlock>1}">
-			<li><button class="go" id="${page.startNum-1}">[이전]</button></li>
-			</c:if>
+	<!-- 페이징 처리 -->
+			<div class="w3-bar">
 			
-			<c:forEach begin="${page.startNum}" end="${page.lastNum}" var="i">
-			<li><a
-				href="./${board}List.${board}?curPage=${i}">${i}</a></li>
-			</c:forEach>
+					<c:if test="${page.curBlock>1}">
+				
+						<a href="./reviewList.review?type=${param.type}&&curPage=${requestScope.page.StartNum-1}" class="w3-button">&laquo;</a>
+					</c:if>
+
+					<c:forEach begin="${page.startNum}" end="${page.lastNum}" var="i">
+						<a href="./reviewList.review?type=${param.type}&&curPage=${i}" class="w3-button">${i}</a>
+					</c:forEach>
+
+					<c:if test="${page.curBlock < page.totalBlock}">
+						<a href="./reviewList.review?type=${param.type}&&curPage=${requestScope.page.lastNum+1}" class="w3-button">&raquo;</a>
+					</c:if>
+
 			
-			<c:if test="${page.curBlock < page.totalBlock}">
-			<li><a
-				href="./${board}List.${board}?curPage=${requestScope.page.lastNum+1}">[다음]</a></li>
-			</c:if>
-			
-		</ul>
 
 
 
-	</div> 
-	
+			</div>
 	<%-- <c:if test="${not empty member}">
 	</c:if> --%>
 	
 		<a href="./reviewWrite.review?type=${param.type}">write</a>
 	</div>
  <c:import url="../../../temp/footer.jsp"></c:import> 
+ </div>
 </body>
 </html>
 

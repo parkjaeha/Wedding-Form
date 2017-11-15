@@ -21,9 +21,9 @@
 <style type="text/css">
 .d{
 	float: none;
-	width:1000px;
-	height : 1000px;
+	width:1100px;
 	margin: 0 auto;
+	margin-bottom: 100px;
 
 	
 }
@@ -52,16 +52,7 @@ height: 50px;
 font-size:22px;
 }
 
-#panel{
-width: 1000px;
-height: 80px;
-}
 
-#li{
-width:970px;
-border : 1px dotted gray;
-margin: 0 auto;
-}
 #border{
 
 border-bottom: 1px solid gray;
@@ -70,6 +61,11 @@ border-bottom: 1px solid gray;
 font-size: 30px;
 text-align: center;
 }
+
+.list-group{
+width: 1000px;
+}
+
 </style>
 
 <script type="text/javascript">
@@ -115,34 +111,37 @@ text-align: center;
 <p>CONTENTS : ${view.contents}</p>
 
 
-				
-	<a href="./reviewList.review?type=${view.type}&&curPage=1"><img alt="" src="../image/list.gif"></a>
-	<a href="./reviewUpdate.review?num=${view.num}&&type=${view.type}"><img alt="" src="../image/su.gif"></a>
+	
+	<!--글쓴이만  -->			
+	<a href="./reviewList.review?type=${view.type}&&curPage=1">목록</a>
+	<a href="./reviewUpdate.review?num=${view.num}&&type=${view.type}">수정</a>
 
-	<a href="./reviewDelete.review?num=${view.num}&&type=${view.type}"><img alt="" src="../image/delete.gif"></a>
+	<a href="./reviewDelete.review?num=${view.num}&&type=${view.type}">삭제</a>
+
+
 
 	
-	<div id=blank></div>
-	<div id=blank></div>
 	
-	
-
+	<div id="blank"></div>	
+<div id="blank"></div>
+<div id="blank"></div>
 		
-	<div class="panel panel-default">		
+	<div class="container">		
 			<form action="../reply/replyWrite.reply?num=${view.num}" method="post">
 		<input type="hidden" value="${view.type}" name="type">
 	
 <!-- writer 는 hidden타입으로!!!! -->	
-  <input type="text" name="writer" placeholder="writer">
-  <p class="panel-body"> <textarea  cols="120" rows="5" name="contents" placeholder="내용을 입력하세요."></textarea>
-  <button  class="btn btn-default">글쓰기</button></p>
+<div class="list-group">
+   <input type="text" name="writer" placeholder="writer">
+  <p class="list-group-item"> <textarea  cols="120" rows="5" name="contents" placeholder="내용을 입력하세요."></textarea>
+  <button  id="btn" class="btn btn-default">글쓰기</button></p>
 	</form>
 	
 <!-- 댓글 -->
-<div id="result"></div>
+<div id="result" class="list-group-item"></div>
 	
+</div>
 	</div>
-
 
 	
 	</div>

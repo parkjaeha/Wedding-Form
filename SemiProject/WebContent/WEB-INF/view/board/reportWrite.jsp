@@ -20,20 +20,23 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-
+<script type="text/javascript"
+   src="/SemiProject/SE2/js/HuskyEZCreator.js" charset="utf-8"></script>
 <title>Insert title here</title>
 <style type="text/css">
 .contents {
-	width: 1100px;
-	height: 1000px;
+	width: 800px;
 	float: none;
 	margin: 0 auto;
+	margin-bottom: 100px;
+
 }
 
 .report_1 {
 	height: 34px;
 	margin: 0 auto;
 	text-align: center;
+	margin-top: 50px;
 }
 
 .report_2 {
@@ -43,58 +46,89 @@
 	margin: 0 auto;
 }
 
-pre {
-	width : 800px;
-	height : 700px;
-	 margin: 0 auto;
-	 font-size: 18px;
-	 background-color: #F9F9F9;
-	
+
+
+input {
+   width:700px;
+   height: 30px;
 }
 
+.panel-body{
+margin-left: 25px;
+}
 
-input{
-width:400px;
-height: 30px;
-} 
+.form-control{width:700px; margin-left: 0;}
+
 </style>
 
 </head>
-
+<script type="text/javascript">
+$(function(){
+    //전역변수선언
+    var editor_object = [];
+     
+    nhn.husky.EZCreator.createInIFrame({
+        oAppRef: editor_object,
+        //textarea ID
+        elPlaceHolder: "smarteditor",
+        /* 주소 바꿀껏  */
+        sSkinURI: "/SemiProject/SE2/SmartEditor2Skin.html", 
+        htParams : {
+            // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+            bUseToolbar : true,             
+            // 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+            bUseVerticalResizer : true,     
+            // 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+            bUseModeChanger : true, 
+        }
+    });
+     
+    //전송버튼 클릭이벤트
+    $("#savebutton").click(function(){
+        //id가 smarteditor인 textarea에 에디터에서 대입
+        editor_object.getById["smarteditor"].exec("UPDATE_CONTENTS_FIELD", []);
+         
+        // 이부분에 에디터 validation 검증
+         
+        //폼 submit
+        $("#frm").submit();
+    })
+})
+</script>
 <body>
  <c:import url="../../../temp/header.jsp"></c:import>
   <div id="blank"></div>
  <div id="blank"></div>
-		<div class="contents">
+		<div class="contents panel panel-default">
 <article class="report_1">신고하기</article>
          <article class="report_2"></article>
   <div id="blank"></div>
- <div id="blank"></div>
+
 			<form action="./reportWrite.report" method="post">
 			
+	
+			
 		
 			
-			<pre>
+			<!-- id는 hidden -->
+	      <p class="panel-body"><input  type="text" name="id" class="form-control"  placeholder="id"></p>
 			
+	     <p class="panel-body"><input type="password" name="password"  class="form-control" placeholder="비밀번호"></p>
 			
-	      ID           <input  type="text" name="id" >
-			
-	      PASSWORD     <input type="password" name="password" >
-			
-	      TITLE        <input type="text" name="title" >
+	      <p class="panel-body"><input type="text" name="title"class="form-control" placeholder="제목"></p>
 	       
-	      COMPANY      <input  type="text" name="company_name" >
+	      <p class="panel-body"><input  type="text" name="company_name" class="form-control" placeholder="회사이름"></p>
 			
 	       
-	      CONTENTS     
-	      <textarea cols="55" rows="10"name="contents" placeholder="내용을 입력하세요."></textarea>
-			
-			            <button class="btn btn-default">글쓰기</button>
-			</pre>	
+	     <p class="panel-body">
+	      <textarea name="smarteditor" id="smarteditor" rows="5" cols="90"
+            style="width: 700px; height: 312px;"></textarea>
+       <p class="panel-body">  <input type="submit" class="btn btn-default" id="savebutton" value="글쓰기" /></p>
+		
 		
 				
+
 			</form>
-			
 			</div>
  <c:import url="../../../temp/footer.jsp"></c:import>
 </body>

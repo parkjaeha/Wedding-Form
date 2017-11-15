@@ -54,12 +54,12 @@ public  class ReplyDAO implements BoardDAO{
 	}
 
 
-	public int delete(int num, String type) throws Exception {
+	public int delete1(int ref) throws Exception {
 		Connection con=DBConnector.getConnect();
-		String sql="delete reply where type=? and num=?";
+		String sql="delete reply where ref=?";
 		PreparedStatement st=con.prepareStatement(sql);
-		st.setString(1, type);
-		st.setInt(2, num);
+		st.setInt(1, ref);
+		
 		int result=st.executeUpdate();
 		
 		return result;
@@ -155,7 +155,7 @@ public  class ReplyDAO implements BoardDAO{
 		Connection con=DBConnector.getConnect();
 		List<BoardDTO> ar=new ArrayList<>();
 		String sql="select * from reply where reviewnum=(select num from review where type=? and num=?) "
-				+ "order by num desc";
+				+ "order by ref desc, step asc, depth desc";
 		PreparedStatement st=con.prepareStatement(sql);
 		st.setString(1, type);
 		st.setInt(2, num);
@@ -164,6 +164,7 @@ public  class ReplyDAO implements BoardDAO{
 		
 		while(rs.next()) {
 			ReplyDTO replyDTO=new ReplyDTO();
+			
 			replyDTO.setNum(rs.getInt("num"));
 			replyDTO.setTitle(rs.getString("title"));
 			replyDTO.setWriter(rs.getString("writer"));
@@ -187,24 +188,32 @@ public  class ReplyDAO implements BoardDAO{
 	
 	
 	public int reply(ReplyDTO replyDTO) throws Exception{
+		System.out.println("num: "+replyDTO.getNum());
 		ReplyDTO parent=(ReplyDTO)this.selectOne(replyDTO.getNum());
 		int result=this.replyUpdate(parent);
 		
 		Connection con = DBConnector.getConnect();
-		String sql ="insert into reply values(board_seq.nextval,?,?,?,sysdate,?,?,?)";
-		PreparedStatement st = con.prepareStatement(sql);
-		st.setString(1, replyDTO.getTitle());
-		st.setString(2, replyDTO.getWriter());
-		st.setString(3, replyDTO.getContents());
-		st.setInt(4, parent.getRef());
-		st.setInt(5, parent.getStep()+1);
-		st.setInt(6, parent.getDepth()+1);
+
+			String sql ="insert into reply "
+					+ "values(board_seq.nextval,?,?,?,sysdate,?,?,?,?,?)";
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setString(1, replyDTO.getTitle());
+			st.setString(2, replyDTO.getWriter());
+			st.setString(3, replyDTO.getContents());
+			st.setInt(4, parent.getRef());
+			st.setInt(5, parent.getStep()+1);
+			st.setInt(6, parent.getDepth()+1);
+			st.setInt(7, replyDTO.getReviewNum());
+			st.setString(8, replyDTO.getType());
+			
+			result = st.executeUpdate();
+			DBConnector.disConnect(st, con);
+			
 	
-		
-		result = st.executeUpdate();
-		DBConnector.disConnect(st, con);
 		return result;
 	}
+	
+	
 	
 	public int replyUpdate(ReplyDTO replyDTO) throws Exception{
 		Connection con = DBConnector.getConnect();

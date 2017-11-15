@@ -20,7 +20,7 @@ public class ReportWriteService implements Action {
 	    reportDTO.setId(request.getParameter("id"));
 		reportDTO.setTitle(request.getParameter("title"));
 		reportDTO.setPw(request.getParameter("password"));
-		reportDTO.setContents(request.getParameter("contents"));
+		reportDTO.setContents(request.getParameter("smarteditor"));
 		reportDTO.setCompany_name(request.getParameter("company_name"));
 		
 		try {

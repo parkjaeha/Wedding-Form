@@ -2,7 +2,12 @@
     pageEncoding="UTF-8"%>
 <footer>
 <div id="footer_1">
-<div id="info"></div>
+<div id="info">
+<ul>
+<li><a href="#">ABOUT US</a></li>
+<li><a href="#">이용약관</a></li>
+</ul>
+</div>
 </div>
 <div id="footer_2">
 <h3>(주)WEDDING FORM</h3>

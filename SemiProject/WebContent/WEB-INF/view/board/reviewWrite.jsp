@@ -17,12 +17,14 @@
 <!-- Latest compiled JavaScript -->
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+   src="/SemiProject/SE2/js/HuskyEZCreator.js" charset="utf-8"></script>
+
 <style type="text/css">
 .contents{
 	float: none;
 	margin: 0 auto;
-		width:500px;
-	height : 500px;
+	width:800px;
 	margin-bottom: 100px;
 }
 
@@ -39,8 +41,29 @@
 .star_rating a.on {color:#5D5D5D;}
 
 
+input {
+   width: 700px;
+   height: 30px;
+}
 
+.review_1 {
+	height: 34px;
+	margin: 0 auto;
+	text-align: center;
+	margin-top: 50px;
+}
 
+.review_2 {
+	width: 70px;
+	height: 30px;
+	border-top: 1px solid black;
+	margin: 0 auto;
+}
+.panel-body{
+margin-left: 25px;
+}
+
+.form-control{width:700px; margin-left: 0;}
 </style>
 
 <script type="text/javascript">
@@ -57,7 +80,35 @@ $( ".star_rating a" ).click(function() {
     return false;
 });
 
-
+//전역변수선언
+var editor_object = [];
+ 
+nhn.husky.EZCreator.createInIFrame({
+    oAppRef: editor_object,
+    //textarea ID
+    elPlaceHolder: "smarteditor",
+    /* 주소 바꿀껏  */
+    sSkinURI: "/SemiProject/SE2/SmartEditor2Skin.html", 
+    htParams : {
+        // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+        bUseToolbar : true,             
+        // 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+        bUseVerticalResizer : true,     
+        // 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+        bUseModeChanger : true, 
+    }
+});
+ 
+//전송버튼 클릭이벤트
+$("#savebutton").click(function(){
+    //id가 smarteditor인 textarea에 에디터에서 대입
+    editor_object.getById["smarteditor"].exec("UPDATE_CONTENTS_FIELD", []);
+     
+    // 이부분에 에디터 validation 검증
+     
+    //폼 submit
+    $("#frm").submit();
+})
 
 });
 
@@ -65,48 +116,48 @@ $( ".star_rating a" ).click(function() {
 </head>
 <body>
  <c:import url="../../../temp/header.jsp"></c:import>
-<div class="contents">
-
-
-			<h1>${param.type}</h1>
-				<table class="table">
-				
+<div id="blank"></div>
+   <div id="blank"></div>
+<div class="contents panel panel-default">
+				<article class="review_1">REVIEW</article>
+         <article class="review_2"></article>
 					 <form action="./reviewWrite.review?type=${param.type}" method="post"> 
 					
-						<tr>
-						<td colspan="2">TITLE : <input class="form-control" type="text" name="title" placeholder="제목"></td>
-						</tr>
-						<tr>
-						<td id="writer">WRITER : <input class="form-control" type="text" name="writer"></td>
-					</tr>
-					<tr>
-					 	<td>Star Score 
-					 	 <p class="star_rating">
+					
+						<p class="panel-body"><input class="form-control" type="text" name="writer" placeholder="writer"></p>
+				
+					
+						<p class="panel-body"><input class="form-control" type="text" name="title" placeholder="제목"></p>
+					
+				
+			
+					 	 <p class="panel-body">별점을 체크해주세요.(1점당 ★)</p>
+					 	 <div class="star_rating panel-body">
 					 	 <input type="hidden" id="temp" name="starscore">
                                   <a href="#" class="on" name="1">★</a>
                                   <a href="#" class="on" name="2">★</a>
                                   <a href="#" class="on"name="3">★</a>
                                   <a href="#" name="4">★</a>
                                   <a href="#" name="5">★</a>
-                                
-                                 </p>
-                          </td>
+                                </div>
+                              
+                  
 
 
-					</tr>
-					<tr>
-					 	<td colspan="6" id="contents">CONTENTS : <textarea class="form-control" name="contents" placeholder="내용을 입력하세요."></textarea></td>
-					</tr>
-					<tr>
-					 	<td>FILE UPLOAD<input type="file"></td>
-					</tr>
 					
-				</table>
-
-				<button id="btn">글쓰기</button>
+<p class="panel-body"><textarea name="smarteditor" id="smarteditor" rows="10" cols="100"
+            style="width: 700px; height: 312px;"></textarea></p>
+         <p class="panel-body"><input type="submit" class="btn btn-default" id="savebutton" value="write" /></p>
+			
+				
+					
 				</form>
+		
+
+			
 			
 			</div>
+
  <c:import url="../../../temp/footer.jsp"></c:import>
 </body>
 </html>

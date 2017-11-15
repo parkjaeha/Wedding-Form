@@ -30,7 +30,7 @@ $(document).ready(function(){
 
 </div>
 <div class="logo">
-<a href="${pageContext.request.contextPath}/index.jsp"><img alt="" src="${pageContext.request.contextPath}/img/aaa.png"></a>
+<a href="${pageContext.request.contextPath}/index.jsp"><img alt="" src="${pageContext.request.contextPath}/img/logo.png"></a>
 </div>
 <div class="top_menu">
 <p class="dropdown"><a href="#"><img alt="" src="${pageContext.request.contextPath}/img/menu.png">MENU</a></p>
@@ -63,7 +63,7 @@ $(document).ready(function(){
   <p><a href="${pageContext.request.contextPath}/qna/qnaList.qna">Q&A </a> </p>
   <p><a href="#">실시간 상담 </a></p>
   <p><a href="${pageContext.request.contextPath}/report/reportPage.report">신고하기 </a></p>  
-  <p><a href="${pageContext.request.contextPath}/review/reviewPage.review">리뷰 </a></p>
+  <p><a href="${pageContext.request.contextPath}/review/reviewPage.review">이용후기 </a></p>
 
    
  </article>
@@ -71,10 +71,15 @@ $(document).ready(function(){
 
        <p><a href="#">MY PAGE > </a></p>    
       <div id="blank"></div>
-  <p><a href="#">예약현황 </a></p> 
-  <p><a href="#">내 정보 </a> </p>  
-
- 
+      <!-- 회원일 경우-->
+  <p><a href="#">(회원)예약현황 </a></p> 
+  <p><a href="#">(회원)내 정보 </a></p>
+  <!-- 업체일경우 --> 
+    <p><a href="#">(업체)예약현황 </a></p>
+      <p><a href="#">(업체)내 정보  </a></p>   
+  <!-- 관리자일경우 -->
+   <p><a href="#">(관리자)청첩장 예약 현황</a></p> 
+ <p><a href="#">(관리자)블랙리스트 관리</a></p> 
  </article>
     </div> 
 

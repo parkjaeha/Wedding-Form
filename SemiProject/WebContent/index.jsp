@@ -13,7 +13,7 @@
 <style type="text/css">
 
 .contents{
-width: 1100px;
+width: 1200px;
 height: 800px;
 margin: 0 auto;
 
@@ -21,7 +21,7 @@ margin: 0 auto;
 
 
  .img{
-width: 1100px;
+width: 1200px;
 height: 450px;
 margin: 0 auto;
 } 
@@ -63,10 +63,11 @@ function carousel() {
 }    
 
 
-/*     var slideIndex = 1;
+ var slideIndex = 1;
   showDivs(slideIndex);
 
 function plusDivs(n) {
+	myIndex++;
   showDivs(slideIndex += n);
 }
 
@@ -79,7 +80,7 @@ function showDivs(n) {
      x[i].style.display = "none";  
   }
   x[slideIndex-1].style.display = "block";  
-}  */
+}
 </script>
 </div>
 </div>

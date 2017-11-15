@@ -15,7 +15,7 @@ header {
 	height: 25px;
 }
 .bar{
-width: 1100px;
+width: 1200px;
 height: 30px;
  margin : 0 auto;
 
@@ -40,7 +40,7 @@ nav li a{
 }
 
 .top_menu {
-	width: 1100px;
+	width: 1200px;
 	height : 50px;
 	margin:0 auto;
 	
@@ -73,7 +73,7 @@ a:hover {
 }
 
 #line{
-width : 1100px;
+width : 1200px;
 border-top: 1px solid gray;
 }
 
@@ -87,6 +87,8 @@ float: left ;
 font-size:20px;
 text-align: center;
 }
+
+
 pre{
 font-family: 맑은 고딕;
 color: gray;
@@ -107,20 +109,35 @@ border-bottom: 1px solid #EAEAEA;
 }
 
 #info{
-width: 1100px;
+width: 1200px;
 height: 50px;
-background-color: red;
 margin: 0 auto;	
 	
 }
+#info li{
+list-style : none;
+width: 100px;
+height: 50px;	
+float: left;	
+}
+
+#info a{
+text-decoration: none;
+text-align: center;		
+color: gray;
+}
+#info a:hover{
+	color: black;
+}
+
 #footer_2{
-width: 1100px;
+width: 1200px;
 height: 150px;
 margin: 0 auto;
 
 }
 #footer_3{
-width: 1100px;
+width: 1200px;
 height: 50px;
 margin: 0 auto;
 

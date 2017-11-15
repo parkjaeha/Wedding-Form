@@ -83,8 +83,8 @@ public class NoticeDAO implements BoardDAO{
 		Connection con = DBConnector.getConnect();
 		String sql ="insert into notice values(board_seq.nextval,?,?,?,sysdate,0)";
 		PreparedStatement st = con.prepareStatement(sql);
-		st.setString(1, noticeDTO.getWriter());
-		st.setString(2, noticeDTO.getTitle());
+		st.setString(1, noticeDTO.getTitle());
+		st.setString(2, noticeDTO.getWriter());
 		st.setString(3, noticeDTO.getContents());
 		int result = st.executeUpdate();
 		
@@ -142,8 +142,8 @@ public class NoticeDAO implements BoardDAO{
 		while(rs.next()) {
 			NoticeDTO noticeDTO = new NoticeDTO();
 			noticeDTO.setNum(rs.getInt("num"));
-			noticeDTO.setWriter(rs.getString("writer"));
 			noticeDTO.setTitle(rs.getString("title"));
+			noticeDTO.setWriter(rs.getString("writer"));
 			noticeDTO.setContents(rs.getString("contents"));
 			noticeDTO.setReg_date(rs.getString("reg_date"));
 			noticeDTO.setHit(rs.getInt("hit"));

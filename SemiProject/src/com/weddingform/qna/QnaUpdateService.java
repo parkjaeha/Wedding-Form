@@ -40,7 +40,7 @@ public class QnaUpdateService implements Action {
 			qnaDTO.setNum(Integer.parseInt(request.getParameter("num")));
 			qnaDTO.setTitle(request.getParameter("title"));
 			qnaDTO.setWriter(request.getParameter("writer"));
-			qnaDTO.setContents(request.getParameter("contents"));
+			qnaDTO.setContents(request.getParameter("smarteditor"));
 			
 			
 			int result=0;
