@@ -296,7 +296,7 @@ body {
  
 		$("#btn").click(function() {
 
-			if (!ch ) {
+			if (!ch) {
 				alert("id  중복확인을 하세요");
 			} else if (ch && $("#pw1").val().trim() !="" && $("#pw2").val().trim() !="" && $("#name").val().trim() !=""  && $("#phone").val().trim() !="" 
 					&& $("#addr_main").val().trim() !="" && $("#addr_sub").val().trim() !="" && $("#select_result").val().trim() !="" ) {

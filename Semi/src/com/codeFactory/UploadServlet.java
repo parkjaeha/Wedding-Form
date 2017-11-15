@@ -14,6 +14,8 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
 
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.weddingform.action.ActionForward;
 
 /**
@@ -22,7 +24,7 @@ import com.weddingform.action.ActionForward;
 @WebServlet("/UploadServlet")
 public class UploadServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private final String UPLOAD_DIRECTORY = "D:/abc";
+	private String UPLOAD_DIRECTORY = "E:\\workspace_park\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Semi\\uploads";
 	
     /**
      * @see HttpServlet#HttpServlet()
@@ -48,7 +50,14 @@ public class UploadServlet extends HttpServlet {
 		ActionForward actionForward = new ActionForward();
 		
 		if(ServletFileUpload.isMultipartContent(request)) {
+			//String saveDirectory = request.getServletContext().getRealPath("upload");
+			//System.out.println(saveDirectory);
+			//UPLOAD_DIRECTORY = saveDirectory;
+			/*int maxsize = 1024*1024*10;
 			
+			//아래 객체가 만들어지는 순간 파일 저장은 끝이났다.
+			MultipartRequest multi = new MultipartRequest(request, saveDirectory, maxsize, "UTF-8", new DefaultFileRenamePolicy());	
+			*/
 			try {
 				List<FileItem> multiparts = new ServletFileUpload(new org.apache.commons.fileupload.disk.DiskFileItemFactory()).parseRequest(request);
 				for(FileItem item : multiparts){
@@ -59,6 +68,7 @@ public class UploadServlet extends HttpServlet {
 					if(!item.isFormField()) {
 						String name = new File(item.getName()).getName();
 						item.write(new File(UPLOAD_DIRECTORY + File.separator + name));
+					
 					}
 				}
 				

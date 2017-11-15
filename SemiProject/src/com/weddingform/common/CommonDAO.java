@@ -10,22 +10,7 @@ import com.weddingform.util.DBConnector;
 
 public class CommonDAO {
 	
-	public static void main(String[] args) {
-		CommonDTO commonDTO = new CommonDTO();
-		commonDTO.setId("iu9");
-		commonDTO.setPw("1234");
-		try {
-			System.out.println("test");
-			int result = new CommonDAO().update(commonDTO);
-			
-			System.out.println(result);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}
-
+	
 	
 	//update
 		public int update(CommonDTO commonDTO)throws Exception{
@@ -45,16 +30,18 @@ public class CommonDAO {
 			return result;
 			
 		}
-	
-	//delete
+		
+		//delete
 		public int delete(CommonDTO commonDTO, Connection con) throws Exception{
-			String sql ="delete common where id=?"; 
+			String sql ="delete common where id=?";
 			PreparedStatement st = con.prepareStatement(sql);
 			st.setString(1, commonDTO.getId());
 			int result = st.executeUpdate();
 			st.close();
 			return result;
 		}
+
+		
 
 		//insert
 		public int insert(CommonDTO commonDTO, Connection con) throws Exception {

@@ -25,12 +25,10 @@
 		<tr>
 			<td colspan="1" style="text-align: center;">${dto.num}</td>
 			<td colspan="12" style="text-align: center;">${dto.data}</td>
-			<td colspan="1" style="text-align: right; margin-right: 10px;">
-					<a href="#" class="update" data-value="${dto.num}" ><img  src = "../image/cancel.png"/></a> |
+			<td colspan="1" style="text-align: right; margin-right: 10px;"> <a href="#" class="update" data-value="${dto.num}" ><img  src = "../image/cancel.png"/></a> |
 			<a href="#" class="delete" data-value="${dto.num}" ><img  src = "../image/cancel.png"/></a>
 			</td>
-			
-			
+
 		</tr>
 		</c:forEach>
 			

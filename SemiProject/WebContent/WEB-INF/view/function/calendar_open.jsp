@@ -78,7 +78,7 @@ $(function(){
 				$("#cadd").css("visibility","hidden");
 				
 				$.get("./functionCalList.function?id="+${id}, function(data){
-					var data2 = $("#ctable").html(data);	
+					var data2 = $("#ctable").html(data);
 				});
 			});
 		 

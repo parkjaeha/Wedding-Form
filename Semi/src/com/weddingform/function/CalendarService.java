@@ -20,7 +20,7 @@ public class CalendarService implements Action {
 		if(method.equals("GET")) {
 			System.out.println("GET");
 			actionForward.setCheck(true);
-			actionForward.setPath("../WEB-INF/view/function/calendar.jsp");
+			actionForward.setPath("../calendar.jsp");
 
 		}else {
 			System.out.println("POST");

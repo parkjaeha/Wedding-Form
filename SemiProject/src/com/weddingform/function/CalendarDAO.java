@@ -2,8 +2,6 @@ package com.weddingform.function;
 
 import java.sql.Connection;
 
-
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -58,20 +56,20 @@ public class CalendarDAO {
 			DBConnector.disConnect(st, con);
 			
 			return result;
-			
 		}
-		
-		
+	
 		public CalendarDTO selectOne(String id) throws Exception {
 			Connection con = DBConnector.getConnect();
+			System.out.println("before");
 			String sql ="select * from calendar where id=?";
 			PreparedStatement st = con.prepareStatement(sql);
 			st.setString(1, id);
 			ResultSet rs = st.executeQuery();
-			CalendarDTO calendarDTO = null;
+			System.out.println("after");
+			CalendarDTO calendarDTO = new CalendarDTO();
 			if(rs.next()) {
-				calendarDTO = new CalendarDTO();
-				calendarDTO.setNum(rs.getInt("num"));
+				
+				calendarDTO.setId(rs.getString("id"));
 				calendarDTO.setData(rs.getString("data"));
 				calendarDTO.setId(rs.getString("id"));
 			}
