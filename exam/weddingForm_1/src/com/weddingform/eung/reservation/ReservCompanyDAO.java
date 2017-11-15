@@ -9,16 +9,56 @@ import com.weddingform.util.DBConnector;
 
 public class ReservCompanyDAO {
 	/*public static void main(String[] args) throws Exception {
-		ArrayList<ReservCompanyDTO> ar = new ReservCompanyDAO().selectOne("ID 01");
-		System.out.println(ar.get(2).getReserv_date());
+		ReservCompanyDTO reservCompanyDTO  = new ReservCompanyDTO();
+		reservCompanyDTO.setId("ID 01");
+		reservCompanyDTO.setMember_id("MEMBER_ID 01");
+		reservCompanyDTO.setReserv_date("2017-11-11 13:00");
+		reservCompanyDTO.setTitle("FEMALE 01 ♥ MALE 01");
+		
+		System.out.println(new ReservCompanyDAO().insert(reservCompanyDTO));
+		
 	}*/
+	
+	public boolean dateCheck(ReservCompanyDTO reservCompanyDTO) throws Exception {
+		boolean check = true;
+		Connection con = DBConnector.getConnect();
+
+		String sql = "select * from reserv_company where reserv_date=?";
+		PreparedStatement st = con.prepareStatement(sql);
+		
+		st.setString(1, reservCompanyDTO.getReserv_date());
+		
+		ResultSet rs = st.executeQuery();
+		
+		if(rs.next()) {
+			check = !check;
+		}
+		
+		return check;
+	}
+	
+	public int delete(String member_id, String company_id) throws Exception {
+		Connection con = DBConnector.getConnect();
+		
+		String sql = "delete from reserv_company where id=? and member_id=?";
+		PreparedStatement st = con.prepareStatement(sql);
+		
+		st.setString(1, company_id);
+		st.setString(2, member_id);
+		
+		int result = st.executeUpdate();
+		
+		DBConnector.disConnect(st, con);
+		
+		return result;
+	}
 	
 	public int insert(ReservCompanyDTO reservCompanyDTO) throws Exception {
 		Connection con = DBConnector.getConnect();
 		
-		String sql = "insert into values(?, ?, ?, ?)";
+		String sql = "insert into reserv_company values(?, ?, ?, ?)";
 		PreparedStatement st = con.prepareStatement(sql);
-		//////////////오류/////////////////////////
+		
 		st.setString(1, reservCompanyDTO.getId());
 		st.setString(2, reservCompanyDTO.getMember_id());
 		st.setString(3, reservCompanyDTO.getTitle());

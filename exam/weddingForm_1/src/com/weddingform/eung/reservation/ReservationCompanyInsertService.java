@@ -14,17 +14,25 @@ public class ReservationCompanyInsertService implements Action {
 	public ActionForward doProcess(HttpServletRequest request, HttpServletResponse response) {
 		ActionForward actionForward = new ActionForward();
 		ReservCompanyDTO reservCompanyDTO = this.getReservCompany(request);
-		
 		ReservCompanyDAO reservCompanyDAO = new ReservCompanyDAO();
+		ReservMemberDAO reservMemberDAO = new ReservMemberDAO();
+		
+		int result = 0;
 		try {
-			int result = reservCompanyDAO.insert(reservCompanyDTO);
+			boolean check = reservCompanyDAO.dateCheck(reservCompanyDTO);
 			
-			if(result > 0) {
-				ReservMemberDAO reservMemberDAO = new ReservMemberDAO();
-				ArrayList<ReservMemberDTO> ar = reservMemberDAO.selectList(reservCompanyDTO.getId());
+			if(check) {
+				result = reservCompanyDAO.insert(reservCompanyDTO);
+				if(result > 0) {
+					result = reservMemberDAO.confirmUpdate(reservCompanyDTO.getMember_id(), reservCompanyDTO.getId(), "true");
+				}
+			} else {
+				request.setAttribute("message", "중복된 날짜입니다.");
 				
-				request.setAttribute("reservMember", ar);
 			}
+			ArrayList<ReservMemberDTO> ar = reservMemberDAO.selectList(reservCompanyDTO.getId());
+			request.setAttribute("reservMember", ar);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -50,7 +58,7 @@ public class ReservationCompanyInsertService implements Action {
 		reservCompanyDTO.setReserv_date(reserv_date+ " " + reserv_time);
 		reservCompanyDTO.setTitle(female + " ♥ " + male);
 		
-		return null;
+		return reservCompanyDTO;
 	}
 
 }

@@ -9,6 +9,13 @@ public class ReservMemberDTO {
 	private String reserv_time;
 	private String contents;
 	private String company_id;
+	private String confirm;
+	public String getConfirm() {
+		return confirm;
+	}
+	public void setConfirm(String confirm) {
+		this.confirm = confirm;
+	}
 	public String getId() {
 		return id;
 	}

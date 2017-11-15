@@ -13,6 +13,22 @@ public class ReservMemberDAO {
 		ArrayList<ReservMemberDTO> ar = new ReservMemberDAO().selectList("ID 01");
 		System.out.println(ar.get(0).getHall_name());
 	}*/
+	public int confirmUpdate(String member_id, String company_id, String confirm) throws Exception {
+		Connection con = DBConnector.getConnect();
+		
+		String sql = "update reserv_member set confirm=? where id=? and company_id=?";
+		PreparedStatement st = con.prepareStatement(sql);
+		
+		st.setString(1, confirm);
+		st.setString(2, member_id);
+		st.setString(3, company_id);
+		
+		int result = st.executeUpdate();
+		
+		DBConnector.disConnect(st, con);
+
+		return result;
+	}
 	
 	public ArrayList<ReservMemberDTO> selectList(String id) throws Exception {
 		Connection con = DBConnector.getConnect();
@@ -36,6 +52,7 @@ public class ReservMemberDAO {
 			reservMemberDTO.setHall_name(rs.getString("hall_name"));
 			reservMemberDTO.setReserv_date(rs.getString("reserv_date"));
 			reservMemberDTO.setReserv_time(rs.getString("reserv_time"));
+			reservMemberDTO.setConfirm(rs.getString("confirm"));
 			ar.add(reservMemberDTO);
 		}
 		
@@ -47,7 +64,7 @@ public class ReservMemberDAO {
 	public int insert(ReservMemberDTO reservationDTO) throws Exception {
 		Connection con = DBConnector.getConnect();
 		
-		String sql = "insert into reserv_member values(?,?,?,?,?,?,?,?)";
+		String sql = "insert into reserv_member values(?,?,?,?,?,?,?,?,'false')";
 		PreparedStatement st = con.prepareStatement(sql);
 		
 		st.setString(1, reservationDTO.getId());

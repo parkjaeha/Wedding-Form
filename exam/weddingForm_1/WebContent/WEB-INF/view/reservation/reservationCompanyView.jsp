@@ -12,21 +12,17 @@
 
 <script type="text/javascript">
 	$(function() {
-		/* $(".reserv_btn").click(function() {
-			var id = $(this).attr("id");
-			if($(this).attr("title") == "confirm") {
-				$(this).attr("title", "cancel");
-				$(this).text("예약 취소");
-				$("#changeColor"+id).css("background-color", "#2096BA");
-				$(this).submit();
-			} else {
-				$(this).attr("title", "confirm");
-				$(this).text("예약 확인");
-				$("#changeColor"+id).css("background-color", "black");
-				
-			}
-			
-		}); */
+		$(".confirm").click(function() {
+			var num = $(this).attr('title');
+			$("#frm"+num).attr("action", "reservationCompanyInsert.reservation");
+			$("#frm"+num).submit();
+		});
+		
+		$(".cancel").click(function() {
+			var num = $(this).attr('title');
+			$("#frm"+num).attr("action", "reservationCompanyDelete.reservation");
+			$("#frm"+num).submit();
+		});
 	});	
 	
 </script>
@@ -75,7 +71,7 @@
 
 
 .button {
-    background-color: #2096BA;
+    background-color: #a9a9a9;
     border: none;
     color: white;
     padding: 10px 25px;
@@ -85,7 +81,7 @@
 }
 
 .confirm  {
-	background-color: green;
+	background-color: #2096BA;
 }
 
 @media only screen and (max-width: 600px) {
@@ -99,9 +95,9 @@
 <body>
 	<div class="container">
 		<c:forEach items="${reservMember}" var="dto" varStatus="count">
-			<form action="reservationCompanyInsert.reservation" method="POST">
+			<form id="frm${count.count}" action="reservationCompanyInsert.reservation" method="POST">
 				<input type="hidden" name="id" value="${dto.id}">
-				<input type="hidden" name="female" value="${dto.company_id}">
+				<input type="hidden" name="company_id" value="${dto.company_id}">
 				<input type="hidden" name="hall_name" value="${dto.hall_name}">
 				<input type="hidden" name="female" value="${dto.female}">
 				<input type="hidden" name="male" value="${dto.male}">
@@ -117,8 +113,12 @@
 						<li>예약 시간 : ${dto.reserv_time}</li>
 						<li>문의내용 : ${dto.contents}</li>
 						<li>
-							<button type="submit" class="button reserv_btn" id="confirm">예약 확인</button>
-							<button type="button" class="button reserv_btn" id="cancel">예약 취소</button>
+							<c:if test="${dto.confirm eq 'false' }">
+								<button type="button" class="button confirm" title="${count.count}">예약 확인</button>
+							</c:if>
+							<c:if test="${dto.confirm eq 'true' }">
+								<button type="button" class="button cancel" title="${count.count}">예약 취소</button>
+							</c:if>
 						</li>
 					</ul>
 				</div>
