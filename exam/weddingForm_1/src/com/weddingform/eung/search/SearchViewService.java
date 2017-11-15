@@ -95,6 +95,7 @@ public class SearchViewService implements Action {
 		reservationDTO.setReserv_date(request.getParameter("reserv_date"));
 		reservationDTO.setFemale(request.getParameter("female"));
 		reservationDTO.setMale(request.getParameter("male"));
+		reservationDTO.setReserv_time(request.getParameter("reserv_time"));
 		
 		return reservationDTO;
 	}

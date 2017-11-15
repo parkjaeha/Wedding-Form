@@ -23,6 +23,7 @@ public class CommonDAO {
 	         commonDTO.setAddr(rs.getString("addr"));
 	         commonDTO.setPhone(rs.getString("phone"));
 	         commonDTO.setMail(rs.getString("mail"));
+	         commonDTO.setJob(rs.getString("job"));
 	         
 	      }else {
 	         commonDTO= null;

@@ -14,6 +14,17 @@
 	<!-- Latest compiled JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
 	
+	<script type="text/javascript">
+		$(function() {
+			
+		});
+		
+		function openCalendar() {
+			var calendar = window.open("../reservation/reservationView.reservation?id=${company.id}", "", "width=800,height=800");
+		}
+		
+	</script>
+	
 	<style type="text/css">
 		body {
 			min-height: 1000px;
@@ -263,12 +274,8 @@
 			<span class="dot" onclick="currentSlide(2)"></span> 
 			<span class="dot" onclick="currentSlide(3)"></span>
 		</div>
-
-		<script>
-			$(function() {
-				
-			});
 		
+		<script type="text/javascript">
 			var slideIndex = 1;
 			showSlides(slideIndex);
 			
@@ -296,6 +303,7 @@
 			  dots[slideIndex-1].className += " active";
 			}
 		</script>
+
 	</div>
 	
 	<div class="container">
@@ -377,7 +385,7 @@
 		
 		<div class="container textCenter">
 			<button id="myBtn" class="btn btn-primary">예약하기</button>
-			<button class="btn btn-primary">예약현황</button>
+			<button class="btn btn-primary" onclick="openCalendar()">예약현황</button>
 			<button id="list_btn" class="btn btn-primary">목록으로</button>
 		</div>
 		
@@ -401,10 +409,15 @@
 		    	</tr>
 		    	
 		    	<tr>
-		    		<td><label for="hall_name">웨딩홀</label></td>
-		    		<td> <input name="hall_name" id="hall_name" type="text" value="${view.hall_name}"> </td>
+		    		<td colspan="2"><label for="hall_name">웨딩홀</label></td>
+		    		<td colspan="2"> <input name="hall_name" id="hall_name" type="text" value="${view.hall_name}"> </td>
+		    	</tr>
+		    	
+		    	<tr>
 		    		<td><label for="reservation_date">예약날짜</label></td>
-		    		<td> <input name="reservation_date" id="reserv_date" type="date"> </td>
+		    		<td> <input name="reservation_date" id="reserv_date" type="date"></td>
+		    		<td><label for="reservation_time">예약시간</label></td>
+		    		<td> <input name="reservation_time" id="reserv_time" type="text" placeholder="24시 기준으로 00:00"> </td>
 		    	</tr>
 		    	
 		    	<tr>
@@ -448,12 +461,7 @@
 			location.href="./searchMain.search";
 		});
 		
-		/* // When the user clicks anywhere outside of the modal, close it
-		window.onclick = function(event) {
-		    if (event.target == modal) {
-		        modal.style.display = "none";
-		    }
-		} */
+		
 		</script>
 	
 	

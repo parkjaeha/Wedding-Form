@@ -6,6 +6,7 @@ public class ReservMemberDTO {
 	private String male;
 	private String hall_name;
 	private String reserv_date;
+	private String reserv_time;
 	private String contents;
 	private String company_id;
 	public String getId() {
@@ -38,6 +39,12 @@ public class ReservMemberDTO {
 	public void setReserv_date(String reserv_date) {
 		this.reserv_date = reserv_date;
 	}
+	public String getReserv_time() {
+		return reserv_time;
+	}
+	public void setReserv_time(String reserv_time) {
+		this.reserv_time = reserv_time;
+	}
 	public String getContents() {
 		return contents;
 	}
@@ -50,7 +57,6 @@ public class ReservMemberDTO {
 	public void setCompany_id(String company_id) {
 		this.company_id = company_id;
 	}
-	
-	
 
+	
 }

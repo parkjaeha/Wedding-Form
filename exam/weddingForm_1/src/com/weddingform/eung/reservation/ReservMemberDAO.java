@@ -2,32 +2,52 @@ package com.weddingform.eung.reservation;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import com.weddingform.util.DBConnector;
 
 public class ReservMemberDAO {
 	
-	/*public static void main(String[] args) {
-		ReservationDTO reservationDTO = new ReservationDTO();
-		
-		reservationDTO.setContents("test");
-		reservationDTO.setHall_name("test");
-		reservationDTO.setId("test");
-		reservationDTO.setName("test");
-		reservationDTO.setReserv_date("test");
-		
-		try {
-			new ReservationDAO().insert(reservationDTO);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	/*public static void main(String[] args) throws Exception {
+		ArrayList<ReservMemberDTO> ar = new ReservMemberDAO().selectList("ID 01");
+		System.out.println(ar.get(0).getHall_name());
 	}*/
+	
+	public ArrayList<ReservMemberDTO> selectList(String id) throws Exception {
+		Connection con = DBConnector.getConnect();
+		ArrayList<ReservMemberDTO> ar = new ArrayList<>();
+		
+		String sql = "select * from reserv_member where company_id=?";
+		PreparedStatement st = con.prepareStatement(sql);
+		
+		st.setString(1, id);
+		
+		ResultSet rs = st.executeQuery();
+
+		ReservMemberDTO reservMemberDTO = null;
+		while(rs.next()) {
+			reservMemberDTO = new ReservMemberDTO();
+			reservMemberDTO.setId(rs.getString("id"));
+			reservMemberDTO.setCompany_id(rs.getString("company_id"));
+			reservMemberDTO.setContents(rs.getString("contents"));
+			reservMemberDTO.setFemale(rs.getString("female"));
+			reservMemberDTO.setMale(rs.getString("male"));
+			reservMemberDTO.setHall_name(rs.getString("hall_name"));
+			reservMemberDTO.setReserv_date(rs.getString("reserv_date"));
+			reservMemberDTO.setReserv_time(rs.getString("reserv_time"));
+			ar.add(reservMemberDTO);
+		}
+		
+		DBConnector.disConnect(rs, st, con);
+		
+		return ar;
+	}
 
 	public int insert(ReservMemberDTO reservationDTO) throws Exception {
 		Connection con = DBConnector.getConnect();
 		
-		String sql = "insert into reserv_member values(?,?,?,?,?,?,?)";
+		String sql = "insert into reserv_member values(?,?,?,?,?,?,?,?)";
 		PreparedStatement st = con.prepareStatement(sql);
 		
 		st.setString(1, reservationDTO.getId());
@@ -37,6 +57,7 @@ public class ReservMemberDAO {
 		st.setString(5, reservationDTO.getCompany_id());
 		st.setString(6, reservationDTO.getFemale());
 		st.setString(7, reservationDTO.getMale());
+		st.setString(8, reservationDTO.getReserv_time());
 		
 		int result = st.executeUpdate();
 		

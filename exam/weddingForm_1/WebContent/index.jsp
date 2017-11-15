@@ -12,6 +12,7 @@
 		<li><a href="search/searchTotalMap.search">Search By Map</a></li>
 		<li><a href="company/companyInsert.company">Company Join</a>
 		<li><a href="reservation/reservationView.reservation">Reservation View (ID 01)</a>
+		<li><a href="reservation/reservationCompanyView.reservation">예약한 고객들 보기</a>
 	</ul>
 </body>
 </html>
