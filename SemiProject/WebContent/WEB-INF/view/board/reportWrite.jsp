@@ -49,7 +49,7 @@
 
 
 input {
-   width:700px;
+   width:350px;
    height: 30px;
 }
 
@@ -123,12 +123,15 @@ $(function(){
 	     <p class="panel-body">
 	      <textarea name="smarteditor" id="smarteditor" rows="5" cols="90"
             style="width: 700px; height: 312px;"></textarea>
-       <p class="panel-body">  <input type="submit" class="btn btn-default" id="savebutton" value="글쓰기" /></p>
-		
+            
+        <p class="panel-body">
+<a href="./reportPage.report"><input type="button" class="btn btn-default" value="취소" /></a>
+ <input type="submit" class="btn btn-default" id="savebutton" value="글쓰기" />
+</p>  
+			</form>
 		
 				
 
-			</form>
 			</div>
  <c:import url="../../../temp/footer.jsp"></c:import>
 </body>

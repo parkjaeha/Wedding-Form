@@ -116,14 +116,20 @@ text-align: center;
 
 
 	
-	<a href="./${board}List.${board}">목록</a>
+	<a href="./${board}List.${board}">
+	<img alt="" src="../img/list.png" style="width: 80px; height: 30px;"></a>
+	
+	
 	<!--글쓴이만  -->
-	<a href="./${board}Update.${board}?num=${view.num}">수정</a>
+	<a href="./${board}Update.${board}?num=${view.num}">
+	<img alt="" src="../img/update.png" style="width: 80px; height: 30px;"></a>
 	<c:if test="${board eq 'notice'}" >
-	<a href="./${board}Delete.${board}?num=${view.num}">삭제</a>
+	<a href="./${board}Delete.${board}?num=${view.num}">
+	<img alt="" src="../img/delete.png" style="width: 80px; height: 30px;"></a>
 	</c:if>
 	<c:if test="${board eq 'qna'}" >
-	<a href="./${board}Delete.${board}?ref=${view.ref}">삭제</a>
+	<a href="./${board}Delete.${board}?ref=${view.ref}">
+	<img alt="" src="../img/delete.png" style="width: 80px; height: 30px;"></a>
 	</c:if>
 
 

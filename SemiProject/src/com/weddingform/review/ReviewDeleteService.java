@@ -38,7 +38,7 @@ public class ReviewDeleteService implements Action {
 		}else {
 			request.setAttribute("message", "삭제 실패");
 		}
-		request.setAttribute("path", "./reviewView.review");
+		request.setAttribute("path", "./reviewList.review?type="+type+"&&curPage=1");
 		actionForward.setCheck(true);
 		actionForward.setPath("../WEB-INF/view/common/result.jsp");
 		return actionForward;

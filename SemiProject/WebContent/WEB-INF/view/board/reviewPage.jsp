@@ -19,15 +19,6 @@ margin: 0 auto;
 margin-bottom: 100px;
 }
 
-.best{
-width:1100px;
-height: 200px;
-border-bottom: 1px solid gray;
-border-top:  1px solid gray;
-background-color: lightblue;
-}
-
-
 </style>
 
 </head>
@@ -43,7 +34,7 @@ $(function(){
 });
 </script>
 <body>
- 	 <c:import url="../../../temp/sideMenu.jsp"></c:import>
+ 	 <c:import url="../../../temp/sideMenu_community.jsp"></c:import>
     
 <!-- main -->
 	<div id="main">
@@ -56,20 +47,20 @@ $(function(){
  
 <div class="contents">
 <p> <a onclick="openNav()">Community</a></p>
-<div id="blank"></div>
- <div id="blank"></div>
+
  
 
-
+<!--청첩장 best review  -->
 <div class="container">
-  <div class="panel panel-primary">
-    <div class="panel-body">청첩장 Review BEST 
-    <a href="./reviewList.review?type=invitation&&curPage=1">+더보기</a></div>
-    <div class="panel-body">
-    
+ <div class="w3-content w3-margin-top" style="max-width:1200px; margin : 0 auto; margin-bottom:50px;">
+    <div class="w3-container w3-card w3-white w3-margin-bottom" style="margin-top: 100px;">
+   <div id="blank"></div> 
+    청첩장 Review BEST <a href="./reviewList.review?type=invitation&&curPage=1">+더보기</a>
+  
       <p id="invitation"><img alt="" src="../img/invitation.jpg">  
       심플해서 더 맘에들었던 청첩장! 
      <img alt="" src="../img/ico_photo.gif"></p>
+      <div id="blank"></div>
      <div id="hiden" style="display: none;">
       <div id="blank"></div>
      <img alt="" src="../img/invitation_2.JPG">
@@ -80,25 +71,27 @@ $(function(){
    추가적으로 받은 식권 디자인도 넘 맘에들구요 ㅎ.ㅎ<br>
    청첩장 다 접으면 모바일 청첩장 제작할 생각입니다.</p>
      </div>
-   </div>
+  </div>
   </div>
 </div>
 
-<div id="blank"></div>
- <div id="blank"></div>
+<!-- 웨딩홀 best review  -->
 <div class="container">
-  <div class="panel panel-primary">
-    <div class="panel-body">웨딩홀 Review BEST 
-    <a href="./reviewList.review?type=wedding_hall&&curPage=1">+더보기</a></div>
-    <div class="panel-body">
+<div class="w3-content w3-margin-top" style="max-width:1200px; margin : 0 auto;margin-bottom: 50px;">
+     <div class="w3-container w3-card w3-white w3-margin-bottom" style="margin-top: 100px;">
+   <div id="blank"></div> 
+    웨딩홀 Review BEST 
+    <a href="./reviewList.review?type=wedding_hall&&curPage=1">+더보기</a>
+
   <p id="wedding_hall">  <img alt="" src="../img/wedding_hall.jpg">
           강동웨딩홀 노빌리티웨딩홀 후기!
      <img alt="" src="../img/ico_photo.gif"></p>
+     <div id="blank"></div> 
     <div id="hiden2" style="display: none;">
       <div id="blank"></div>
      <img alt="" src="../img/wedding_hall2.jpg">
       <div id="blank"></div>
-      ★ ★ ★ ★ ★
+
      <p>강동웨딩홀 노빌리티웨딩홀 후기입니다.<br>
 
        얼마전에 강동구청역 3번출구 근처에 있는 강동구 웨딩홀 이예요!<br>
@@ -110,14 +103,13 @@ $(function(){
     강동웨딩홀이었어요~~<br>
     직원분들이 모두 웃으시면서 잘 대해주셔서 넘 좋았네요~</p>
      </div> 
-    
+    </div>
     
     </div>
   </div>
 
 </div>
-<!-- <a href="./reviewList.review?type=invitation&&curPage=1">청첩장</a>
-<a href="./reviewList.review?type=wedding_hall&&curPage=1">웨딩홀</a> -->
+
 </div>
  <c:import url="../../../temp/footer.jsp"></c:import>
 

@@ -39,7 +39,7 @@ public class ReviewUpdateService implements Action {
 			reviewDTO.setNum(Integer.parseInt(request.getParameter("num")));
 			reviewDTO.setTitle(request.getParameter("title"));
 			reviewDTO.setWriter(request.getParameter("writer"));
-			reviewDTO.setContents(request.getParameter("contents"));
+			reviewDTO.setContents(request.getParameter("smarteditor"));
 			reviewDTO.setStar_score(Integer.parseInt(request.getParameter("starscore")));
             reviewDTO.setType(request.getParameter("type"));
             

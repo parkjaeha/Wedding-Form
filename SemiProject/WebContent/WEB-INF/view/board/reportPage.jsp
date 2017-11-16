@@ -33,7 +33,7 @@ color : gray;
 </style>
 </head>
 <body>
- 	 <c:import url="../../../temp/sideMenu.jsp"></c:import>
+ 	 <c:import url="../../../temp/sideMenu_community.jsp"></c:import>
  <c:import url="../../../temp/header.jsp"></c:import>
  <div id="blank"></div>
  <div id="blank"></div>

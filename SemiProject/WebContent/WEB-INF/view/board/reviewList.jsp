@@ -61,7 +61,7 @@ text-align : center;
 
 </head>
 <body>
- 	 <c:import url="../../../temp/sideMenu.jsp"></c:import>
+ 	 <c:import url="../../../temp/sideMenu_community.jsp"></c:import>
 <!-- main -->
 	<div id="main">
  <c:import url="../../../temp/header.jsp"></c:import> 
@@ -76,12 +76,12 @@ text-align : center;
        <article class="write_2"></article>
 
 		<tr>
-			<td>num</td>
+			<td>NUM</td>
 			<td></td>
-			<td>Title</td>
-			<td>Writer</td>
-			<td>Date</td>
-			<td>Hit</td>
+			<td>TITLE</td>
+			<td>WRITER</td>
+			<td>DATE</td>
+			<td>HIT</td>
 		</tr>
 
 		<c:forEach items="${requestScope.list}" var="dto">
@@ -96,6 +96,7 @@ text-align : center;
         </c:forEach></p>
 </div></td>
 			<td>
+			<img alt="" src="../img/memo.gif">
 			<a href="./reviewView.review?num=${dto.num}" id="a">${dto.title}</a>
 			</td>
 			<td>${dto.writer}</td>
@@ -143,7 +144,8 @@ text-align : center;
 	<%-- <c:if test="${not empty member}">
 	</c:if> --%>
 	
-		<a href="./reviewWrite.review?type=${param.type}">write</a>
+		<a href="./reviewWrite.review?type=${param.type}">
+		<img alt="" src="../img/write.png" style="width: 80px; height: 30px;"></a>
 	</div>
  <c:import url="../../../temp/footer.jsp"></c:import> 
  </div>

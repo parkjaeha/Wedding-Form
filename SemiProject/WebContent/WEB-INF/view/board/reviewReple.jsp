@@ -15,7 +15,7 @@
 	<script type="text/javascript">
 $(function(){
 	$("#update").click(function(){
-		$("#up").show();
+		$("#up").slideToggle("slow");
 	});
 	
 	$(".reply").click(function(){
@@ -45,23 +45,24 @@ $(function(){
 		   ${dto.contents}</p>	 
 		
          <!-- 글쓴이만 -->
+		   <!-- 삭제 -->
+		 <a href="../reply/replyDelete.reply?num=${dto.num}&&type=${dto.type}&&reviewNum=${dto.reviewNum}&&ref=${dto.ref}">
+		 <img alt="" src="../img/delete.png" style="width: 80px; height: 30px;"></a> 
          
          <!-- 수정 -->
+		   <img alt="" src="../img/update.png" style="width: 80px; height: 30px;" id="update">
          <form action="../reply/replyUpdate.reply" method="post">
          <input type="hidden" value="${dto.type}" name="type">
           <input type="hidden" value="${dto.num}" name="num">
 		  <input type="hidden" value="${dto.reviewNum}" name="reviewNum">
-         <p id="update">수정</p>
 		  <div id="up" style="display: none;">
 		 <textarea  cols="115" rows="5" name="contents">${dto.contents}</textarea>
-	    <button  id="btn1" class="btn btn-default">수정</button></p>
+	    <button  id="btn1" class="btn btn-default");">수정 완료</button></p>
 		   </div>
 		   </form>
 		   
-		   
-		   <!-- 삭제 -->
-		 <a href="../reply/replyDelete.reply?num=${dto.num}&&type=${dto.type}&&reviewNum=${dto.reviewNum}&&ref=${dto.ref}">삭제</a> 
-		 
+
+
 		 
 		 <!-- 답글 -->
 		 <form action="../reply/replyReple.reply" method="post">

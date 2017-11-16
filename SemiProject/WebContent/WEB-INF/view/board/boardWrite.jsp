@@ -89,7 +89,7 @@ $(function(){
 }
 
 input {
-   width: 700px;
+   width: 350px;
    height: 30px;
 }
 
@@ -159,17 +159,16 @@ $(document).ready(function(){
         <input type="text" name="title" class="form-control" placeholder="제목">
          </p>
          </div>
-         <div>
+
          <p class="panel-body"><textarea name="smarteditor" id="smarteditor" rows="10" cols="100"
             style="width: 700px; height: 312px;"></textarea></p>
             <div id="blank"></div>
-         <p class="panel-body"><input type="button" class="btn btn-default" id="savebutton" value="글쓰기" /></p>
-         
-      </div>
+            
+            <p class="panel-body">
+            <a href="./${board}List.${board}">
+            <input type="button" class="btn btn-default"  value="취소" /></a> 
+       <input type="submit" class="btn btn-default"value="글쓰기" id="savebutton"/></p>
       </form>
-
-
-
 
    </div>
 

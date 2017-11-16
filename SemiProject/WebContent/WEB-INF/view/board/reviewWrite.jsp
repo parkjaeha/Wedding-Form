@@ -42,7 +42,7 @@
 
 
 input {
-   width: 700px;
+   width: 350px;
    height: 30px;
 }
 
@@ -147,11 +147,14 @@ $("#savebutton").click(function(){
 					
 <p class="panel-body"><textarea name="smarteditor" id="smarteditor" rows="10" cols="100"
             style="width: 700px; height: 312px;"></textarea></p>
-         <p class="panel-body"><input type="submit" class="btn btn-default" id="savebutton" value="write" /></p>
-			
-				
+         <p class="panel-body">
+    <a href="reviewList.review?type=${param.type}&&curPage=1">
+            <input type="button" class="btn btn-default" value="취소" /></a>
+			<input type="submit" class="btn btn-default" value="글쓰기" id="savebutton" /></p>
 					
 				</form>
+				
+
 		
 
 			

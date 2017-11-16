@@ -64,6 +64,7 @@ width: 100%;
 height: 50px;
 }
 
+
 </style>
 
 </head>
@@ -77,7 +78,7 @@ $(function(){
 });
 </script>
 <body>
- 	 <c:import url="../../../temp/sideMenu.jsp"></c:import>
+ 	 <c:import url="../../../temp/sideMenu_community.jsp"></c:import>
     
 <!-- main -->
 	<div id="main">
@@ -89,7 +90,7 @@ $(function(){
 <div id="blank"></div>
 	<div class="col-md-8 col-centered">
 
-  <a onclick="openNav()">Community</a>
+  <a onclick="openNav()" id="community" style="font-size: 30px;">Community</a>
 			<table class="table table-hover">
 
 
@@ -101,12 +102,12 @@ $(function(){
          
 			
 				<tr>
-					<td>num</td>
+					<td>NUM</td>
 					<td></td>
-					<td>Title</td>
-					<td>Writer</td>
-					<td>Date</td>
-					<td>Hit</td>
+					<td>TITLE</td>
+					<td>WRITER</td>
+					<td>DATE</td>
+					<td>HIT</td>
 				</tr>
 				<c:forEach items="${requestScope.list}" var="dto">
 
@@ -210,7 +211,8 @@ $(function(){
 
 			</div>
 
-			<a href="./${requestScope.board}Write.${requestScope.board}">write</a>
+			<a href="./${requestScope.board}Write.${requestScope.board}">
+			<img alt="" src="../img/write.png" style="width: 80px; height: 30px;"></a>
 	</div>
  <c:import url="../../../temp/footer.jsp"></c:import> 
  </div>

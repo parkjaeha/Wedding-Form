@@ -22,6 +22,7 @@ public class ReviewWriteService implements Action {
 		 ReviewDTO reviewDTO=new ReviewDTO();
 		 reviewDTO.setTitle(request.getParameter("title"));
 		 reviewDTO.setContents(request.getParameter("smarteditor"));
+		 System.out.println("contents : "+reviewDTO.getContents());
 		 reviewDTO.setWriter(request.getParameter("writer"));
 		 reviewDTO.setType(request.getParameter("type"));
 		 reviewDTO.setStar_score(Integer.parseInt(request.getParameter("starscore")));

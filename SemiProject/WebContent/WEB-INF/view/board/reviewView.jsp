@@ -108,15 +108,18 @@ width: 1000px;
 </div>
 <p>DATE : ${view.reg_date} | HIT : ${view.hit}</p>
 <div id="border"></div>
-<p>CONTENTS : ${view.contents}</p>
+<p>${view.contents}</p>
 
 
+	<a href="./reviewList.review?type=${view.type}&&curPage=1">
+	<img alt="" src="../img/list.png" style="width: 80px; height: 30px;"></a>
 	
 	<!--글쓴이만  -->			
-	<a href="./reviewList.review?type=${view.type}&&curPage=1">목록</a>
-	<a href="./reviewUpdate.review?num=${view.num}&&type=${view.type}">수정</a>
+	<a href="./reviewUpdate.review?num=${view.num}&&type=${view.type}">
+	<img alt="" src="../img/update.png" style="width: 80px; height: 30px;"></a>
 
-	<a href="./reviewDelete.review?num=${view.num}&&type=${view.type}">삭제</a>
+	<a href="./reviewDelete.review?num=${view.num}&&type=${view.type}">
+	<img alt="" src="../img/delete.png" style="width: 80px; height: 30px;"></a>
 
 
 
@@ -133,7 +136,7 @@ width: 1000px;
 <!-- writer 는 hidden타입으로!!!! -->	
 <div class="list-group">
    <input type="text" name="writer" placeholder="writer">
-  <p class="list-group-item"> <textarea  cols="120" rows="5" name="contents" placeholder="내용을 입력하세요."></textarea>
+  <p class="list-group-item"> <textarea  cols="120" rows="5" name="contents" placeholder="댓글을 입력해주세요."></textarea>
   <button  id="btn" class="btn btn-default">글쓰기</button></p>
 	</form>
 	
