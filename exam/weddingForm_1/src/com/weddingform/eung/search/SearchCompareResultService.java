@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.weddingform.action.Action;
 import com.weddingform.action.ActionForward;
+import com.weddingform.eung.extra.ExtraDAO;
+import com.weddingform.eung.extra.ExtraDTO;
 
 public class SearchCompareResultService implements Action {
 

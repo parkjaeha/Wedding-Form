@@ -7,12 +7,18 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.weddingform.action.Action;
 import com.weddingform.action.ActionForward;
+import com.weddingform.util.PageMaker;
 
 public class ReservationCompanyDeleteService implements Action {
 
 	@Override
 	public ActionForward doProcess(HttpServletRequest request, HttpServletResponse response) {
 		ActionForward actionForward = new ActionForward();
+		
+		int curPage = 1;
+		try {
+			curPage = Integer.parseInt(request.getParameter("curPage"));
+		} catch (Exception e) { }
 
 		String member_id = request.getParameter("id");
 		String company_id = request.getParameter("company_id");
@@ -26,7 +32,10 @@ public class ReservationCompanyDeleteService implements Action {
 				result = reservMemberDAO.confirmUpdate(member_id, company_id, "false");
 				
 				if(result > 0) {
-					ArrayList<ReservMemberDTO> ar = reservMemberDAO.selectList(company_id);
+					PageMaker pageMaker = new PageMaker(curPage, 6, reservMemberDAO.getTotal());
+					ArrayList<ReservMemberDTO> ar = reservMemberDAO.selectList(company_id, pageMaker.getMakeRow());
+					
+					request.setAttribute("page", pageMaker.getMakePage());
 					request.setAttribute("reservMember", ar);
 				}
 			}

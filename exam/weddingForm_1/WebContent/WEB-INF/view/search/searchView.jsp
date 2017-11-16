@@ -409,15 +409,17 @@
 		    	</tr>
 		    	
 		    	<tr>
-		    		<td colspan="2"><label for="hall_name">웨딩홀</label></td>
-		    		<td colspan="2"> <input name="hall_name" id="hall_name" type="text" value="${view.hall_name}"> </td>
+		    		<td><label for="hall_name">웨딩홀</label></td>
+		    		<td> <input name="hall_name" id="hall_name" type="text" value="${view.hall_name}" readonly="readonly"> </td>
+		    		<td><label for="tel">전화번호</label></td>
+		    		<td> <input name="tel" id="tel" type="tel"> </td>
 		    	</tr>
 		    	
 		    	<tr>
-		    		<td><label for="reservation_date">예약날짜</label></td>
-		    		<td> <input name="reservation_date" id="reserv_date" type="date"></td>
-		    		<td><label for="reservation_time">예약시간</label></td>
-		    		<td> <input name="reservation_time" id="reserv_time" type="text" placeholder="24시 기준으로 00:00"> </td>
+		    		<td><label for="reserv_date">예약날짜</label></td>
+		    		<td> <input name="reserv_date" id="reserv_date" type="date"></td>
+		    		<td><label for="reserv_time">예약시간</label></td>
+		    		<td> <input name="reserv_time" id="reserv_time" type="text" placeholder="24시 기준으로 00:00"> </td>
 		    	</tr>
 		    	
 		    	<tr>

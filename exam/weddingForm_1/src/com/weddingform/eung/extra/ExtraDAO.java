@@ -1,4 +1,4 @@
-package com.weddingform.eung.search;
+package com.weddingform.eung.extra;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

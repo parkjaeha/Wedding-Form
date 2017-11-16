@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.weddingform.action.Action;
 import com.weddingform.action.ActionForward;
+import com.weddingform.util.PageMaker;
 
 public class ReservationCompanyInsertService implements Action {
 
@@ -16,6 +17,11 @@ public class ReservationCompanyInsertService implements Action {
 		ReservCompanyDTO reservCompanyDTO = this.getReservCompany(request);
 		ReservCompanyDAO reservCompanyDAO = new ReservCompanyDAO();
 		ReservMemberDAO reservMemberDAO = new ReservMemberDAO();
+		
+		int curPage = 1;
+		try {
+			curPage = Integer.parseInt(request.getParameter("curPage"));
+		} catch (Exception e) { }
 		
 		int result = 0;
 		try {
@@ -30,7 +36,10 @@ public class ReservationCompanyInsertService implements Action {
 				request.setAttribute("message", "중복된 날짜입니다.");
 				
 			}
-			ArrayList<ReservMemberDTO> ar = reservMemberDAO.selectList(reservCompanyDTO.getId());
+			PageMaker pageMaker = new PageMaker(curPage, 6, reservMemberDAO.getTotal());
+			ArrayList<ReservMemberDTO> ar = reservMemberDAO.selectList(reservCompanyDTO.getId(), pageMaker.getMakeRow());
+			
+			request.setAttribute("page", pageMaker.getMakePage());
 			request.setAttribute("reservMember", ar);
 			
 		} catch (Exception e) {

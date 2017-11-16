@@ -23,10 +23,12 @@ public class ReservCompanyDAO {
 		boolean check = true;
 		Connection con = DBConnector.getConnect();
 
-		String sql = "select * from reserv_company where reserv_date=?";
+		String sql = "select * from reserv_company where reserv_date=? and id=? and member_id=?";
 		PreparedStatement st = con.prepareStatement(sql);
 		
 		st.setString(1, reservCompanyDTO.getReserv_date());
+		st.setString(2, reservCompanyDTO.getId());
+		st.setString(3, reservCompanyDTO.getMember_id());
 		
 		ResultSet rs = st.executeQuery();
 		

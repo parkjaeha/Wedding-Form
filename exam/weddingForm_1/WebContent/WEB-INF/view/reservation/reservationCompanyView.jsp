@@ -12,15 +12,19 @@
 
 <script type="text/javascript">
 	$(function() {
+		if('${message}' != '') {
+			alert('${message}');
+		}
+		
 		$(".confirm").click(function() {
 			var num = $(this).attr('title');
-			$("#frm"+num).attr("action", "reservationCompanyInsert.reservation");
+			$("#frm"+num).attr("action", "reservationCompanyInsert.reservation?curPage=${curPage}");
 			$("#frm"+num).submit();
 		});
 		
 		$(".cancel").click(function() {
 			var num = $(this).attr('title');
-			$("#frm"+num).attr("action", "reservationCompanyDelete.reservation");
+			$("#frm"+num).attr("action", "reservationCompanyDelete.reservation?curPage=${curPage}");
 			$("#frm"+num).submit();
 		});
 	});	
@@ -84,6 +88,26 @@
 	background-color: #2096BA;
 }
 
+.pagination  {
+	height: 100px;
+    text-align: center;
+}
+
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+}
+
+.pagination a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}
+
 @media only screen and (max-width: 600px) {
     .columns {
         width: 100%;
@@ -93,7 +117,7 @@
 
 </head>
 <body>
-	<div class="container">
+	<div class="container" style="min-height: 500px;">
 		<c:forEach items="${reservMember}" var="dto" varStatus="count">
 			<form id="frm${count.count}" action="reservationCompanyInsert.reservation" method="POST">
 				<input type="hidden" name="id" value="${dto.id}">
@@ -104,13 +128,14 @@
 				<input type="hidden" name="reserv_date" value="${dto.reserv_date}">
 				<input type="hidden" name="reserv_time" value="${dto.reserv_time}">
 				<input type="hidden" name="contents" value="${dto.contents}">
+				<input type="hidden" name="tel" value="${dto.tel}">
 				<div class="columns">
 					<ul class="reserv">
 						<li class="header">ID: ${dto.id}</li>
 						<li class="grey">${dto.female } <i class="material-icons"> favorite</i> ${dto.male}</li>
-						<li>웨딩홀 : ${dto.hall_name}</li>
 						<li>예약 날짜 : ${dto.reserv_date}</li>
 						<li>예약 시간 : ${dto.reserv_time}</li>
+						<li>전화번호 : ${dto.tel}</li>
 						<li>문의내용 : ${dto.contents}</li>
 						<li>
 							<c:if test="${dto.confirm eq 'false' }">
@@ -124,6 +149,19 @@
 				</div>
 			</form>
 		</c:forEach>
+	</div>
+	<div class="container">
+		<div class="pagination">
+			<c:if test="${page.curBlock > 1}">
+				<a href="./reservationCompanyView.reservation?curPage=${page.getStartNum()-1}">&laquo;</a>
+			</c:if>
+			<c:forEach begin="${page.startNum}" end="${page.lastNum}" var="i">
+				<a class="number" href="./reservationCompanyView.reservation?curPage=${i}" title="${i}">${i}</a>
+			</c:forEach>
+			<c:if test="${page.curBlock < page.totalBlock}">
+				<a href="./reservationCompanyView.reservation?curPage=${page.lastNum+1}">&raquo;</a>
+			</c:if>
+		</div>
 	</div>
 	
 </body>

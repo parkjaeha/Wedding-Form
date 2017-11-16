@@ -7,6 +7,8 @@ import com.weddingform.action.Action;
 import com.weddingform.action.ActionForward;
 import com.weddingform.eung.company.CompanyDAO;
 import com.weddingform.eung.company.CompanyDTO;
+import com.weddingform.eung.extra.ExtraDAO;
+import com.weddingform.eung.extra.ExtraDTO;
 import com.weddingform.eung.reservation.ReservMemberDAO;
 import com.weddingform.eung.reservation.ReservMemberDTO;
 
@@ -97,7 +99,8 @@ public class SearchViewService implements Action {
 		reservationDTO.setMale(request.getParameter("male"));
 		reservationDTO.setReserv_time(request.getParameter("reserv_time"));
 		reservationDTO.setConfirm("false");
-		
+		reservationDTO.setTel(request.getParameter("tel"));
+		System.out.println(reservationDTO.getTel());
 		return reservationDTO;
 	}
 }

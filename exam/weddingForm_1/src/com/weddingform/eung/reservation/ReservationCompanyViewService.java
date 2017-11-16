@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import com.weddingform.action.Action;
 import com.weddingform.action.ActionForward;
 import com.weddingform.eung.common.CommonDTO;
+import com.weddingform.util.PageMaker;
 
 public class ReservationCompanyViewService implements Action {
 
@@ -25,10 +26,18 @@ public class ReservationCompanyViewService implements Action {
 		}
 		/////////////////////////////////////////////////////////////////
 		
+		int curPage = 1;
+		try {
+			curPage = Integer.parseInt(request.getParameter("curPage"));
+		} catch (Exception e) { }
+		
 		ReservMemberDAO reservMemberDAO = new ReservMemberDAO();
 		try {
-			ArrayList<ReservMemberDTO> ar = reservMemberDAO.selectList(commonDTO.getId());
+			PageMaker pageMaker = new PageMaker(curPage, 6, reservMemberDAO.getTotal());
+			ArrayList<ReservMemberDTO> ar = reservMemberDAO.selectList(commonDTO.getId(), pageMaker.getMakeRow());
 			
+			request.setAttribute("curPage", curPage);
+			request.setAttribute("page", pageMaker.getMakePage());
 			request.setAttribute("reservMember", ar);
 			
 		} catch (Exception e) {

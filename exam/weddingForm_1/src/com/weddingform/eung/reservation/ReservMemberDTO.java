@@ -10,6 +10,14 @@ public class ReservMemberDTO {
 	private String contents;
 	private String company_id;
 	private String confirm;
+	private String tel;
+	
+	public String getTel() {
+		return tel;
+	}
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
 	public String getConfirm() {
 		return confirm;
 	}
