@@ -30,6 +30,38 @@ public class ExtraDAO {
 		
 	}*/
 	
+	public ArrayList<ExtraDTO> selectList(ExtraDTO extraDTO) throws Exception {
+		ArrayList<ExtraDTO> ar = new ArrayList<>();
+		Connection con = DBConnector.getConnect();
+		
+		String sql = "select * from extra where type=?";
+		PreparedStatement st = con.prepareStatement(sql);
+		
+		st.setString(1, extraDTO.getType());
+		
+		ResultSet rs = st.executeQuery();
+		
+		while(rs.next()) {
+			extraDTO = new ExtraDTO();
+			extraDTO.setId(rs.getString("id"));
+			extraDTO.setRegion(rs.getString("region"));
+			extraDTO.setType(rs.getString("type"));
+			extraDTO.setMeal_cost(rs.getString("meal_cost"));
+			extraDTO.setMeal_menu(rs.getString("meal_menu"));
+			extraDTO.setVisitor(rs.getString("visitor"));
+			extraDTO.setSubway(rs.getString("subway"));
+			extraDTO.setHall_cost(rs.getString("hall_cost"));
+			extraDTO.setHall_name(rs.getString("hall_name"));
+			ar.add(extraDTO);
+		}
+		
+		DBConnector.disConnect(rs, st, con);
+		
+		return ar;
+	}
+	
+	/////////////////////////search///////////////////////////////
+	
 	public ArrayList<ExtraDTO> compareList(String str) throws Exception {
 		Connection con = DBConnector.getConnect();
 		ArrayList<ExtraDTO> ar = new ArrayList<>();
