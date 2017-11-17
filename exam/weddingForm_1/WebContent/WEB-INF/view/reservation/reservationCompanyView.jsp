@@ -139,7 +139,7 @@
 						<li>문의내용 : ${dto.contents}</li>
 						<li>
 							<c:if test="${dto.confirm eq 'false' }">
-								<button type="button" class="button confirm" title="${count.count}">예약 확인</button>
+								<button type="button" class="button confirm" title="${count.count}">예약 확정</button>
 							</c:if>
 							<c:if test="${dto.confirm eq 'true' }">
 								<button type="button" class="button cancel" title="${count.count}">예약 취소</button>

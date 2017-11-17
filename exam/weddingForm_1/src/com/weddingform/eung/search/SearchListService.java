@@ -12,8 +12,6 @@ public class SearchListService implements Action {
 	public ActionForward doProcess(HttpServletRequest request, HttpServletResponse response) {
 		ActionForward actionForward = new ActionForward();
 		
-		
-		
 		actionForward.setCheck(true);
 		actionForward.setPath("../WEB-INF/view/search/searchList.jsp");
 		

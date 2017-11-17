@@ -59,7 +59,7 @@ public class SearchTableService implements Action {
 				}
 				
 			} else {
-				request.setAttribute("message", "예기치 못한 오류가 발생하였습니다.");
+				request.setAttribute("message", "검색한 결과가 없습니다.");
 				request.setAttribute("paht", "./searchMain.search");
 				
 				actionForward.setCheck(true);

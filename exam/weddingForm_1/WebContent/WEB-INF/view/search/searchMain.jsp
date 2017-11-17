@@ -237,6 +237,20 @@
 </script>
 
 <style type="text/css">
+input[type=checkbox] { display: none; }
+input[type=checkbox] + label {
+    display: inline-block;
+    cursor: pointer;
+    line-height: 20px;
+    padding-left: 18px;
+    margin-right: 5px;
+    background: url('../image/checkbox/checkBox.png') left/15px no-repeat ;
+}
+input[type=checkbox]:checked + label { 
+    background-image: url('../image/checkbox/heart02.png');
+}
+
+
 .container {
 	position: relative;
 }
@@ -378,14 +392,14 @@
 				<td>
 					<input type="checkbox" name="type" id="type" value="All">
 					<label for="type">전체</label> 
-					<input type="checkbox" name="type" id="type01" value="일반웨딩홀">
-					<label for="type01">일반웨딩홀</label>
-					<input type="checkbox" name="type" id="type02" value="야외웨딩홀">
-					<label for="type02">야외웨딩홀</label> 
-					<input type="checkbox" name="type" id="type03" value="전통웨딩홀">
-					<label for="type03">전통웨딩홀</label>
-					<input type="checkbox" name="type" id="type04" value="호텔웨딩홀">
-					<label for="type04">호텔웨딩홀</label> 
+					<input type="checkbox" name="type" id="type01" value="일반웨딩">
+					<label for="type01">일반웨딩</label>
+					<input type="checkbox" name="type" id="type02" value="야외웨딩">
+					<label for="type02">야외웨딩</label> 
+					<input type="checkbox" name="type" id="type03" value="전통웨딩">
+					<label for="type03">전통웨딩</label>
+					<input type="checkbox" name="type" id="type04" value="호텔웨딩">
+					<label for="type04">호텔웨딩</label> 
 					<input type="checkbox" name="type" id="type05" value="공공기관"><label for="type05">공공기관</label>
 				</td>
 			</tr>

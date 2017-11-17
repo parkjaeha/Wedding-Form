@@ -36,10 +36,14 @@
 		
 		for(var i=0; i<link.length; i++) {
 			link[i].setAttribute("class", "nav-link");
-			if(i == index-1) {
+			if(i == index) {
 				link[i].setAttribute("class", "nav-link active");
 				var title = link[i].getAttribute('title');
-				ajaxFunc(title) // ajax
+				if(i != 0) {
+					ajaxFunc(title) // ajax
+				} else {
+					location.href="./weddingView.wedding";
+				}
 			}
 		}
 		
@@ -61,8 +65,9 @@
 </script>
 
 <style type="text/css">
-	.margin10 {
-		margin-top: 20px;
+	.margin01 {
+		margin-top: 60px;
+		text-align: center;
 	}
 	
 	.img_box  {
@@ -155,8 +160,8 @@
 	}
 	
 	.line {
+	line-height: 60px;
 	}
-	
 	
 </style>
 
@@ -187,6 +192,7 @@
 	
 	.slick-slide img {
 	  width: 100%;
+	  height: 250px;
 	}
 	
 	.slick-prev:before,
@@ -196,16 +202,16 @@
 	
 	
 	.slick-slide {
-	  transition: all ease-in-out .3s;
-	  opacity: .2;
+	  	transition: all ease-in-out .3s;
 	}
 	
 	.slick-active {
-	  opacity: .5;
+	  	opacity: 1;
 	}
 	
 	.slick-current {
-	  opacity: 1;
+		box-shadow: 10px 10px 10px;
+  	  	opacity: 1;
 	}
 </style>
 
@@ -227,10 +233,15 @@
 	
 	<div class="container">
 		<div id="navbar">
+			<a class="nav-link active" onclick="changeActive(0)">하우스웨딩</a>
 			<a class="nav-link" onclick="changeActive(1)" title="호텔웨딩">호텔웨딩</a>
 			<a class="nav-link" onclick="changeActive(2)" title="야외웨딩">야외웨딩</a>
 			<a class="nav-link" onclick="changeActive(3)" title="전통혼례">전통혼례</a>
 		</div>
+	</div>
+	
+	<div class="container margin01">
+		<img src="../image/house/house_info.PNG">
 	</div>
 	
 	<div class="contents">
@@ -240,78 +251,69 @@
 				</div>
 			
 				<section class="regular slider">
-					<h1 class="line">Hotel <br>House <br>Wedding</h1>
 					<div>
-					  <img src="http://placehold.it/350x300?text=1">
+						<h1 class="line">Hotel <br>House <br>Wedding</h1>
 					</div>
 					<div>
-					  <img src="http://placehold.it/350x300?text=2">
+						<img src="../image/house/hotel/hotel_1.jpg">
 					</div>
 					<div>
-					  <img src="http://placehold.it/350x300?text=3">
+					  <img src="../image/house/hotel/hotel_2.jpg">
 					</div>
 					<div>
-					  <img src="http://placehold.it/350x300?text=4">
+					  <img src="../image/house/hotel/hotel_3.jpg">
 					</div>
 					<div>
-					  <img src="http://placehold.it/350x300?text=5">
+					  <img src="../image/house/hotel/hotel_4.jpg">
 					</div>
 					<div>
-					  <img src="http://placehold.it/350x300?text=6">
-					</div>
-				</section>
-			</div>
-			
-			<div class="houseSet">
-				<div class="container">
-					<h1>야외웨딩</h1>
-				</div>
-			
-				<section class="regular slider">
-					<div>
-					  <img src="http://placehold.it/350x300?text=1">
-					</div>
-					<div>
-					  <img src="http://placehold.it/350x300?text=2">
-					</div>
-					<div>
-					  <img src="http://placehold.it/350x300?text=3">
-					</div>
-					<div>
-					  <img src="http://placehold.it/350x300?text=4">
-					</div>
-					<div>
-					  <img src="http://placehold.it/350x300?text=5">
-					</div>
-					<div>
-					  <img src="http://placehold.it/350x300?text=6">
+					  <img src="../image/house/hotel/hotel_5.jpg">
 					</div>
 				</section>
 			</div>
 			
 			<div class="houseSet">
-				<div class="container">
-					<h1>전통혼례</h1>
-				</div>
-			
 				<section class="regular slider">
 					<div>
-					  <img src="http://placehold.it/350x300?text=1">
+						<h1 class="line">Outdoor <br>House <br>Wedding</h1>
 					</div>
 					<div>
-					  <img src="http://placehold.it/350x300?text=2">
+					  <img src="../image/house/outdoor/outdoor_3.jpg">
 					</div>
 					<div>
-					  <img src="http://placehold.it/350x300?text=3">
+					  <img src="../image/house/outdoor/outdoor_1.jpg">
 					</div>
 					<div>
-					  <img src="http://placehold.it/350x300?text=4">
+					  <img src="../image/house/outdoor/outdoor_5.jpg">
 					</div>
 					<div>
-					  <img src="http://placehold.it/350x300?text=5">
+					  <img src="../image/house/outdoor/outdoor_4.jpg">
 					</div>
 					<div>
-					  <img src="http://placehold.it/350x300?text=6">
+					  <img src="../image/house/outdoor/outdoor_2.jpg">
+					</div>
+				</section>
+			</div>
+			
+			<div class="houseSet">
+				<section class="regular slider">
+					<div>
+						<h1 class="line">Traditional <br>House <br>Wedding</h1>
+					</div>
+					<div>
+					  <img src="../image/house/tradition/tradition_1.jpg">
+					</div>
+					<div>
+					  <img src="../image/house/tradition/tradition_2.jpg">
+					</div>
+					<div>
+					  <img src="../image/house/tradition/tradition_3.jpg">
+					</div>
+					<div>
+					  <img src="../image/house/tradition/tradition_4.jpg">
+					</div>
+					<div>
+					  <img src="../image/house/tradition/tradition_5.jpg">
 					</div>
 				</section>
 			</div>
