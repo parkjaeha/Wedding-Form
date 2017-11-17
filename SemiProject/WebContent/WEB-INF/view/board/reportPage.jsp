@@ -33,14 +33,13 @@ color : gray;
 </style>
 </head>
 <body>
- 	 <c:import url="../../../temp/sideMenu_community.jsp"></c:import>
- <c:import url="../../../temp/header.jsp"></c:import>
- <div id="blank"></div>
- <div id="blank"></div>
 
-<div class="main">
+
+
+<div id="all">
+ <c:import url="../../../temp/header.jsp"></c:import>
 <div class="contents">
-  <a onclick="openNav()">Community</a>
+ 
 <a href="./reportWrite.report"><div id="box">
 <img alt="" src="../img/report.png">
 </div></a>

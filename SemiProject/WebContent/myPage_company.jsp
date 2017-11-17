@@ -36,8 +36,8 @@ $(function(){
 <body>
 <!--주소 확인할것  -->
 
-<div id="main">
-<c:import url="./temp/sideMenu_myPage.jsp"></c:import>
+<div id="all">
+
 <c:import url="./temp/header.jsp"></c:import>
 <!-- Page Container -->
 <div class="w3-content w3-margin-top" style="max-width:1200px; margin : 0 auto;margin-bottom: 100px;">

@@ -78,19 +78,16 @@ $(function(){
 });
 </script>
 <body>
- 	 <c:import url="../../../temp/sideMenu_community.jsp"></c:import>
+
     
 <!-- main -->
-	<div id="main">
+	<div id="all">
  <c:import url="../../../temp/header.jsp"></c:import>
  
  <div id="blank"></div>
- <div id="blank"></div>
 
-<div id="blank"></div>
-	<div class="col-md-8 col-centered">
+	<div class="col-centered">
 
-  <a onclick="openNav()" id="community" style="font-size: 30px;">Community</a>
 			<table class="table table-hover">
 
 
@@ -214,6 +211,9 @@ $(function(){
 			<a href="./${requestScope.board}Write.${requestScope.board}">
 			<img alt="" src="../img/write.png" style="width: 80px; height: 30px;"></a>
 	</div>
+  
+ 
+
  <c:import url="../../../temp/footer.jsp"></c:import> 
  </div>
 </body>

@@ -34,10 +34,10 @@ $(function(){
 });
 </script>
 <body>
- 	 <c:import url="../../../temp/sideMenu_community.jsp"></c:import>
+
     
 <!-- main -->
-	<div id="main">
+	<div id="all">
  <c:import url="../../../temp/header.jsp"></c:import> 
  <div id="blank"></div>
  <div id="blank"></div>
@@ -46,16 +46,16 @@ $(function(){
 
  
 <div class="contents">
-<p> <a onclick="openNav()">Community</a></p>
+
 
  
 
 <!--청첩장 best review  -->
-<div class="container">
- <div class="w3-content w3-margin-top" style="max-width:1200px; margin : 0 auto; margin-bottom:50px;">
-    <div class="w3-container w3-card w3-white w3-margin-bottom" style="margin-top: 100px;">
+<div class="container ">
+    <h2>청첩장 Review BEST <a href="./reviewList.review?type=invitation&&curPage=1">+더보기</a></h2>
+ <div class="panel panel-default" >
+    <div class="panel-body" style="margin-top: 100px;">
    <div id="blank"></div> 
-    청첩장 Review BEST <a href="./reviewList.review?type=invitation&&curPage=1">+더보기</a>
   
       <p id="invitation"><img alt="" src="../img/invitation.jpg">  
       심플해서 더 맘에들었던 청첩장! 
@@ -77,11 +77,11 @@ $(function(){
 
 <!-- 웨딩홀 best review  -->
 <div class="container">
-<div class="w3-content w3-margin-top" style="max-width:1200px; margin : 0 auto;margin-bottom: 50px;">
-     <div class="w3-container w3-card w3-white w3-margin-bottom" style="margin-top: 100px;">
+   <h3> 웨딩홀 Review BEST 
+    <a href="./reviewList.review?type=wedding_hall&&curPage=1">+더보기</a></h3>
+<div class="panel panel-default" style="max-width:1200px; margin : 0 auto;margin-bottom: 50px;">
+     <div class="panel-body" style="margin-top: 100px;">
    <div id="blank"></div> 
-    웨딩홀 Review BEST 
-    <a href="./reviewList.review?type=wedding_hall&&curPage=1">+더보기</a>
 
   <p id="wedding_hall">  <img alt="" src="../img/wedding_hall.jpg">
           강동웨딩홀 노빌리티웨딩홀 후기!
@@ -111,6 +111,7 @@ $(function(){
 </div>
 
 </div>
+
  <c:import url="../../../temp/footer.jsp"></c:import>
 
 

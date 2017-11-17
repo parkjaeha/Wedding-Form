@@ -23,9 +23,7 @@ public class NoticeListService implements Action {
 		int curPage=1;
 		try {
 		curPage=Integer.parseInt(request.getParameter("curPage"));
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
+		}catch (Exception e) {}
 		
 
 		TableSearch tableSearch=new TableSearch();

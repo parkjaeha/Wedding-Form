@@ -28,13 +28,13 @@ text-decoration: none;
 <body>
 <!--주소 확인할것  -->
 
-<div id="main">
-<c:import url="./temp/sideMenu_myPage.jsp"></c:import>
+<div id="all">
+
 <c:import url="./temp/header.jsp"></c:import>
 <!-- Page Container -->
 <div class="w3-content w3-margin-top" style="max-width:1200px; margin : 0 auto;margin-bottom: 100px;">
 <p> <a onclick="openNav()">My Page</a></p>
-  <!-- The Grid -->
+
 				<div class="w3-container w3-card w3-white w3-margin-bottom" style="margin-top: 100px;">
 					<h2 class="w3-text-grey w3-padding-16">내 정보</h2>
 					<div class="w3-container">
