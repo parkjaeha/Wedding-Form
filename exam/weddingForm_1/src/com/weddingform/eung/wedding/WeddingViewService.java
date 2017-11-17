@@ -42,14 +42,7 @@ public class WeddingViewService implements Action {
 			actionForward.setPath("../WEB-INF/view/wedding/weddingView.jsp");
 			
 		} else {
-			if(type.equals("hotel")) {				
-				actionForward.setPath("../WEB-INF/view/wedding/weddingHotel.jsp");
-			} else if(type.equals("outdoor")) {		
-				actionForward.setPath("../WEB-INF/view/wedding/weddingOutdoor.jsp");
-			} else {								
-				actionForward.setPath("../WEB-INF/view/wedding/weddingTradition.jsp");
-			}
-			
+			actionForward.setPath("../WEB-INF/view/wedding/weddingHouse.jsp");
 		}
 		
 		return actionForward;
