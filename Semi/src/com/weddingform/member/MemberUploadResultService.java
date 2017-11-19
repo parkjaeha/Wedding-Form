@@ -36,7 +36,7 @@ public class MemberUploadResultService implements Action {
 			System.out.println(saveDirectory);
 			int maxsize = 1024*1024*10;
 			
-			//아래 객체가 만들어지는 순간 파일 저장은 끝이났다.
+			//�븘�옒 媛앹껜媛� 留뚮뱾�뼱吏��뒗 �닚媛� �뙆�씪 ���옣�� �걹�씠�궗�떎.
 			MultipartRequest multi=null;
 			try {
 				multi = new MultipartRequest(request, saveDirectory, maxsize, "UTF-8", new DefaultFileRenamePolicy());
@@ -45,18 +45,18 @@ public class MemberUploadResultService implements Action {
 				e.printStackTrace();
 			}	
 			
-			//파일의 파라미터 이름 
-			String fileSytemName = multi.getFilesystemName("f1"); //실제 저장된 파일네임
-			String orginalName = multi.getOriginalFileName("f1"); //원래 저장된 파일 네임
+			//�뙆�씪�쓽 �뙆�씪誘명꽣 �씠由� 
+			String fileSytemName = multi.getFilesystemName("f1"); //�떎�젣 ���옣�맂 �뙆�씪�꽕�엫
+			String orginalName = multi.getOriginalFileName("f1"); //�썝�옒 ���옣�맂 �뙆�씪 �꽕�엫
 			
-			//db 에는 filesystem이 무조건 저장되어 있어야하고 orginal 은 옵션이다. 
+			//db �뿉�뒗 filesystem�씠 臾댁“嫄� ���옣�릺�뼱 �엳�뼱�빞�븯怨� orginal �� �샃�뀡�씠�떎. 
 			
 			UploadDAO uploadDAO = new UploadDAO();
 			UploadDTO uploadDTO = new UploadDTO();
 			
 			
 			uploadDTO.setFname(fileSytemName);
-			uploadDTO.setOname(orginalName);
+			//uploadDTO.setOname(orginalName);
 			
 			int result= 0;
 			try {
@@ -68,7 +68,7 @@ public class MemberUploadResultService implements Action {
 			String message = "fail";
 			if(result>0){
 				message = "success";
-				System.out.println("성공");
+				System.out.println("�꽦怨�");
 			}
 			
 			request.setAttribute("message", message);

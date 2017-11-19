@@ -1,13 +1,20 @@
 package com.weddingform.upload;
 
-//업로드 사진
+//�뾽濡쒕뱶 �궗吏�
 
 public class UploadDTO {
 
 	private int num;
 	private String Fname;
-	private String Oname;
+	private String id;
 	
+	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public int getNum() {
 		return num;
 	}
@@ -20,12 +27,7 @@ public class UploadDTO {
 	public void setFname(String fname) {
 		Fname = fname;
 	}
-	public String getOname() {
-		return Oname;
-	}
-	public void setOname(String oname) {
-		Oname = oname;
-	}
+	
 	
 	
 }
