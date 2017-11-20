@@ -241,18 +241,57 @@ input[type=checkbox] { display: none; }
 input[type=checkbox] + label {
     display: inline-block;
     cursor: pointer;
-    line-height: 20px;
-    padding-left: 18px;
+    line-height: 30px;
+    padding-left: 10px;
     margin-right: 5px;
-    background: url('../image/checkbox/checkBox.png') left/15px no-repeat ;
+    background-position: center;
+    background-size: 40px;
+    background-repeat: no-repeat;
 }
 input[type=checkbox]:checked + label { 
     background-image: url('../image/checkbox/heart02.png');
 }
 
+input[type=checkbox] + label:hover {
+	font-weight: bold;
+}
+
+.btn {
+	cursor: pointer;
+}
+
+.btn-info, .nav-pills .nav-link.active {
+	border-color: #2096BA;
+	background-color: #2096BA;
+}
+.btn-info:hover {
+	border-color: #2096BA;
+	background-color: #2096BA;
+	font-weight: bold;
+}
+
+.nav .nav-item{
+	cursor: pointer;
+}
 
 .container {
 	position: relative;
+}
+
+.top-menu {
+	padding: 20px;
+}
+
+.top-menu .detail {
+	float: left;
+}
+
+.top-menu a {
+	float: right;
+}
+
+.table {
+	margin-top: 30px;
 }
 
 .card {
@@ -358,6 +397,11 @@ input[type=checkbox]:checked + label {
 <title>Insert title here</title>
 </head>
 <body>
+	<div class="container top-menu">
+		<h3 class="detail">상세 검색</h3>
+		<a href="./searchTotalMap.search" class="btn btn-info">지도 검색</a>
+	</div>
+
 	<div class="container">
 		<table class="table">
 			<!-- 웨딩홀 지역 -->
@@ -470,7 +514,7 @@ input[type=checkbox]:checked + label {
 	</div>
 
 	<div class="container" style="text-align: center">
-		<input type="button" id="btn" class="btn btn-primary"
+		<input type="button" id="btn" class="btn btn-info"
 			value="위 조건으로 검색하기">
 	</div>
 
@@ -531,7 +575,7 @@ input[type=checkbox]:checked + label {
 							<p style="line-height: 5px;">식사종류 : ${dto.meal_menu}</p>
 							<p style="line-height: 5px;">식사가격 : ${dto.meal_cost}</p>
 						</div>
-						<a href="./searchView.search?id=${dto.id}" class="btn btn-primary">See Profile</a>
+						<a href="./searchView.search?id=${dto.id}" class="btn btn-info">See Profile</a>
 					</div>
 				</div>
 			</c:forEach>

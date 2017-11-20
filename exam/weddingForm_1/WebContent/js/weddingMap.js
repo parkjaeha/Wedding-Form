@@ -16,7 +16,8 @@ weddingMap.geocoder = null;
 
 
 weddingMap.init = function() {
-	var latlng = new google.maps.LatLng(37.517379, 127.047489);
+	//37.061534, 128.128128
+	var latlng = new google.maps.LatLng(37.036344, 127.733608);
 	var options = {
 			zoom: 9,
 			center: latlng,
@@ -45,6 +46,8 @@ weddingMap.showMarkers = function() {
 			titleText = 'No title';
 		}
 		
+		var hideText = arr[0] + " " + arr[1];
+		
 		/*
 		var item = document.createElement('DIV'); 	// div 생성
 		var title = document.createElement('A');	// A태그 생성
@@ -62,8 +65,12 @@ weddingMap.showMarkers = function() {
 		title.href = '#';							// A 태그 href="#" 속성 추가
 		title.className = 'title';					// A 태그 class="title" 클래스 추가
 		title.innerHTML = titleText;				// A 태그 titleText 문자열 추가
+		var hide = document.createElement('span');
+		hide.ClassName = 'hide';
+		hide.innerHTML = hideText;
 		
 		li.appendChild(title);
+		li.appendChild(hide);
 		panel.appendChild(li);
 		
 		

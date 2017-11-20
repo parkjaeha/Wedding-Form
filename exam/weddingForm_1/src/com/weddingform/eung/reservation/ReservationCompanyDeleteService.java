@@ -24,21 +24,22 @@ public class ReservationCompanyDeleteService implements Action {
 		String company_id = request.getParameter("company_id");
 		
 		ReservCompanyDAO reservCompanyDAO = new ReservCompanyDAO();
+		ReservMemberDAO reservMemberDAO = new ReservMemberDAO();
 		try {
 			int result = reservCompanyDAO.delete(member_id, company_id);
 			
 			if(result > 0) {
-				ReservMemberDAO reservMemberDAO = new ReservMemberDAO();
 				result = reservMemberDAO.confirmUpdate(member_id, company_id, "false");
-				
-				if(result > 0) {
-					PageMaker pageMaker = new PageMaker(curPage, 6, reservMemberDAO.getTotal());
-					ArrayList<ReservMemberDTO> ar = reservMemberDAO.selectList(company_id, pageMaker.getMakeRow());
 					
-					request.setAttribute("page", pageMaker.getMakePage());
-					request.setAttribute("reservMember", ar);
-				}
+			} else {
+				request.setAttribute("message", "예약취소하는데 실패하였습니다.");
 			}
+			
+			PageMaker pageMaker = new PageMaker(curPage, 6, reservMemberDAO.getTotal());
+			ArrayList<ReservMemberDTO> ar = reservMemberDAO.selectList(company_id, pageMaker.getMakeRow());
+			
+			request.setAttribute("page", pageMaker.getMakePage());
+			request.setAttribute("reservMember", ar);
 			
 		} catch (Exception e) {
 			e.printStackTrace();

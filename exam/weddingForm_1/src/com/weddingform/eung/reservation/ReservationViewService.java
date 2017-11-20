@@ -18,16 +18,16 @@ public class ReservationViewService implements Action {
 	public ActionForward doProcess(HttpServletRequest request, HttpServletResponse response) {
 		ActionForward actionForward = new ActionForward();
 		
+		///////////////////테스트/////////////////////
+		String id = "ID 01";
+		///////////////////테스트/////////////////////
+		
+		try {
+			id = request.getParameter("id");
+		} catch (Exception e) {}
+		
+		
 		if(request.getMethod().equals("POST")) {
-			
-			String id = request.getParameter("id");
-			
-			////////////////////테스트//////////////////////////////
-			if(id == null) {
-				id = "ID 01";
-			}
-			//////////////////////////////////////////////////////
-			
 			ReservCompanyDAO reservCompanyDAO = new ReservCompanyDAO();
 			try {
 				ArrayList<ReservCompanyDTO> ar = reservCompanyDAO.selectOne(id);
@@ -51,8 +51,6 @@ public class ReservationViewService implements Action {
 				e.printStackTrace();
 			}
 		} else { // GET
-			String id = request.getParameter("id");
-			
 			request.setAttribute("id", id);
 			actionForward.setCheck(true);
 			actionForward.setPath("../WEB-INF/view/reservation/reservationView.jsp");

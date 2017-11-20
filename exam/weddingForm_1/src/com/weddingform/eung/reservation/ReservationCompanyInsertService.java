@@ -39,6 +39,7 @@ public class ReservationCompanyInsertService implements Action {
 			PageMaker pageMaker = new PageMaker(curPage, 6, reservMemberDAO.getTotal());
 			ArrayList<ReservMemberDTO> ar = reservMemberDAO.selectList(reservCompanyDTO.getId(), pageMaker.getMakeRow());
 			
+			request.setAttribute("curPage", curPage);
 			request.setAttribute("page", pageMaker.getMakePage());
 			request.setAttribute("reservMember", ar);
 			
@@ -65,7 +66,7 @@ public class ReservationCompanyInsertService implements Action {
 		reservCompanyDTO.setId(company_id);
 		reservCompanyDTO.setMember_id(id);
 		reservCompanyDTO.setReserv_date(reserv_date+ " " + reserv_time);
-		reservCompanyDTO.setTitle(female + " ♥ " + male);
+		reservCompanyDTO.setTitle(female + "♥" + male);
 		
 		return reservCompanyDTO;
 	}

@@ -39,10 +39,12 @@
 			if(i == index) {
 				link[i].setAttribute("class", "nav-link active");
 				var title = link[i].getAttribute('title');
-				if(i != 0) {
-					ajaxFunc(title) // ajax
-				} else {
+				if(i == 0) {
 					location.href="./weddingView.wedding";
+				} else {
+					if(i == index) {
+						ajaxFunc(title) // ajax
+					} 
 				}
 			}
 		}
@@ -233,7 +235,7 @@
 	
 	<div class="container">
 		<div id="navbar">
-			<a class="nav-link active" onclick="changeActive(0)">하우스웨딩</a>
+			<a class="nav-link active" onclick="changeActive(0)" title="하우스웨딩">하우스웨딩</a>
 			<a class="nav-link" onclick="changeActive(1)" title="호텔웨딩">호텔웨딩</a>
 			<a class="nav-link" onclick="changeActive(2)" title="야외웨딩">야외웨딩</a>
 			<a class="nav-link" onclick="changeActive(3)" title="전통혼례">전통혼례</a>
@@ -244,79 +246,77 @@
 		<img src="../image/house/house_info.PNG">
 	</div>
 	
-	<div class="contents">
-		<div id="result">
-			<div class="houseSet">
-				<div class="container bgColor">
+	<div id="result">
+		<div class="houseSet">
+			<div class="container bgColor">
+			</div>
+		
+			<section class="regular slider">
+				<div>
+					<h1 class="line">Hotel <br>House <br>Wedding</h1>
 				</div>
-			
-				<section class="regular slider">
-					<div>
-						<h1 class="line">Hotel <br>House <br>Wedding</h1>
-					</div>
-					<div>
-						<img src="../image/house/hotel/hotel_1.jpg">
-					</div>
-					<div>
-					  <img src="../image/house/hotel/hotel_2.jpg">
-					</div>
-					<div>
-					  <img src="../image/house/hotel/hotel_3.jpg">
-					</div>
-					<div>
-					  <img src="../image/house/hotel/hotel_4.jpg">
-					</div>
-					<div>
-					  <img src="../image/house/hotel/hotel_5.jpg">
-					</div>
-				</section>
-			</div>
-			
-			<div class="houseSet">
-				<section class="regular slider">
-					<div>
-						<h1 class="line">Outdoor <br>House <br>Wedding</h1>
-					</div>
-					<div>
-					  <img src="../image/house/outdoor/outdoor_3.jpg">
-					</div>
-					<div>
-					  <img src="../image/house/outdoor/outdoor_1.jpg">
-					</div>
-					<div>
-					  <img src="../image/house/outdoor/outdoor_5.jpg">
-					</div>
-					<div>
-					  <img src="../image/house/outdoor/outdoor_4.jpg">
-					</div>
-					<div>
-					  <img src="../image/house/outdoor/outdoor_2.jpg">
-					</div>
-				</section>
-			</div>
-			
-			<div class="houseSet">
-				<section class="regular slider">
-					<div>
-						<h1 class="line">Traditional <br>House <br>Wedding</h1>
-					</div>
-					<div>
-					  <img src="../image/house/tradition/tradition_1.jpg">
-					</div>
-					<div>
-					  <img src="../image/house/tradition/tradition_2.jpg">
-					</div>
-					<div>
-					  <img src="../image/house/tradition/tradition_3.jpg">
-					</div>
-					<div>
-					  <img src="../image/house/tradition/tradition_4.jpg">
-					</div>
-					<div>
-					  <img src="../image/house/tradition/tradition_5.jpg">
-					</div>
-				</section>
-			</div>
+				<div>
+					<img src="../image/house/hotel/hotel_1.jpg">
+				</div>
+				<div>
+				  <img src="../image/house/hotel/hotel_2.jpg">
+				</div>
+				<div>
+				  <img src="../image/house/hotel/hotel_3.jpg">
+				</div>
+				<div>
+				  <img src="../image/house/hotel/hotel_4.jpg">
+				</div>
+				<div>
+				  <img src="../image/house/hotel/hotel_5.jpg">
+				</div>
+			</section>
+		</div>
+		
+		<div class="houseSet">
+			<section class="regular slider">
+				<div>
+					<h1 class="line">Outdoor <br>House <br>Wedding</h1>
+				</div>
+				<div>
+				  <img src="../image/house/outdoor/outdoor_3.jpg">
+				</div>
+				<div>
+				  <img src="../image/house/outdoor/outdoor_1.jpg">
+				</div>
+				<div>
+				  <img src="../image/house/outdoor/outdoor_5.jpg">
+				</div>
+				<div>
+				  <img src="../image/house/outdoor/outdoor_4.jpg">
+				</div>
+				<div>
+				  <img src="../image/house/outdoor/outdoor_2.jpg">
+				</div>
+			</section>
+		</div>
+		
+		<div class="houseSet">
+			<section class="regular slider">
+				<div>
+					<h1 class="line">Traditional <br>House <br>Wedding</h1>
+				</div>
+				<div>
+				  <img src="../image/house/tradition/tradition_1.jpg">
+				</div>
+				<div>
+				  <img src="../image/house/tradition/tradition_2.jpg">
+				</div>
+				<div>
+				  <img src="../image/house/tradition/tradition_3.jpg">
+				</div>
+				<div>
+				  <img src="../image/house/tradition/tradition_4.jpg">
+				</div>
+				<div>
+				  <img src="../image/house/tradition/tradition_5.jpg">
+				</div>
+			</section>
 		</div>
 	</div>
 
