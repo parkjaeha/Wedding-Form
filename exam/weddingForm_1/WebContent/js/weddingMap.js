@@ -144,7 +144,6 @@ weddingMap.sidoFunc = function() {
 }
 
 weddingMap.gunguFunc = function() {
-	//alert($('sido').value);
 	var gungu = document.getElementById('gungu');
 	gungu.length = 0;
 	
@@ -175,11 +174,20 @@ weddingMap.gunguFunc = function() {
 		}
 	}
 	
-	for(var i=0; i < area[index].length; i++) {
-		var option = document.createElement('option');
-		option.value = area[index][i];
-		var text = document.createTextNode(area[index][i]);
-		option.appendChild(text);
-		gungu.appendChild(option);
+	if($('sido').value == " ") {
+		gungu.innerHTML = "<option value=' '>군구</option>";
+	} else {
+		for(var i=0; i < area[index].length; i++) {
+			var option = document.createElement('option');
+			if(i != 0) {
+				option.value = area[index][i];
+			} else {
+				option.value = " ";
+			} 
+			var text = document.createTextNode(area[index][i]);
+			option.appendChild(text);
+			gungu.appendChild(option);
+		}
 	}
+	
 }

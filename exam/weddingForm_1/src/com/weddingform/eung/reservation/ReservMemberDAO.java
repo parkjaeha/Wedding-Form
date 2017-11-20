@@ -49,7 +49,37 @@ public class ReservMemberDAO {
 		return result;
 	}
 	
-	public ArrayList<ReservMemberDTO> selectList(String id, MakeRow makeRow) throws Exception {
+	public ReservMemberDTO selectOne(String memeber_id) throws Exception {
+		Connection con = DBConnector.getConnect();
+		
+		String sql = "select * from reserv_member where id=?";
+		PreparedStatement st = con.prepareStatement(sql);
+		
+		st.setString(1, memeber_id);
+		
+		ResultSet rs = st.executeQuery();
+		
+		ReservMemberDTO reservMemberDTO = null;
+		if(rs.next()) {
+			reservMemberDTO = new ReservMemberDTO();
+			reservMemberDTO.setId(rs.getString("id"));
+			reservMemberDTO.setCompany_id(rs.getString("company_id"));
+			reservMemberDTO.setContents(rs.getString("contents"));
+			reservMemberDTO.setFemale(rs.getString("female"));
+			reservMemberDTO.setMale(rs.getString("male"));
+			reservMemberDTO.setHall_name(rs.getString("hall_name"));
+			reservMemberDTO.setReserv_date(rs.getString("reserv_date"));
+			reservMemberDTO.setReserv_time(rs.getString("reserv_time"));
+			reservMemberDTO.setConfirm(rs.getString("confirm"));
+			reservMemberDTO.setTel(rs.getString("tel"));
+		}
+		
+		DBConnector.disConnect(rs, st, con);
+		
+		return reservMemberDTO;
+	}
+	
+	public ArrayList<ReservMemberDTO> selectList(String company_id, MakeRow makeRow) throws Exception {
 		Connection con = DBConnector.getConnect();
 		ArrayList<ReservMemberDTO> ar = new ArrayList<>();
 
@@ -62,7 +92,7 @@ public class ReservMemberDAO {
 		sb.append("where R between ? and ?");
 		PreparedStatement st = con.prepareStatement(sb.toString());
 		
-		st.setString(1, id);
+		st.setString(1, company_id);
 		st.setInt(2, makeRow.getStartRow());
 		st.setInt(3, makeRow.getLastRow());
 		
