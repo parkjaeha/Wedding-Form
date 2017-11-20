@@ -56,7 +56,7 @@ $(function(){
 <style type="text/css">
 .contents{
 	float: none;
-	width:800px;
+	width:1200px;
 	margin: 0 auto;
 	margin-bottom: 100px;
 	
@@ -81,14 +81,16 @@ height: 100px;
 	margin: 0 auto;
 }
 #border{
-width : 750px;
+width : 1100px;
 border-bottom: 1px solid gray;
 }
 
 #t{
-font-size: 30px;
+font-size: 20px;
 text-align: center;
 }
+
+
 .form-control {
    width: 800px;
    height: 30px;
@@ -101,58 +103,69 @@ text-align: center;
  <c:import url="../../../temp/header.jsp"></c:import>
  	<div class=blank></div>
  		
-<div class="contents  ">
+<div class="contents container">
 <article class="write_1">${board}</article>
   <article class="write_2"></article>
 
-<div id="border"></div>
 
-<p id="t"> ${view.title}</p>
-<p >WRTIER : ${view.writer} | DATE : ${view.reg_date} | HIT : ${view.hit}</p>
 
-<div id="border"></div>
+  <div class="panel panel-default">
+    <div id="t" class="panel-body">${view.title}</div>
+  </div>
+  
+  
+  <div class="panel panel-default">
+   <div class="panel-body">
+<p>WRTIER : ${view.writer} | DATE : ${view.reg_date} | HIT : ${view.hit}</p>
+
+
 
 <p style="margin-top: 50px;"> ${view.contents}</p>
 
 
-	
-	<a href="./${board}List.${board}">
-	<img alt="" src="../img/list.png" style="width: 80px; height: 30px;"></a>
-	
-	
-	<!--글쓴이만  -->
-	<a href="./${board}Update.${board}?num=${view.num}">
-	<img alt="" src="../img/update.png" style="width: 80px; height: 30px;"></a>
-	<c:if test="${board eq 'notice'}" >
-	<a href="./${board}Delete.${board}?num=${view.num}">
-	<img alt="" src="../img/delete.png" style="width: 80px; height: 30px;"></a>
-	</c:if>
-	<c:if test="${board eq 'qna'}" >
-	<a href="./${board}Delete.${board}?ref=${view.ref}">
-	<img alt="" src="../img/delete.png" style="width: 80px; height: 30px;"></a>
-	</c:if>
-
 
 	
 	
 	
-	
-	<!-- 관리자만 Q&A 답글달기-->
 	
 	
 		<div class=blank></div>
 	
 	
+	
+	</div>
+	
+</div>
+<!-- 목록, 수정, 삭제  -->
+<a href="./${board}List.${board}">
+	<img alt="" src="../images/main/list.png" style="width: 80px; height: 30px;"></a>
+<!--글쓴이만  -->
+	<a href="./${board}Update.${board}?num=${view.num}">
+	<img alt="" src="../images/main/update.png" style="width: 80px; height: 30px;"></a>
+	<c:if test="${board eq 'notice'}" >
+	<a href="./${board}Delete.${board}?num=${view.num}">
+	<img alt="" src="../images/main/delete.png" style="width: 80px; height: 30px;"></a>
+	</c:if>
 	<c:if test="${board eq 'qna'}" >
+	<a href="./${board}Delete.${board}?ref=${view.ref}">
+	<img alt="" src="../images/main/delete.png" style="width: 80px; height: 30px;"></a>
+	</c:if>
+
+
+
+
+
+	<!-- 관리자만 Q&A 답글달기-->
+
+	<c:if test="${board eq 'qna'}" >
+	   <div class="panel panel-default" style="margin-top : 100px;"> 
+   <div class="panel-body" >
 	<h2>관리자만 Q&A답글</h2>
 	<form action="./qnaReply.qna" method="post">
 			<input type="hidden" name="num" value="${param.num}">
 			<input type="hidden" name="opencheck" value="${param.opencheck}">
 			<input type="hidden" name="password" value="${param.password}">
 		
-			
-			
-	 <div>
          <p> <input type="text" name="writer" class="form-control" placeholder="writer"></p>
 
          <p><input type="text" name="title" class="form-control" placeholder="제목"></p>
@@ -160,16 +173,16 @@ text-align: center;
          <textarea name="smarteditor" id="smarteditor" rows="10" cols="100"
             style="width: 800px; height: 312px;"></textarea>
             <div id="blank"></div>
-         <input type="button" class="btn btn-default" id="savebutton" value="글쓰기" />
-	<button  class="btn btn-default">글쓰기</button>
-	</div>
-	</form>
-	
-	</c:if>
-	
-	
-	</div>
+         <input type="submit" class="btn btn-default" id="savebutton" value="글쓰기" />
 
+	</form>
+	</div>
+	</div>
+	</c:if>
+
+	
+	
+</div>
  <c:import url="../../../temp/footer.jsp"></c:import>
 </body>
 </html>

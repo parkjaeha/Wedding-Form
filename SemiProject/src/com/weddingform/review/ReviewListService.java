@@ -28,12 +28,13 @@ public class ReviewListService implements Action {
 			type=request.getParameter("type");
 							
 		} catch (Exception e) {
-			 e.printStackTrace();
+		
 		}
 		
 		TableSearch tableSearch=new TableSearch();
 		tableSearch.setKind(request.getParameter("kind"));
 		tableSearch.setSearch(request.getParameter("search"));
+
 	
 		int totalCount;
 		try {

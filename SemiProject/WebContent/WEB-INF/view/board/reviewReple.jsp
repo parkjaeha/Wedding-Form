@@ -14,32 +14,38 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
 $(function(){
-	$("#update").click(function(){
-		$("#up").slideToggle("slow");
+	$(".update").click(function(){
+		var title = $(this).attr('title');
+		alert(title);
+		$("#up"+title).slideToggle("slow");
 	});
 	
 	$(".reply").click(function(){
-		$("#"+$(this).attr('title')).slideToggle();
+		var title = $(this).attr('title');
+		$("#hide"+title).slideToggle("slow");
 	});
+
 });
 
 
 </script>
+
+
 <c:forEach items="${requestScope.list}" var="dto" varStatus="count">
+		<div class="list-group-item">
 	
 	
 
-		<div class="list-group-item">
 		
 		<c:catch>
 			 	<c:forEach begin="0" end="${dto.depth-1}">
-			     <span class="glyphicon glyphicon-arrow-right"></span>
+			     <span class="glyphicon glyphicon-arrow-right" style="text-indent: 20px;"></span>
 			</c:forEach>
 			</c:catch> 
 			
 			
 		 <p class="glyphicon glyphicon-user">  ${dto.writer}  | ${dto.reg_date} | 
-		 <span  class="reply" title="h${count.count}"><img alt="" src="../img/reply.gif">답글</span>
+		 <span  class="reply" title="${count.count}"><img alt="" src="../img/reply.gif">답글</span>
 		 </p>
 		<p>
 		   ${dto.contents}</p>	 
@@ -47,17 +53,17 @@ $(function(){
          <!-- 글쓴이만 -->
 		   <!-- 삭제 -->
 		 <a href="../reply/replyDelete.reply?num=${dto.num}&&type=${dto.type}&&reviewNum=${dto.reviewNum}&&ref=${dto.ref}">
-		 <img alt="" src="../img/delete.png" style="width: 80px; height: 30px;"></a> 
+		 <img alt="" src="../images/main/delete.png" style="width: 80px; height: 30px;"></a> 
          
          <!-- 수정 -->
-		   <img alt="" src="../img/update.png" style="width: 80px; height: 30px;" id="update">
+		   <img alt="" src="../images/main/update.png" style="width: 80px; height: 30px;" title="${count.count}" class="update">
          <form action="../reply/replyUpdate.reply" method="post">
          <input type="hidden" value="${dto.type}" name="type">
           <input type="hidden" value="${dto.num}" name="num">
 		  <input type="hidden" value="${dto.reviewNum}" name="reviewNum">
-		  <div id="up" style="display: none;">
+		  <div id="up${count.count}" style="display: none;">
 		 <textarea  cols="115" rows="5" name="contents">${dto.contents}</textarea>
-	    <button  id="btn1" class="btn btn-default");">수정 완료</button></p>
+	    <button  id="btn1" class="btn btn-default">수정 완료</button>
 		   </div>
 		   </form>
 		   
@@ -65,18 +71,19 @@ $(function(){
 
 		 
 		 <!-- 답글 -->
-		 <form action="../reply/replyReple.reply" method="post">
 		 
-		 <div id="h${count.count}" style="display: none;">
+		 <div id="hide${count.count}" style="display: none;">
+		 <form action="../reply/replyReple.reply" method="post">
 		 <input type="hidden" value="${dto.type}" name="type">
 		  <input type="hidden" value="${dto.num}" name="num">
 		  <input type="hidden" value="${dto.reviewNum}" name="reviewNum">
 		 <input type="text" name="writer" placeholder="writer">
 		 <textarea  cols="115" rows="5" name="contents" placeholder="내용을 입력하세요."></textarea>
-		   <button  id="btn2" class="btn btn-default">글쓰기</button></p>
-		   </div>
+		   <button  id="btn2" class="btn btn-default">글쓰기</button>
 		   </form>
-		 </div>
+		   </div>
 
+ 
+		 </div>
 	
  </c:forEach>

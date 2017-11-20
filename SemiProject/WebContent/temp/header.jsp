@@ -80,7 +80,9 @@
 <!--side menu 끝  -->
 
 <!-- header -->
-<nav  class="navbar navbar-inverse" style="margin-bottom: 0px; background-color:#212121;border: 0; position: fixed; top: 0; z-index: 3; width: 100%;">
+<nav  class="navbar navbar-inverse" 
+style="margin-bottom: 0px; background-color:white; border:0; 
+position: fixed; top: 0; z-index: 3; width: 100%; border-bottom:5px solid #2096BA;">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -91,15 +93,19 @@
 
     </div>
 
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
+    <div class="collapse navbar-collapse" id="myNavbar" >
+   <ul class="nav navbar-nav">
+        <li><a href="${pageContext.request.contextPath}/main.jsp">
+        <img src="${pageContext.request.contextPath}/images/main/logo.png" style="height:50px;"></a></li>
+   
+      </ul>
+            <ul class="nav navbar-nav navbar-right" >
         <li><a href="${pageContext.request.contextPath}/main.jsp"><span class="glyphicon glyphicon-home"></span> HOME</a></li>
         <li><a href="#" onclick="openNav()"><span class="glyphicon glyphicon-menu-hamburger"></span> MENU</a></li>
-        <li><a href="./index.jsp"><span class="glyphicon glyphicon-briefcase"></span> ABOUT</a></li>
+        <li><a href="${pageContext.request.contextPath}/index.jsp"><span class="glyphicon glyphicon-briefcase"></span> ABOUT</a></li>
         <li><a href="#"><span class="glyphicon glyphicon-user"></span> JOIN</a></li>
         <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> LOGIN</a></li>
-      </ul>
-
+</ul>
     </div>
  
   </div>

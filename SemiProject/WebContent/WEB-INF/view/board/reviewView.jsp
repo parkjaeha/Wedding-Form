@@ -58,13 +58,11 @@ font-size:22px;
 border-bottom: 1px solid gray;
 }
 #t{
-font-size: 30px;
+font-size: 20px;
 text-align: center;
 }
 
-.list-group{
-width: 1000px;
-}
+
 
 </style>
 
@@ -94,32 +92,40 @@ width: 1000px;
 <body>
  <c:import url="../../../temp/header.jsp"></c:import>
 <div id="blank"></div>
+<div class="d container" style="margin-top: 100px;">
 	<article class="write_1">${view.type}</article>
        <article class="write_2"></article>
-<div class="d">
-<div id="border"></div>
-<p id="t">${view.title}</p>
-<p>WRTIER : ${view.writer}</p>
+  
+  <div class="panel panel-default">
+   <div class="panel-body"  id="t">
+<p>${view.title}</p>
+</div>
+</div>
 
-<p> <div id="star">
+
+  <div class="panel panel-default">
+   <div class="panel-body">
+<p>WRTIER : ${view.writer} | DATE : ${view.reg_date} | HIT : ${view.hit} </p>
+
+ <div id="star">
 <c:forEach begin="1" end="${view.star_score}" >
 ★
-</c:forEach></p>
+</c:forEach>
 </div>
-<p>DATE : ${view.reg_date} | HIT : ${view.hit}</p>
-<div id="border"></div>
+
 <p>${view.contents}</p>
 
-
+</div>
+</div>
 	<a href="./reviewList.review?type=${view.type}&&curPage=1">
-	<img alt="" src="../img/list.png" style="width: 80px; height: 30px;"></a>
+	<img alt="" src="../images/main/list.png" style="width: 80px; height: 30px;"></a>
 	
 	<!--글쓴이만  -->			
 	<a href="./reviewUpdate.review?num=${view.num}&&type=${view.type}">
-	<img alt="" src="../img/update.png" style="width: 80px; height: 30px;"></a>
+	<img alt="" src="../images/main/update.png" style="width: 80px; height: 30px;"></a>
 
 	<a href="./reviewDelete.review?num=${view.num}&&type=${view.type}">
-	<img alt="" src="../img/delete.png" style="width: 80px; height: 30px;"></a>
+	<img alt="" src="../images/main/delete.png" style="width: 80px; height: 30px;"></a>
 
 
 

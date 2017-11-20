@@ -31,25 +31,16 @@
 	width: 1100px;
 }
 
-a {
+a
+ {
 	text-decoration: none;
 	color : gray;
 }
 
 
 .write_1{
-	
-	height: 34px;
-	margin: 0 auto;
-	text-align: center;
-}
+	font-size: 30px;
 
-.write_2{
-    width: 70px;
-	height: 30px;
-	border-top : 1px solid black;
-	margin: 0 auto;
-}
 }
 
 .w3-bar{
@@ -86,7 +77,7 @@ $(function(){
  
  <div id="blank"></div>
 
-	<div class="col-centered">
+	<div class="col-centered" style="margin-top: 150px;">
 
 			<table class="table table-hover">
 
@@ -95,10 +86,10 @@ $(function(){
 
 		<c:if test="${board eq 'notice'}">
 		<article class="write_1">NOTICE</article>
-         <article class="write_2"></article>
+
          
 			
-				<tr>
+				<tr style="color: white; background-color:#2096BA;">
 					<td>NUM</td>
 					<td></td>
 					<td>TITLE</td>
@@ -126,14 +117,12 @@ $(function(){
 
 				<c:if test="${board eq 'qna'}">
 					<article class="write_1">Q&A</article>
-               <article class="write_2"></article>
-			
-					<tr>
-						<td>num</td>
-						<td>title</td>
-						<td>writer</td>
-						<td>date</td>
-						<td>hit</td>
+					<tr style="color: white; background-color: #2096BA;">
+						<td>NUM</td>
+						<td>TITLE</td>
+						<td>WRITER</td>
+						<td>DATE</td>
+						<td>HIT</td>
 					</tr>
 					<c:forEach items="${requestScope.list}" var="dto">
 
@@ -209,7 +198,7 @@ $(function(){
 			</div>
 
 			<a href="./${requestScope.board}Write.${requestScope.board}">
-			<img alt="" src="../img/write.png" style="width: 80px; height: 30px;"></a>
+			<img alt="" src="../images/main/write.png" style="width: 80px; height: 30px;"></a>
 	</div>
   
  

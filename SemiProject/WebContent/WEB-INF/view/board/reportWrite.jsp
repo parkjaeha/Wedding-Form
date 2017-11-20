@@ -28,8 +28,8 @@
 	width: 800px;
 	float: none;
 	margin: 0 auto;
-	margin-bottom: 100px;
-
+	margin-top : 100px;
+	margin-bottom: 200px;
 }
 
 .report_1 {

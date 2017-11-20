@@ -26,6 +26,7 @@
 	margin: 0 auto;
 	width:800px;
 	margin-bottom: 100px;
+	margin-top: 100px;
 }
 
 .star_rating {font-size:0; letter-spacing:-4px;}

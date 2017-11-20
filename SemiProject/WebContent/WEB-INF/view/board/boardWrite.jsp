@@ -123,7 +123,7 @@ $(document).ready(function(){
 
    <div id="blank"></div>
    <div id="blank"></div>
-   <div class="contents  panel panel-default">
+   <div class="contents  panel panel-default" style="margin-top: 100px;">
    <c:if test="${board eq 'qna'}">
       <article class="board_1">Q&A</article>
       <article class="board_2"></article>

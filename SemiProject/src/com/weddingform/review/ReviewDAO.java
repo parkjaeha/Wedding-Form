@@ -35,7 +35,6 @@ public class ReviewDAO implements BoardDAO{
 		rs.next();
 		int result=rs.getInt(1);
 		DBConnector.disConnect(rs, st, con);
-		
 		return result;
 	}
 

@@ -14,7 +14,7 @@
 width: 1100px;
 height: 600px;
 margin: 0 auto;
-margin-top : 100px;
+margin-top : 200px;
 
 }
  #box{
@@ -41,7 +41,7 @@ color : gray;
 <div class="contents">
  
 <a href="./reportWrite.report"><div id="box">
-<img alt="" src="../img/report.png">
+<img alt="" src="../images/report/report.png">
 </div></a>
 </div>
 

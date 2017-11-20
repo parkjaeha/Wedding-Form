@@ -27,6 +27,7 @@
 	margin: 0 auto;
 	margin-bottom: 100px;
 	width: 1100px;
+	margin-top: 150px;
 }
 
 	a {
@@ -36,20 +37,15 @@
 #blank {
 	height: 50px;
 }
-	.write_1{
+.write_1{
 	
-	height: 34px;
-	margin: 0 auto;
-	text-align: center;
+font-size: 30px;
+
+	
 }
 
 
-.write_2{
-    width: 70px;
-	height: 30px;
-	border-top : 1px solid black;
-	margin: 0 auto;
-}
+
 .w3-bar{
 margin : 0 auto;
 
@@ -72,10 +68,15 @@ text-align : center;
 
 	<table class="table table-hover">
 <div id="blank"></div>
-	<article class="write_1">${param.type }</article>
-       <article class="write_2"></article>
+<c:if test="${param.type eq 'invitation'}">
+		<article class="write_1">INVITATION</article>
+		</c:if>
+<c:if test="${param.type eq 'wedding_hall'}">
+		<article class="write_1">WEDDING</article>
+		</c:if>
+    
 
-		<tr>
+		<tr style="color: white; background-color: #2096BA;">
 			<td>NUM</td>
 			<td></td>
 			<td>TITLE</td>
@@ -110,15 +111,6 @@ text-align : center;
 
 	</table>
 	
-	<!-- search -->
-			<form name="frm" action="./reviewList.review" method="post">
-				<select name="kind">
-					<option value="title">TITLE</option>
-					<option value="contents">CONTENTS</option>
-
-				</select> <input type="text" id="search" name="search"> 
-				<input type="button" id="btn" class="btn btn-default" value="SEARCH">
-			</form>
 	
 	<!-- 페이징 처리 -->
 			<div class="w3-bar">
@@ -145,7 +137,7 @@ text-align : center;
 	</c:if> --%>
 	
 		<a href="./reviewWrite.review?type=${param.type}">
-		<img alt="" src="../img/write.png" style="width: 80px; height: 30px;"></a>
+		<img alt="" src="../images/main/write.png" style="width: 80px; height: 30px;"></a>
 	</div>
 
  <c:import url="../../../temp/footer.jsp"></c:import> 
