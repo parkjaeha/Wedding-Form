@@ -29,21 +29,27 @@ public class SearchCompareResultService implements Action {
 		
 		String[] compare = ((String[])map.get("compare[]"));
 		
+		
 		String str = "";
-		for(int i = 0; i < compare.length; i++) {
-			str += "id='";
-			str += compare[i];
-			str += "'";
-			if(i != compare.length -1) {
-				str += " or ";
+		
+		try {
+			for(int i = 0; i < compare.length; i++) {
+				str += "id='";
+				str += compare[i];
+				str += "'";
+				if(i != compare.length -1) {
+					str += " or ";
+				}
 			}
-		}
+		} catch (Exception e) { str = "1=2"; }
 		
 		try {
 			ArrayList<ExtraDTO> ar = extraDAO.compareList(str);
 			
 			if(ar.size() > 0) {
 				request.setAttribute("compare", ar);
+			} else {
+				request.setAttribute("compare", null);
 			}
 			
 		} catch (Exception e) {

@@ -8,11 +8,23 @@
 <title>Insert title here</title>
 
 <style type="text/css">
+input[type=checkbox] { display: none; }
+input[type=checkbox] + label {
+    display: inline-block;
+    cursor: pointer;
+    line-height: 30px;
+    padding-left: 30px;
+    background: url('../image/checkbox/circle_3.png') left/20px no-repeat ;
+}
+input[type=checkbox]:checked + label { 
+    background-image: url('../image/checkbox/circle_2.png');
+}
+
 /* Style the tab */
 div.tab {
     overflow: hidden;
-    border: 1px solid #ccc;
-    background-color: #f1f1f1;
+    border: 1px solid #2096BA;
+    background-color: #2096BA;
 }
 
 /* Style the buttons inside the tab */
@@ -25,26 +37,33 @@ div.tab button {
     padding: 14px 16px;
     transition: 0.3s;
     font-size: 17px;
+    color: #fff;
 }
 
 /* Change background color of buttons on hover */
 div.tab button:hover {
-    background-color: #ddd;
+    background-color: lightblue;
+    border-color: lightblue;
 }
 
 /* Create an active/current tablink class */
 div.tab button.active {
-    background-color: #ccc;
+    background-color: lightblue;
+    border-color: lightblue;
 }
 
 /* Style the tab content */
 .tabcontent {
     display: none;
-    height: 500px;
+    height: 700px;
     padding: 6px 12px;
-    border: 1px solid #ccc;
+    border: 1px solid #2096BA;
     border-top: none;
     overflow: auto;
+}
+
+.contents {
+	margin-top: 10px;
 }
 
 #searchInput {
@@ -68,9 +87,11 @@ div.tab button.active {
 #weddingTable th, #weddingTable td {
   text-align: left;
   padding: 12px;
+  border: 1px solid #ddd;
 }
 
-#weddingTable td:first-child {
+
+#weddingTable td:first-child, #weddingTable th:first-child {
 	text-align: center;
 }
 
@@ -79,7 +100,8 @@ div.tab button.active {
 }
 
 #weddingTable tr.header, #myTable tr:hover {
-  background-color: #f1f1f1;
+  background-color: lightblue;
+  color: #fff;
 }
 </style>
 
@@ -156,7 +178,7 @@ function searchRegion() {
 	table = document.getElementById("weddingTable");
 	tr = table.getElementsByTagName("tr");
 	for (i = 0; i < tr.length; i++) {
-	    td = tr[i].getElementsByTagName("td")[0];
+	    td = tr[i].getElementsByTagName("td")[2];
 	    if (td) {
 	      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
 	        tr[i].style.display = "";
@@ -171,42 +193,46 @@ function searchRegion() {
 
 </head>
 <body>
-	<h1>SEARCH COMPARE PAGE</h1>
 	<div class="tab">
 	  <button class="tablinks" onclick="openTab(event, 'list')">LIST</button>
 	  <button class="tablinks" onclick="openTab(event, 'compare')" id="tab_compare">COMPARE</button>
 	</div>
 	
 	<div id="list" class="tabcontent">
-		<select id="sido" onchange="searchRegion()">
-			<option value="region">REGION</option>
-		</select>
-		<select id="gungu" onchange="searchRegion()">
-			<option value=" "></option>
-			<option value="01">01</option>
-			<option value="02">02</option>
-			<option value="03">03</option>
-			<option value="04">04</option>
-			<option value="05">05</option>
-			<option value="06">06</option>
-			<option value="07">07</option>
-			<option value="08">08</option>
-		</select>
+		<div class="contents">
+			<label for="sido">인근 지역</label>
+			<select id="sido" onchange="searchRegion()">
+				<option value="region">REGION</option>
+			</select>
+			<select id="gungu" onchange="searchRegion()">
+				<option value=" "></option>
+				<option value="01">01</option>
+				<option value="02">02</option>
+				<option value="03">03</option>
+				<option value="04">04</option>
+				<option value="05">05</option>
+				<option value="06">06</option>
+				<option value="07">07</option>
+				<option value="08">08</option>
+			</select>
+		</div>
 		
-		<input type="text" id="searchInput" onkeyup="searchFunction()" placeholder="Search for names">
+		<div class="contents">
+			<input type="text" id="searchInput" onkeyup="searchFunction()" placeholder="Search for wedding halls">
+		</div>
 		
 		<table id="weddingTable">
 		<tr class="header">
-		    <th style="width:10%;">Select</th>
-		    <th style="width:40%;">Region</th>
-		    <th style="width:50%;">Hall_Name</th>
+		    <th style="width:10%;">비교</th>
+		    <th style="width:50%;">웨딩홀 이름</th>
+		    <th style="width:40%;">웨딩홀 지역</th>
 		</tr>
 		
 		<c:forEach items="${list}" var="dto" varStatus="count">
 			<tr>
-				<td><input type="checkbox" name="compare" value="${dto.id}"></td>
-				<td>${dto.region}</td>
+				<td><input type="checkbox" id="c${count.count}" name="compare" value="${dto.id}"><label for="c${count.count}">&nbsp;</label></td>
 				<td>${dto.hall_name}</td>
+				<td>${dto.region}</td>
 			</tr>
 		</c:forEach>
 		

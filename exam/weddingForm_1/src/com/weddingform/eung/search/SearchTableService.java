@@ -42,7 +42,6 @@ public class SearchTableService implements Action {
 		try {
 			PageMaker pageMaker = new PageMaker(1, perNumber, extraDAO.getTotal(weddingSearch));
 			ArrayList<ExtraDTO> ar = extraDAO.searchList(weddingSearch, pageMaker.getMakeRow(), sort);
-			System.out.println(ar);
 
 			if(ar.size() > 0) {
 				request.setAttribute("total", (extraDAO.getTotal(weddingSearch)/6)+1);

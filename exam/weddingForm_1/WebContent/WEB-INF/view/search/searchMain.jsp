@@ -292,13 +292,23 @@ input[type=checkbox] + label:hover {
 
 .table {
 	margin-top: 30px;
+	border-bottom: 1px solid #e9ecef;
+}
+
+.table td:first-child {
+	background-color: #FDF7F2;
 }
 
 .card {
 	display: inline-block;
-	width: 300px;
-	margin: 0 30px 15px	30px;
+	width: 30%;
+	margin: 10px 0 0 20px;
 	text-align: center;
+	border-color: #2096BA;
+}
+
+.card:hover {
+	box-shadow: 0 8px 12px 0 rgba(0,0,0,0.2)
 }
 
 .position {
@@ -309,6 +319,11 @@ input[type=checkbox] + label:hover {
 	position: absolute;
 	top:0;
 	right: 0;
+}
+
+.perNumber {
+    padding: 5px;
+    margin-top: 3px;
 }
 
 </style>
@@ -399,7 +414,7 @@ input[type=checkbox] + label:hover {
 <body>
 	<div class="container top-menu">
 		<h3 class="detail">상세 검색</h3>
-		<a href="./searchTotalMap.search" class="btn btn-info">지도 검색</a>
+		<a href="./searchTotalMap.search" class="btn btn-outline-info">지도 검색</a>
 	</div>
 
 	<div class="container">
@@ -514,7 +529,7 @@ input[type=checkbox] + label:hover {
 	</div>
 
 	<div class="container" style="text-align: center">
-		<input type="button" id="btn" class="btn btn-info"
+		<input type="button" id="btn" class="btn btn-outline-info"
 			value="위 조건으로 검색하기">
 	</div>
 
@@ -542,7 +557,7 @@ input[type=checkbox] + label:hover {
 					<a id="img_list" class="nav-link watch-type" title="list">리스트</a>
 				</li>
 				<li>
-					<select id="perNumber">
+					<select id="perNumber" class="perNumber">
 						<option value="6">6개보기</option>
 						<option value="9">9개보기</option>
 						<option value="12">12개보기</option>
@@ -575,7 +590,7 @@ input[type=checkbox] + label:hover {
 							<p style="line-height: 5px;">식사종류 : ${dto.meal_menu}</p>
 							<p style="line-height: 5px;">식사가격 : ${dto.meal_cost}</p>
 						</div>
-						<a href="./searchView.search?id=${dto.id}" class="btn btn-info">See Profile</a>
+						<a href="./searchView.search?id=${dto.id}" class="btn btn-outline-info">상세보기</a>
 					</div>
 				</div>
 			</c:forEach>

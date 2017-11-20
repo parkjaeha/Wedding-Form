@@ -100,7 +100,7 @@ public class SearchViewService implements Action {
 		reservationDTO.setReserv_time(request.getParameter("reserv_time"));
 		reservationDTO.setConfirm("false");
 		reservationDTO.setTel(request.getParameter("tel"));
-		System.out.println(reservationDTO.getTel());
+		
 		return reservationDTO;
 	}
 }

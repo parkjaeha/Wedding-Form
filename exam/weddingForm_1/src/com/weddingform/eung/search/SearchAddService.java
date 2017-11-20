@@ -203,8 +203,6 @@ public class SearchAddService implements Action {
 			weddingSearch.setSubway(((String[])map.get("subway"))[0].trim().toUpperCase());
 		} // End subway
 		
-		System.out.println(((String[])map.get("subway"))[0]);
-		System.out.println(weddingSearch.getSubway());
 		
 		if(((String[])map.get("hall_name"))[0].equals("")) {
 			weddingSearch.setHall_name("|");

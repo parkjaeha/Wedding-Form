@@ -15,7 +15,7 @@
 					<p style="line-height: 5px;">식사종류 : ${dto.meal_menu}</p>
 					<p style="line-height: 5px;">식사가격 : ${dto.meal_cost}</p>
 		    	</div>
-		      	<a href="./searchView.search?id=${dto.id}" class="btn btn-primary">See Profile</a>
+		      	<a href="./searchView.search?id=${dto.id}" class="btn btn-outline-info">상세보기</a>
 		    </div>
 		</div>
 	</c:forEach>
