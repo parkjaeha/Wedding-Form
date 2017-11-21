@@ -31,6 +31,7 @@
 				}
 			});
 		});
+		
 	});
 </script>
 
@@ -144,15 +145,30 @@
 			</thead>
 			<tbody>
 			<c:forEach items="${list}" var="dto" varStatus="count">
-				<tr class="basic" id="${count.count}">
-					<td>${dto.num}</td>
-					<td>${dto.title}</td>
-					<td>${dto.id}</td>
-					<td>${dto.reg_date}</td>
-					<td>${dto.company_name}</td>
-					<td><button id="btn" class="detail btn btn-info" value="${dto.id}/${dto.company_name}">상세보기</button></td>
-				</tr>
-				
+				<c:choose>
+					<c:when test="${dto.black eq 'F'}">
+						<tr class="basic" id="${count.count}">
+							<td>${dto.num}</td>
+							<td>${dto.title}</td>
+							<td>${dto.id}</td>
+							<td>${dto.reg_date}</td>
+							<td>${dto.company_name}</td>
+							<td><button id="btn" class="detail btn btn-info" value="${dto.id}/${dto.company_name}">상세보기</button></td>
+						</tr>					
+					</c:when>
+					
+					<c:otherwise>
+						<tr class="basic" id="${count.count}" style="background-color: #FF69B4;">
+							<td>${dto.num}</td>
+							<td>${dto.title}</td>
+							<td>${dto.id}</td>
+							<td>${dto.reg_date}</td>
+							<td>${dto.company_name}</td>
+							<td><button id="btn" class="detail btn btn-info" value="${dto.id}/${dto.company_name}">상세보기</button></td>
+						</tr>
+					</c:otherwise>
+				</c:choose>
+
 				<tr id="hidden${count.count}" class="hidden">
 					<td colspan="6">
 						<label for="contents">문의내용:</label>

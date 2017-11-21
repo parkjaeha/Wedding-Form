@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="subModal">
 	<h3 class="title">신고 접수 정보</h3>
 	<ul class="list-group">
@@ -23,5 +24,11 @@
 </div>
 
 <div class="btn_box">
+	<c:if test="${report.black eq 'F'}">
+		<a href="./reportBlackUpdate.report?num=${report.num}&black=T" class="btn btn-dark">블랙 등록</a>
+	</c:if>
+	<c:if test="${report.black eq 'T'}">
+		<a href="./reportBlackUpdate.report?num=${report.num}&black=F" class="btn btn-dark">블랙 취소</a>
+	</c:if>
 	<a href="./reportDelete.report?num=${report.num}" class="btn btn-danger">삭제</a>
 </div>

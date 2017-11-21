@@ -13,7 +13,14 @@ public class ReportDTO {
 	private String contents;
 	private String company_name;
 	private Date reg_date;
+	private String black;
 	
+	public String getBlack() {
+		return black;
+	}
+	public void setBlack(String black) {
+		this.black = black;
+	}
 	public Date getReg_date() {
 		return reg_date;
 	}

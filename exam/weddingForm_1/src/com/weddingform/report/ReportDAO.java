@@ -12,6 +12,22 @@ import com.weddingform.util.MakeRow;
 
 public class ReportDAO {
 	
+	public int blackUpdate(int num, String black) throws Exception {
+		Connection con = DBConnector.getConnect();
+		
+		String sql = "update report set black=? where num=?";
+		PreparedStatement st = con.prepareStatement(sql);
+		
+		st.setString(1, black);
+		st.setInt(2, num);
+		
+		int result = st.executeUpdate();
+		
+		DBConnector.disConnect(st, con);
+		
+		return result;
+	}
+	
 	public int delete(int num) throws Exception {
 		Connection con = DBConnector.getConnect();
 		
@@ -45,6 +61,7 @@ public class ReportDAO {
 			reportDTO.setPw(rs.getString("pw"));
 			reportDTO.setTitle(rs.getString("title"));
 			reportDTO.setReg_date(rs.getDate("reg_date"));
+			reportDTO.setBlack(rs.getString("black"));
 		} else {
 			reportDTO = null;
 		}
@@ -97,6 +114,7 @@ public class ReportDAO {
 			reportDTO.setPw(rs.getString("pw"));
 			reportDTO.setTitle(rs.getString("title"));
 			reportDTO.setReg_date(rs.getDate("reg_date"));
+			reportDTO.setBlack(rs.getString("black"));
 			ar.add(reportDTO);
 		}
 		
@@ -112,7 +130,7 @@ public class ReportDAO {
 	
 
 		String sql="insert into report "
-				+ "values(board_seq.nextval,?,?,?,?,?,sysdate)";
+				+ "values(board_seq.nextval,?,?,?,?,?,sysdate,'F')";
 		PreparedStatement st=con.prepareStatement(sql);
 	
 		st.setString(1, reportDTO.getPw());
