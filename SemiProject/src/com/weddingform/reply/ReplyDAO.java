@@ -65,7 +65,17 @@ public  class ReplyDAO implements BoardDAO{
 		return result;
 	}
 
-
+	
+	public int delete2(int num) throws Exception {
+		Connection con=DBConnector.getConnect();
+		String sql="delete reply where num=?";
+		PreparedStatement st=con.prepareStatement(sql);
+		st.setInt(1,num);
+		
+		int result=st.executeUpdate();
+		
+		return result;
+	}
 
 
 

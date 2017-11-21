@@ -50,7 +50,11 @@ $(function(){
          
         //폼 submit
         $("#frm").submit();
-    })
+    });
+    
+    $("#reply").click(function(){
+    	$("#h").slideToggle();
+    });
 })
 </script>
 <style type="text/css">
@@ -100,6 +104,7 @@ text-align: center;
 </style>
 </head>
 <body>
+	<div id="all">
  <c:import url="../../../temp/header.jsp"></c:import>
  	<div class=blank></div>
  		
@@ -149,6 +154,8 @@ text-align: center;
 	<c:if test="${board eq 'qna'}" >
 	<a href="./${board}Delete.${board}?ref=${view.ref}">
 	<img alt="" src="../images/main/delete.png" style="width: 80px; height: 30px;"></a>
+	<!--관리자 답글달기  -->
+	<img alt="" src="../images/main/qna.png" style="width: 80px; height: 30px;" id="reply">
 	</c:if>
 
 
@@ -157,10 +164,9 @@ text-align: center;
 
 	<!-- 관리자만 Q&A 답글달기-->
 
-	<c:if test="${board eq 'qna'}" >
-	   <div class="panel panel-default" style="margin-top : 100px;"> 
-   <div class="panel-body" >
-	<h2>관리자만 Q&A답글</h2>
+	<c:if test="${board eq 'qna'}"  >
+	   <div id="h" class="panel panel-default" style="margin-top : 100px; display: none;"> 
+   <div class="panel-body " >
 	<form action="./qnaReply.qna" method="post">
 			<input type="hidden" name="num" value="${param.num}">
 			<input type="hidden" name="opencheck" value="${param.opencheck}">
@@ -184,5 +190,6 @@ text-align: center;
 	
 </div>
  <c:import url="../../../temp/footer.jsp"></c:import>
+ </div>
 </body>
 </html>

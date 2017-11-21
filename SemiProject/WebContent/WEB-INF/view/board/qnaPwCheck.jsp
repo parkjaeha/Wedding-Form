@@ -50,6 +50,7 @@ $(function(){
 </script>
 </head>
 <body>
+	<div id="all">
 <c:import url="../../../temp/header.jsp"></c:import>
 
 <div class="contents">
@@ -61,11 +62,13 @@ $(function(){
 <p class="panel-body"> 비밀번호 <input id="password" type="password" name="password">
  <button class="btn btn-default">확인</button>
  <input type="button" id="btn" value="취소" class="btn btn-default"></p>
+ </div>
 </form>
 </div>
 
-</div>
+
 
 <c:import url="../../../temp/footer.jsp"></c:import>
+</div>
 </body>
 </html>

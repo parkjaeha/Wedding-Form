@@ -105,11 +105,12 @@ margin-left: 25px;
 </head>
 
 <body>
+	<div id="all">
    <c:import url="../../../temp/header.jsp"></c:import>
 
    <div id="blank"></div>
    <div id="blank"></div>
-   <div class="contents  panel panel-default">
+   <div class="contents  panel panel-default" style="margin-top: 150px;">
    <c:if test="${board eq 'qna'}">
       <article class="board_1">Q&A</article>
       <article class="board_2"></article>
@@ -150,6 +151,6 @@ margin-left: 25px;
  <div id="blank"></div>
    <div id="blank"></div>
    <c:import url="../../../temp/footer.jsp"></c:import>
-
+</div>
 </body>
 </html>

@@ -116,10 +116,11 @@ $("#savebutton").click(function(){
 </script>
 </head>
 <body>
+	<div id="all">
  <c:import url="../../../temp/header.jsp"></c:import>
 <div id="blank"></div>
    <div id="blank"></div>
-<div class="contents panel panel-default">
+<div class="contents panel panel-default" style="margin-top: 150px;">
 				<article class="review_1">REVIEW</article>
          <article class="review_2"></article>
 					 <form action="./reviewUpdate.review?type=${param.type}" method="post"> 
@@ -160,5 +161,6 @@ $("#savebutton").click(function(){
 			</div>
 
  <c:import url="../../../temp/footer.jsp"></c:import>
+ </div>
 </body>
 </html>

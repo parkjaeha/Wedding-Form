@@ -3,7 +3,7 @@
       <link href="${pageContext.request.contextPath}/css/header.css" rel="stylesheet">
       <hr>
 <footer class="container-fluid text-center">
-<img src="${pageContext.request.contextPath}/images/main/logo.png">
+<img src="${pageContext.request.contextPath}/images/main/logo.png" style="height: 80px;">
 
      <p style="margin-top: 30px;">서울특별시 강남구 테헤란로 14길 6 남도빌딩 | 6, Teheran-ro 14-gil, Gangnam-gu, Seoul, Republic of Korea </p>
 

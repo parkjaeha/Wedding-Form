@@ -10,9 +10,10 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style type="text/css">
-.container{
+.contents{
+width : 1100px;
 margin: 0 auto;
-margin-top: 100px;
+margin-top: 150px;
 }
 
 </style>
@@ -21,21 +22,26 @@ margin-top: 100px;
 <body> 
 <div id="all">
  <c:import url="./temp/header.jsp"></c:import>
-<div class="container">
-  <h2>My Page</h2>
-  <div class="panel panel-default">
-    <div class="panel-body">ID</div>
-    <hr>
-     <div class="panel-body">NAME</div>
-     <hr>
-     <div class="panel-body">PASSWORD</div>
-     <hr>
-     <div class="panel-body">ADDRESS</div>
-     <hr>
-     <div class="panel-body">PHONE</div>
-     <hr>
-     <div class="panel-body">E-MAIL</div>
-  </div>
+<div class="contents"  >
+<h2>My Page</h2>
+  
+  <pre style="margin: 0 auto; width: 1100px;  margin-top:30px; margin-bottom: 100px; font-size: 15px;">
+  
+  ID 
+  
+  NAME 
+  
+  PASSWORD
+   
+  ADDRESS 
+  
+  PHONE 
+  
+  E-MAIL
+  
+  
+  </pre>
+  
 </div>
 <c:import url="./temp/footer.jsp"></c:import>
 </div>

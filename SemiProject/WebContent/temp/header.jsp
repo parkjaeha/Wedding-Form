@@ -94,12 +94,12 @@ position: fixed; top: 0; z-index: 3; width: 100%; border-bottom:5px solid #2096B
     </div>
 
     <div class="collapse navbar-collapse" id="myNavbar" >
-   <ul class="nav navbar-nav">
+   <ul class="nav navbar-nav navbar">
         <li><a href="${pageContext.request.contextPath}/main.jsp">
-        <img src="${pageContext.request.contextPath}/images/main/logo.png" style="height:50px;"></a></li>
+        <img src="${pageContext.request.contextPath}/images/main/logo.png" style="height:40px;"></a></li>
    
-      </ul>
-            <ul class="nav navbar-nav navbar-right" >
+      </ul> 
+            <ul class="nav navbar-nav navbar-right" > 
         <li><a href="${pageContext.request.contextPath}/main.jsp"><span class="glyphicon glyphicon-home"></span> HOME</a></li>
         <li><a href="#" onclick="openNav()"><span class="glyphicon glyphicon-menu-hamburger"></span> MENU</a></li>
         <li><a href="${pageContext.request.contextPath}/index.jsp"><span class="glyphicon glyphicon-briefcase"></span> ABOUT</a></li>

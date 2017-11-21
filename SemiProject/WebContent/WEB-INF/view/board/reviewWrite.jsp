@@ -116,6 +116,7 @@ $("#savebutton").click(function(){
 </script>
 </head>
 <body>
+	<div id="all">
  <c:import url="../../../temp/header.jsp"></c:import>
 <div id="blank"></div>
    <div id="blank"></div>
@@ -163,5 +164,6 @@ $("#savebutton").click(function(){
 			</div>
 
  <c:import url="../../../temp/footer.jsp"></c:import>
+ </div>
 </body>
 </html>

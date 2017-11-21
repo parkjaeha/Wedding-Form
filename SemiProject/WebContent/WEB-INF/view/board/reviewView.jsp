@@ -90,6 +90,7 @@ text-align: center;
 
 
 <body>
+	<div id="all">
  <c:import url="../../../temp/header.jsp"></c:import>
 <div id="blank"></div>
 <div class="d container" style="margin-top: 100px;">
@@ -150,11 +151,12 @@ text-align: center;
 <div id="result" class="list-group-item"></div>
 	
 </div>
-	</div>
+
 
 	
 	</div>
 	
  <c:import url="../../../temp/footer.jsp"></c:import>
+ </div>
 </body>
 </html>
