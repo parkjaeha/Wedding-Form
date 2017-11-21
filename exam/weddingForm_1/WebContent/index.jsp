@@ -15,6 +15,7 @@
 		<li><a href="reservation/reservationView.reservation?id=ID 01">예약현황 보기 (default ID 01)</a></li>
 		<li><a href="reservation/reservationMemberView.reservation">예약 현황 보기 (TABLE)</a></li>
 		<li><a href="wedding/weddingView.wedding">하우스웨딩</a></li>
+		<li><a href="report/"></a></li>
 	</ul>
 	
 </body>
