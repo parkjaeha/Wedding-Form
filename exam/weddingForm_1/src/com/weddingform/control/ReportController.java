@@ -19,20 +19,20 @@ import com.weddingform.action.Action;
 import com.weddingform.action.ActionForward;
 
 /**
- * Servlet implementation class FunctionController
+ * Servlet implementation class NoticeController
  */
-@WebServlet("/FunctionController")
-public class FunctionController extends HttpServlet {
+@WebServlet("/ReportController")
+public class ReportController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private HashMap<String, Object> map;
- 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FunctionController() {
+    public ReportController() {
         super();
         // TODO Auto-generated constructor stub
     }
+
     @SuppressWarnings("rawtypes")
 	@Override
     public void init(ServletConfig config) throws ServletException {
@@ -59,8 +59,6 @@ public class FunctionController extends HttpServlet {
 		//6. value를 이용해서 객체 생성하기		
 				Class obj= Class.forName(value);
 				Object instance = obj.newInstance();
-				System.out.println("Key : "+key);
-				System.out.println("instance : "+instance);
 		//7. key와 instance를 맵에 저장		
 				map.put(key, instance);
 			}
@@ -93,9 +91,9 @@ public class FunctionController extends HttpServlet {
 		uri = uri.substring(sIndex, lIndex);
 		ActionForward actionFoward=null;
 		Action action=null;
-		//-------------------------------
+		
 		action = (Action)map.get(uri);
-		actionFoward = action.doProcess(request, response);		//-------------------------------
+		actionFoward = action.doProcess(request, response);		
 		
 		if(actionFoward.isCheck()) {
 			RequestDispatcher view = request.getRequestDispatcher(actionFoward.getPath());

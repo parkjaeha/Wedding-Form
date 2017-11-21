@@ -1,5 +1,7 @@
 package com.weddingform.report;
 
+import java.sql.Date;
+
 //신고하기
 
 public class ReportDTO {
@@ -10,7 +12,14 @@ public class ReportDTO {
 	private String title;
 	private String contents;
 	private String company_name;
+	private Date reg_date;
 	
+	public Date getReg_date() {
+		return reg_date;
+	}
+	public void setReg_date(Date reg_date) {
+		this.reg_date = reg_date;
+	}
 	public int getNum() {
 		return num;
 	}
