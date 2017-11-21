@@ -17,44 +17,45 @@ public class CalUpdateService implements Action {
 		String method = request.getMethod();
 
 		if(method.equals("GET")) {
-			CalendarDTO calendarDTO  = new CalendarDTO();
+			
 			CalendarDAO calendarDAO  = new CalendarDAO();
-			int num= 0; 
-			String id = "";
+			CalendarDTO calendarDTO = new CalendarDTO();
+			int id= 0; 
 			int result=0;
+			
 			try {
-				num = Integer.parseInt(request.getParameter("num"));				
-			System.out.println("num: "+num);
+				id = Integer.parseInt(request.getParameter("id"));			
+			System.out.println("id: "+id);
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
 			
-			id = request.getParameter("id");
-			String data = request.getParameter("data");
-			
-		/*	String[] context  = update.split("/");
-			System.out.println("context: "+context);
-			int num = Integer.parseInt(context[0]);
-			String data = context[1];
-			System.out.println(id+"/" +" /" +num + " /"+data);
-			*/
 			calendarDTO.setId(id);
-			calendarDTO.setNum(num);
-			calendarDTO.setData(data);
+			calendarDTO.setTitle(request.getParameter("title"));
+			calendarDTO.setClassName(request.getParameter("className"));
+			calendarDTO.setContents(request.getParameter("contents"));
+			calendarDTO.setDate_start(request.getParameter("date_start"));
+			calendarDTO.setDate_end(request.getParameter("date_end"));
+			calendarDTO.setUrl(request.getParameter("url"));
+			calendarDTO.setEditable(request.getParameter("editable"));
 			
-			try {
-				result =calendarDAO.update(calendarDTO);
+			 try {
+				result = calendarDAO.update(calendarDTO);
+				System.out.println("result: "+result);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			if(result>0) {
-				System.out.println("update success");
-			}
+			 
+			boolean message =false;
+			 if(result>0) {
+				 message=true;
+			 }
 			
 			System.out.println("GET");
+			request.setAttribute("result", message);
 			actionForward.setCheck(true);
-			actionForward.setPath("../WEB-INF/view/function/calendar_open.jsp");
+			actionForward.setPath("../WEB-INF/view/common/commonAuthResponse.jsp");
 
 		}else {
 			System.out.println("POST");
@@ -63,8 +64,6 @@ public class CalUpdateService implements Action {
 		}
 
 		return actionForward;
-		
-	
 	}
 
 }

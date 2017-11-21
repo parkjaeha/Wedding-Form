@@ -51,7 +51,7 @@ public class CommonJoinUpService implements Action {
 			
 			String job = request.getParameter("job");
 			String id = request.getParameter("id");
-			String pw1 = request.getParameter("pw1");
+			String pw = request.getParameter("pw");
 			String name = request.getParameter("name");
 			String addr_main = request.getParameter("addr_main");
 			String addr_sub = request.getParameter("addr_sub");
@@ -83,9 +83,9 @@ public class CommonJoinUpService implements Action {
 			}else {
 				job="Business";
 			}
-		
+		System.out.println("id: " +id+" pw: "+pw+" name: "+name);
 			commonDTO.setId(id);
-			commonDTO.setPw(pw1);
+			commonDTO.setPw(pw);
 			commonDTO.setName(name);
 			commonDTO.setJob(job);
 			commonDTO.setAddr(addr_main+" "+addr_sub);
@@ -113,7 +113,7 @@ public class CommonJoinUpService implements Action {
 			System.out.println("job:" +job);
 			
 			if(job.equals("Customer")) {
-			//일반인 회원가입 정보 등록
+			//�씪諛섏씤 �쉶�썝媛��엯 �젙蹂� �벑濡�
 
 			memberDTO = new MemberDTO();
 			memberDAO = new MemberDAO();
@@ -134,7 +134,7 @@ public class CommonJoinUpService implements Action {
 			}
 			
 			}else if(job.equals("Business")){
-			// 사업자 회원가입 정보 등록
+			// �궗�뾽�옄 �쉶�썝媛��엯 �젙蹂� �벑濡�
 			companyDTO = new CompanyDTO();
 			companyDAO = new CompanyDAO();
 			
@@ -179,7 +179,7 @@ public class CommonJoinUpService implements Action {
 				actionFoward.setCheck(true);
 				actionFoward.setPath("../WEB-INF/view/common/commonLogin.jsp");
 			}else {
-				request.setAttribute("message", "회원가입 실패");
+				request.setAttribute("message", "�쉶�썝媛��엯 �떎�뙣");
 				actionFoward.setCheck(true);
 				actionFoward.setPath("../WEB-INF/view/common/result.jsp");
 			}

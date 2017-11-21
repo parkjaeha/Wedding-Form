@@ -19,17 +19,17 @@ public class CalDeleteService implements Action {
 		if(method.equals("GET")) {
 			
 			CalendarDAO calendarDAO  = new CalendarDAO();
-			int num= 0; 
+			int id= 0; 
 			int result=0;
 			try {
-				num = Integer.parseInt(request.getParameter("num"));				
-			System.out.println("num: "+num);
+				id = Integer.parseInt(request.getParameter("id"));				
+			System.out.println("id: "+id);
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
 			
 			 try {
-				result = calendarDAO.delete(num);
+				result = calendarDAO.delete(id);
 				System.out.println("result: "+result);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -43,7 +43,7 @@ public class CalDeleteService implements Action {
 			
 			System.out.println("GET");
 			actionForward.setCheck(true);
-			actionForward.setPath("../WEB-INF/view/function/calendar_open.jsp");
+			actionForward.setPath("../WEB-INF/view/function/calendar.jsp");
 
 		}else {
 			System.out.println("POST");

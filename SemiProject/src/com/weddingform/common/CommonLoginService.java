@@ -25,6 +25,7 @@ public class CommonLoginService implements Action {
 			commonDTO.setId(request.getParameter("id"));
 			commonDTO.setPw(request.getParameter("pw"));
 			commonDTO.setJob(request.getParameter("job"));
+			System.out.println(commonDTO.getId() + commonDTO.getPw());
 
 			try {
 				commonDTO=commonDAO.selectOne(commonDTO);
@@ -33,11 +34,12 @@ public class CommonLoginService implements Action {
 				commonDTO = null;
 				e.printStackTrace();
 			}
-
+			
+			System.out.println("login dto" + commonDTO );
 			if(commonDTO != null) {
 				session.setAttribute("common", commonDTO);
-				actionFoward.setCheck(false);
-				actionFoward.setPath("../index.jsp");
+				actionFoward.setCheck(true);
+				actionFoward.setPath("../main.jsp");
 			}else {
 				request.setAttribute("message", "로그인 실패");
 				request.setAttribute("path", "../index.jsp");

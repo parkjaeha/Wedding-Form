@@ -25,20 +25,20 @@ public class CalDataService implements Action {
 			CalendarDTO calendarDTO = null;
 			CalendarDAO calendarDAO =  new CalendarDAO();
 			
-			String id = "2017111";
+			int num = 2017111 ;
 			try {
-				id = request.getParameter("id");	
-				System.out.println("date: " +id);
+				num = Integer.parseInt(request.getParameter("id"));	
+				System.out.println("date: " +num);
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
 			
 			try {
-				calendarDTO =  calendarDAO.selectOne(id);
+				calendarDTO =  calendarDAO.selectOne(num);
 			if(calendarDTO == null) {
 				calendarDTO = new CalendarDTO();
-				calendarDTO.setId(id);
-				calendarDTO.setData("등록된 정보가 없습니다.");
+				calendarDTO.setNum(num);
+				calendarDTO.setData("no data");
 			}
 				System.out.println("data2: "+calendarDTO.getData());
 			} catch (Exception e) {

@@ -24,7 +24,7 @@ public class CalAddEventService implements Action {
 			CalendarDTO calendarDTO = new CalendarDTO();
 			CalendarDAO calendarDAO  = new CalendarDAO();
 			
-			calendarDTO.setId(id);
+			//calendarDTO.setId(id);
 			calendarDTO.setData(data);
 			int result=0;
 			String message = "fail";

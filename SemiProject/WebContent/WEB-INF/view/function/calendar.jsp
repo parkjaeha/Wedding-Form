@@ -1,129 +1,177 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<title>자바스크립트 달력</title>
-<!-- 	<link href="css/style.css" rel="stylesheet">	
- -->
+<meta charset='utf-8' />
 
-<!-- jQuery library -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
- 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<title>Document</title>
 
- <style type="text/css">
+<script src="./js/moment.min.js"></script>
+<link rel="stylesheet" href="./css/fullcalendar.css" />
+<link rel="stylesheet" href="./css/fullcalendar.print.css" media='print' />
 
-@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
-* {font-family: 'Nanum Gothic', serif;}
-
-#kCalendar {width: 1000px; height: 948px; border: 1px solid black;}
-
-#kCalendar #header {height: 50px; line-height: 50px; text-align: center; font-size: 18px; font-weight: bold;  background: #1abc9c;}
-#kCalendar .button {color: #000; text-decoration: none;}
-
-#kCalendar table {width: 1000px; height: 800px;}
-#kCalendar caption {display: table-caption;  text-align: center;}
+<script src="./js/jquery.min.js"></script>
+<script src="./js/fullcalendar.js"></script>
+<script src="./js/locale-all.js"></script>
 
 
-.month {
-  padding: 40px 0px;
-    width: 100%;
-    background: #1abc9c;
-    text-align: center;
-    font-weight: bold;
+<style type="text/css">
+.Disponible {
+	background-color: green;
+	color: #ffffff;
+	border-radius: 20px;
 }
 
-.weekdays {
-    padding: 80px 0;
-    background-color:#ddd;
+.NoDisponible {
+	background-color: red;
+	color: #ffffff;
+	border-radius: 20px;
+}
+html{
+	width: 650px;
+	height: 550px;
+	display: inline-block;
+
 }
 
-.days{
-padding: 10px 0;
-    background: #eee;
-    margin: 0;
+body{
+	width: 650px;
+	height: 550px;
+	display: inline-block;
 }
 
-.active {
-    padding: 5px;
-    background: #1abc9c;
-    color: white !important
-}
-
-#kCalendar .sun {text-align: center; color: deeppink; border: 1px solid white;}
-#kCalendar .mon {text-align: center; border: 1px solid white;}
-#kCalendar .tue {text-align: center; border: 1px solid white;}
-#kCalendar .wed {text-align: center; border: 1px solid white;}
-#kCalendar .thu {text-align: center; border: 1px solid white;}
-#kCalendar .fri {text-align: center; border: 1px solid white;}
-#kCalendar .sat {text-align: center; color: deepskyblue; border: 1px solid white;}
- 
- </style>
-
+</style>
 
 <script type="text/javascript">
 
-var newwindows;
+var json1 = null;
 
-	$(function(){
-		//$("#btn").click(function(){
-			//$("#result").load("ajax_3_result.jsp");
-			
-			//quick start 달력 뿌려주기
-			$.get("./functionCalendar1.function", function(data){
-				
-				//alert(data);
-				var data2 = $("#kCalendar").html(data);
-				
-				
-			});
-
-		//});
-		
-		
-		//이벤트 위임
-		$("#kCalendar").on("click", ".click",function(){
-			var id = this.getAttribute('id');
-			//alert("btn2" + id);
-			//달력 id 값 2017111 넘겨주기
-			$.ajax({
-		 		type:"POST",
-		 		url:"../function/functionCalData.function",
-		 		data:{
-		 			id:id
-		 		},
-		 		success: function(data){
-				/* data =  num, data */
-
-		 			data=data.trim();
-					var d = data.split(":");
-					for(var i=0;i<d.length;i++){
-					}
-					alert(d[0]+" "+d[1]);
-				newwindows = window.open('./functionCalopen.function?data='+d[1]+'&id='+d[0], "_blank", "scrollbars=1,resizable=1,height=570,width=870");
-		 			
+	$(document).ready(function() {
 	
-		 		//alert(data);
-		 		
-		 		//location.href="../function/functionCalopen.function?data="+data;
-
-		 		//var myWindow = window.open("", "myWindow", "width=200,height=100");
-		 	    //myWindow.document.write(data+"<br>"+"<button>submit</button>"+"<br>"+"<button>submit</button>");		
-		 		}
-		 	});
+		$.get("./function/functionCalGet.function",function(data){
 			
-		});
-		
-	});
+			//var obj = JSON.parse(data);
+			//alert(data);
+			console.log("data : "+data);
 
-</script>	
+		    $('#calendar').fullCalendar({
+		        // put your options and callbacks here 
+		        events:	$.parseJSON(data)
+
+		        ,
+		        dayClick: function(date, jsEvent, view) {
+
+				alert('Current title: ' + view.title + 'Clicked date: ' + date.format());
+				console.log("date: " + date.format());
+		   	    //  $(this).css('background-color', 'red');
+		        $("#contents_title").text(date.format());
+		        
+		        $.get("./function/functionCalList.function?date="+date.format(),function(data){
+		        	
+		        	//alert(data);
+		        	$("#contents_top").html(data);
+		        	//console.log(data);
+		        	//$("#contents_top").text(data);
+		        	$("#contents_top").on("click", ".delete",function(){
+		        	
+		        	console.log("value: "+$(this).data("value"));
+		        	
+		        	 $.get("./function/functionCalDelete.function?id="+$(this).data("value"),function(data){
+		     			
+		     			//alert(data+" "+$(message));
+		      			$.get("./function/functionCalList.function?date="+date.format(), function(data){
+
+		      				//alert(data);
+		      				$("#contents_top").html(data);
+		      				
+		      				});
+		      			}); 
+		        	});
+		        	
+		        	$("#contents_top").on("click", ".add",function(){ 
+		        		
+		        		$.get("./function/functionCalView.function?type="+"addview",function(data){
+		        			$("#contents_bottom").html(data);
+		        			$("#contents_bottom").on("click","#add_btn",function(){
+		        				
+		        				console.log(" title: "+$("#title").val()+"  contents: "+$("textarea#contents").val()+"  start: "+$("#date_start").val()+"  end: "+$("#date_end").val());
+								var title = $("#title").val().trim();
+								var contents = $("textarea#contents").val();
+								var start = $("#date_start").val().trim();
+								var end = $("#date_end").val().trim();
+								
+		        				if(title !="" && contents !="" && start !=""){
+									$.get("./function/functionCalAdd.function?title="+title+"&contents="+contents+"&start="+start+"&end="+end,function(data){
+										var result =data.trim();
+										if(result =="OK"){
+											alert("추가완료");
+					        			}else{
+					        				alert("추가실패");
+					        			}
+									});
+								}else{
+									alert("정확한 정보를 기입해주세요.");
+								}	
+		        			});	
+		        		});		
+		        	});
+		        	
+		        $("#contents_top").on("click", ".update",function(){ 
+		        		var id = $(this).data("value");
+			        	console.log("value: "+$(this).data("value"));
+			        	
+			        $.get("./function/functionCalView.function?id="+id+"&type="+"view",function(data){
+			        	
+			        	$("#contents_bottom").html(data);
+			        	$("#contents_bottom").on("click","#update_btn",function(){
+			        		
+			        		console.log("id: "+$("#id").val()+"  title: "+$("#title").val()+"  contents: "+$("#contents").val());
+			        		var table  = $("#id").val()+"&title="+$("#title").val() +"&contents="+$("#contents").val() +"&date_start="+$("#date_start").val()
+			        		+"&date_end="+$("#date_end").val() +"&url="+$("#url").val() +"&className="+$("#className").val() +"&editable="+$("#editable").val() +"&contents="+$("#contents").val();
+			        		$.get("./function/functionCalUpdate.function?id="+table,function(data){
+									var result =data.trim();
+			        			if(result == "OK"){
+			        				alert("수정완료");
+			        			}else{
+			        				alert("수정실패");
+			        			}
+			        				
+			        		});			
+			        	});     	
+			        	   });
+			        	});
+			        		
+		        });	        
+				// alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+		   	    //alert('Current view: ' + view.name);
+		   	    },
+		   	   // titleFormat: '[calendar]'   
+		    })
+		    
+		});
+    /* ------------------------------------------------- popup start ----------------------------------------------------- */
+    
+		/* ------------------------------------------------- popup end ----------------------------------------------------- */   
+});
+
+</script>
+
 </head>
 <body>
-	<div id="kCalendar"></div>
-
+	FUll calendar
+		<div id='calendar' style="width: 600px; height: 700px; float:left;"></div>
+		<div id="contents"
+		style="border: 1px solid black; width: 600px; height: 600px; float: right;">
+		<div id="contents_title"
+			style="border: 1px solid black; width: 100px; height: 100px;"></div>
+		<div id="contents_top"
+			style="border: 1px solid black; width: 500px; height: 250px; margin-top: 20px;">
+		</div>
+		<div id="contents_bottom"
+			style="border: 1px solid black; width: 500px; height: 200px; margin-top: 20px;"></div>
+		</div>
 </body>
 </html>

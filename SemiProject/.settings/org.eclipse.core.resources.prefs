@@ -1,2 +1,9 @@
 eclipse.preferences.version=1
 encoding//WebContent/WEB-INF/view/function/calendar_list.jsp=UTF-8
+encoding//src/com/weddingform/common/CommonAuthService.java=UTF-8
+encoding//src/com/weddingform/common/CommonDAO.java=UTF-8
+encoding//src/com/weddingform/common/CommonIdService.java=UTF-8
+encoding//src/com/weddingform/common/CommonJoinUpService.java=UTF-8
+encoding//src/com/weddingform/common/CommonLoginService.java=UTF-8
+encoding//src/com/weddingform/function/SendEmail.java=UTF-8
+encoding//src/com/weddingform/util/DBConnector.java=UTF-8

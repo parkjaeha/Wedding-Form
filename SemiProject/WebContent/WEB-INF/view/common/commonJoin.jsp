@@ -142,7 +142,7 @@ body {
 	href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css"
 	rel="stylesheet">
 <script
-	src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></sc
+	src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
 <!-- 주소 -->
 <!-- jQuery와 Postcodify를 로딩한다 -->
@@ -437,9 +437,6 @@ function dialog() {
 	 			
 	 		}
 	 	});
-    	
-    	
-         
   				  }else{
     				alert("이미 인증되었습니다.");
    				  }
@@ -616,7 +613,7 @@ function layer_popup(el){
 								<label class="control-label col-sm-2 btn btn-primary"
 									style="color: white;" for="pw">Password:</label>
 								<div class="col-sm-10">
-									<input type="password" class="form-control" id="pw1"
+									<input type="password" class="form-control" id="pw1" 
 										placeholder="비밀번호는 8자리 이상 입력해주세요." name="pw">
 								</div>
 							</div>

@@ -5,18 +5,18 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-//DB 연결
+//DB �뿰寃�
 
 public class DBConnector {
 	
 	
 	public static Connection getConnect() throws Exception {
 		 //1. login
-	    String user = "weddingform";
-	    String password = "oracle";
+	    String user = "user02";
+	    String password = "user02";
 	    String url = "jdbc:oracle:thin:@localhost:1521:xe";
 	    String driver = "oracle.jdbc.driver.OracleDriver";
-	    //2. driver생성
+	    //2. driver�깮�꽦
 	    Class.forName(driver);
 	    //3. connection
 	    Connection con = DriverManager.getConnection(url, user, password);

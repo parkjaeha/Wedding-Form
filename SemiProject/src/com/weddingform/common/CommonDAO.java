@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import com.weddingform.util.DBConnector;
 
-// 공통 회원 정보
+// 怨듯넻 �쉶�썝 �젙蹂�
 
 public class CommonDAO {
 	
@@ -65,6 +65,7 @@ public class CommonDAO {
 		Connection con = DBConnector.getConnect();
 		String sql ="select * from common where id=? and pw=? and job=?";
 		PreparedStatement st = con.prepareStatement(sql);
+		System.out.println("commonDTO ID: " + commonDTO.getId() +" commonDTO PW: "+ commonDTO.getPw());
 		st.setString(1, commonDTO.getId());
 		st.setString(2, commonDTO.getPw());
 		st.setString(3, commonDTO.getJob());
@@ -73,7 +74,7 @@ public class CommonDAO {
 			commonDTO.setName(rs.getString("name"));
 			commonDTO.setAddr(rs.getString("addr"));
 			commonDTO.setPhone(rs.getString("phone"));
-			commonDTO.setMail(rs.getString("mail"));
+			commonDTO.setMail(rs.getString("email"));
 			
 		}else {
 			commonDTO= null;
@@ -83,6 +84,38 @@ public class CommonDAO {
 		
 		return commonDTO;
 	}
+	
+	//select one
+		public CommonDTO selectCheck(String data,String type) throws Exception {
+			Connection con = DBConnector.getConnect();
+			CommonDTO commonDTO = new CommonDTO();
+			String sql = "";
+			if(type.equals("phone")) {
+				sql ="select * from common where phone=?";
+				
+			}else if(type.equals("email")) {
+				sql ="select * from common where email=?";
+					
+			}
+			PreparedStatement st = con.prepareStatement(sql);
+			
+			System.out.println("Data: " + data +" type: "+ type);
+			st.setString(1, data);
+			
+			ResultSet rs = st.executeQuery();
+			if(rs.next()) {
+				commonDTO.setName(rs.getString("id"));
+				commonDTO.setAddr(rs.getString("addr"));
+				commonDTO.setPhone(rs.getString("phone"));
+				commonDTO.setMail(rs.getString("email"));				
+			}else {
+				commonDTO= null;
+			}
+			
+			DBConnector.disConnect(rs, st, con);
+			
+			return commonDTO;
+		}
 	
 	//id check
 	public boolean idCheck(String id) throws Exception{

@@ -34,7 +34,7 @@ public class CalListService implements Action {
 			}
 			
 			try {
-				ar = calendarDAO.selectList(id);
+				//ar = calendarDAO.selectList(id);
 				System.out.println("ar: "+ar);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block

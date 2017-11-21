@@ -32,14 +32,13 @@ public class CommonAuthService implements Action {
 			}catch (Exception e) {
 				// TODO: handle exception
 			}
-			
-			// 전화번호 형식이 맞는지    -- 문자가 들어가지 않은 숫자만으로된 형식이어야 함 
+			System.out.println("phone number: "  + phone);
+			// �쟾�솕踰덊샇 �삎�떇�씠 留욌뒗吏�    -- 臾몄옄媛� �뱾�뼱媛�吏� �븡�� �닽�옄留뚯쑝濡쒕맂 �삎�떇�씠�뼱�빞 �븿 
 			if(isStringDouble(phone)) {
 				result = true;
 				//sendSMS.Send(random,phone);
 			}
-			
-			
+	
 			request.setAttribute("result", result);
 			actionFoward.setCheck(true);
 			actionFoward.setPath("../WEB-INF/view/common/commonAuthResponse.jsp");
@@ -63,7 +62,7 @@ public class CommonAuthService implements Action {
 
 			request.setAttribute("result", result);
 			actionFoward.setCheck(true);
-			actionFoward.setPath("../WEB-INF/view/common/commonAuth.jsp");
+			actionFoward.setPath("../WEB-INF/view/common/commonAuthResponse.jsp");
 
 		}
 		
@@ -72,8 +71,9 @@ public class CommonAuthService implements Action {
 		return actionFoward;
 	}
 
-	//전화번호 숫자 확인
+	//�쟾�솕踰덊샇 �닽�옄 �솗�씤
 	 public static boolean isStringDouble(String s) {
+		 System.out.println("string double: " +s);
 		    try {
 		        Double.parseDouble(s);
 		        return true;
@@ -83,7 +83,7 @@ public class CommonAuthService implements Action {
 		  }
 
 	
-	//난수 생성 함수 
+	//�궃�닔 �깮�꽦 �븿�닔 
 	public static int generateNumber(int length) {
 		 
 	    String numStr = "1";
