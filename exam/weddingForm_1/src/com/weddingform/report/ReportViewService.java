@@ -32,7 +32,6 @@ public class ReportViewService implements Action {
 			reportDTO = reportDAO.selectOne(reportDTO);
 			companyDTO = companyDAO.selectOne(companyDTO);
 			
-			//////////////////////jsp 확인///////////////////
 			request.setAttribute("report", reportDTO);
 			request.setAttribute("company", companyDTO);
 			

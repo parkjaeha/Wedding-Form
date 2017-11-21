@@ -12,6 +12,21 @@ import com.weddingform.util.MakeRow;
 
 public class ReportDAO {
 	
+	public int delete(int num) throws Exception {
+		Connection con = DBConnector.getConnect();
+		
+		String sql = "delete from report where num=?";
+		PreparedStatement st = con.prepareStatement(sql);
+		
+		st.setInt(1, num);
+		
+		int result = st.executeUpdate();
+		
+		DBConnector.disConnect(st, con);
+		
+		return result;
+	}
+	
 	public ReportDTO selectOne(ReportDTO reportDTO) throws Exception {
 		Connection con = DBConnector.getConnect();
 		
@@ -22,7 +37,7 @@ public class ReportDAO {
 		
 		ResultSet rs = st.executeQuery();
 		
-		while(rs.next()) {
+		if(rs.next()) {
 			reportDTO.setCompany_name(rs.getString("company_name"));
 			reportDTO.setContents(rs.getString("contents"));
 			reportDTO.setId(rs.getString("id"));
@@ -30,6 +45,8 @@ public class ReportDAO {
 			reportDTO.setPw(rs.getString("pw"));
 			reportDTO.setTitle(rs.getString("title"));
 			reportDTO.setReg_date(rs.getDate("reg_date"));
+		} else {
+			reportDTO = null;
 		}
 		
 		DBConnector.disConnect(rs, st, con);

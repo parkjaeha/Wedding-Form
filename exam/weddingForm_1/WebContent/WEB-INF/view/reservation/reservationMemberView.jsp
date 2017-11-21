@@ -37,6 +37,8 @@
 			</tr>	
 		</table>
 	</div>
+	
+	<!----------------------------------------------------------------------->
 
 	<div class="container">
 		<h3 class="title01">내가 예약한 웨딩홀 보기</h3>
@@ -73,5 +75,49 @@
 			</c:if>
 		</table>
 	</div>
+	
+	<!------------------------------------------------------------------------------------->
+	
+	<div class="container">
+		<h3 class="title01">내가 신고한 현황 보기</h3>
+		<table class="table">
+			<tr>
+				<td>글번호</td>
+				<td>글제목</td>
+				<td>문의내용</td>
+				<td>등록날짜</td>
+				<td>신고한 업체</td>
+			</tr>
+			
+			<c:if test="${report != null}">
+				<tr>
+					<td>${report.num}</td>
+					<td>${report.title}</td>
+					<td>${report.contents}</td>
+					<td>${report.reg_date}</td>
+					<td style="color: red;">${report.company_name}</td>
+				</tr>
+			</c:if>
+			
+			<c:if test="${view == null }">
+				<tr>
+					<td colspan="5" style="color: green;">더 나은 서비스를 위해 노력하겠습니다</td>
+				</tr>
+			</c:if>	
+		</table>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </body>
 </html>

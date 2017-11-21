@@ -7,6 +7,8 @@ import javax.servlet.http.HttpSession;
 import com.weddingform.action.Action;
 import com.weddingform.action.ActionForward;
 import com.weddingform.eung.common.CommonDTO;
+import com.weddingform.report.ReportDAO;
+import com.weddingform.report.ReportDTO;
 
 public class ReservationMemberViewService implements Action {
 
@@ -30,6 +32,17 @@ public class ReservationMemberViewService implements Action {
 		try {
 			ReservMemberDTO reservMemberDTO = reservMemberDAO.selectOne(commonDTO.getId());
 			request.setAttribute("view", reservMemberDTO);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		ReportDAO reportDAO = new ReportDAO();
+		ReportDTO reportDTO = new ReportDTO();
+		reportDTO.setId(commonDTO.getId());
+		try {
+			reportDTO = reportDAO.selectOne(reportDTO);
+			request.setAttribute("report", reportDTO);
 			
 		} catch (Exception e) {
 			e.printStackTrace();

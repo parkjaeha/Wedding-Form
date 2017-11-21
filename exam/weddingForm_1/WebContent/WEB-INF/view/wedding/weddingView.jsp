@@ -67,6 +67,7 @@
 </script>
 
 <style type="text/css">
+
 	.margin01 {
 		margin-top: 60px;
 		text-align: center;
@@ -152,7 +153,7 @@
 	
 	.card {
 		display: inline-block;
-		width: 33%;
+		width: 320px;
 		text-align: center;
 	}
 	
@@ -246,7 +247,7 @@
 		<img src="../image/house/house_info.PNG">
 	</div>
 	
-	<div id="result">
+	<div id="result" class="margin01">
 		<div class="houseSet">
 			<div class="container bgColor">
 			</div>

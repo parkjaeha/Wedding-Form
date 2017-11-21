@@ -34,7 +34,7 @@ public class CompanyDAO {
 	      String sql ="select * from company where id=? or COMPANY_NAME=?";
 	      PreparedStatement st = con.prepareStatement(sql);
 	      st.setString(1, companyDTO.getId());
-	      st.setString(2, companyDTO.getId());
+	      st.setString(2, companyDTO.getCompany_name());
 	      ResultSet rs = st.executeQuery();
 	      if(rs.next()) {
 	    	  companyDTO.setId(rs.getString("id"));

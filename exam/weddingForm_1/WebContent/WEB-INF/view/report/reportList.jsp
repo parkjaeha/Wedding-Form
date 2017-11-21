@@ -17,7 +17,8 @@
 			$("#hidden"+count).slideToggle('slow');
 		});
 		
-		$("#btn").click(function() {
+		$(".detail").click(function(event) {
+			event.stopPropagation();
 			var ids = $(this).val();
 			$.ajax({
 				url: "./reportView.report",
@@ -26,7 +27,7 @@
 					ids: ids
 				},
 				success: function(data) {
-					alert("success");
+					$("#result").html(data);
 				}
 			});
 		});
@@ -90,6 +91,7 @@
 	
 	/* The Close Button */
 	.close {
+		width: 50px;
 	    color: #aaaaaa;
 	    float: right;
 	    font-size: 28px;
@@ -102,6 +104,28 @@
 	    text-decoration: none;
 	    cursor: pointer;
 	}
+	
+	/* ajax modal css */
+	#result {
+		padding: 15px;
+		overflow: auto;
+	}
+	
+	.subModal {
+		width: 50%;
+		float: left;
+	}
+	.title {
+		padding: 10px;
+		border-bottom: 1px solid black;
+	}
+	
+	.btn_box {
+		clear: both;
+		padding-top: 20px;
+		text-align: center;
+	}
+	
 </style>
 </head>
 <body>
@@ -126,7 +150,7 @@
 					<td>${dto.id}</td>
 					<td>${dto.reg_date}</td>
 					<td>${dto.company_name}</td>
-					<td><button id="btn" value="${dto.id}/${dto.company_name}">상세보기</button></td>
+					<td><button id="btn" class="detail btn btn-info" value="${dto.id}/${dto.company_name}">상세보기</button></td>
 				</tr>
 				
 				<tr id="hidden${count.count}" class="hidden">
@@ -167,12 +191,14 @@
 	
 	<script>
 	var modal = document.getElementById('myModal');
-	var btn = document.getElementById("btn");
+	var btn = document.getElementsByClassName("detail");
 	var span = document.getElementsByClassName("close")[0];
 	
 	// When the user clicks the button, open the modal 
-	btn.onclick = function() {
-	    modal.style.display = "block";
+	for(var i=0; i < btn.length; i++) {
+		btn[i].onclick = function() {
+		    modal.style.display = "block";
+		}
 	}
 	
 	// When the user clicks on <span> (x), close the modal
