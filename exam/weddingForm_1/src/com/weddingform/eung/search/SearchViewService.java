@@ -1,5 +1,8 @@
 package com.weddingform.eung.search;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -11,6 +14,8 @@ import com.weddingform.eung.extra.ExtraDAO;
 import com.weddingform.eung.extra.ExtraDTO;
 import com.weddingform.eung.reservation.ReservMemberDAO;
 import com.weddingform.eung.reservation.ReservMemberDTO;
+import com.weddingform.upload.UploadDAO;
+import com.weddingform.upload.UploadDTO;
 
 public class SearchViewService implements Action {
 
@@ -26,13 +31,19 @@ public class SearchViewService implements Action {
 			
 			ExtraDAO extraDAO = new ExtraDAO();
 			CompanyDAO companyDAO = new CompanyDAO();
+			UploadDAO uploadDAO = new UploadDAO();
+			List<UploadDTO> ar = new ArrayList<>();
 			try {
 				extraDTO = extraDAO.searchOne(extraDTO);
 				companyDTO = companyDAO.selectOne(companyDTO);
+				// image part
+				ar = uploadDAO.selectALL(companyDTO.getId());
 
 				if(extraDTO != null && companyDTO != null) {
 					request.setAttribute("view", extraDTO);
 					request.setAttribute("company", companyDTO);
+					request.setAttribute("upload", ar);
+					request.setAttribute("total", uploadDAO.getTotal(companyDTO.getId()));
 					
 					actionForward.setCheck(true);
 					actionForward.setPath("../WEB-INF/view/search/searchView.jsp");
@@ -47,7 +58,7 @@ public class SearchViewService implements Action {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else { // POST
+		} else { // POST Reservation
 			ReservMemberDAO reservationDAO = new ReservMemberDAO();
 			ReservMemberDTO reservationDTO = this.reservationGet(request);
 			

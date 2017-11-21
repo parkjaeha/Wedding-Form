@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,9 +16,6 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
 	
 	<script type="text/javascript">
-		$(function() {
-			
-		});
 		
 		function openCalendar() {
 			var calendar = window.open("../reservation/reservationView.reservation?id=${company.id}", "", "width=800,height=800");
@@ -245,13 +243,16 @@
 	<!-- -----------------사진 동적으로 바꾸기 & dot 동적으로 바꾸기------------------------------------------  -->
 	<div class="container imageBox">
 		<div class="slideshow-container">
-			<div class="mySlides fading">
-				<div class="numbertext">1 / 3</div>
-				<img src="../image/hall/sample_1.jpg" style="width: 100%">
-				<div class="text">wedding_sample one</div>
-			</div>
+		
+			<c:forEach items="${upload}" var="image" varStatus="count">
+				<div class="mySlides fading">
+					<div class="numbertext">${count.count} / ${total}</div>
+					<img src="${pageContext.request.contextPath}/uploads/${image.fname}" style="width: 100%">
+					<div class="text">wedding_sample</div>
+				</div>
+			</c:forEach>
 	
-			<div class="mySlides fading">
+			<!-- <div class="mySlides fading">
 				<div class="numbertext">2 / 3</div>
 				<img src="../image/hall/sample_2.jpg" style="width: 100%">
 				<div class="text">wedding_sample Two</div>
@@ -261,7 +262,7 @@
 				<div class="numbertext">3 / 3</div>
 				<img src="../image/hall/sample_3.jpg" style="width: 100%">
 				<div class="text">wedding_sample Three</div>
-			</div>
+			</div> -->
 	
 			<a class="prev" onclick="plusSlides(-1)">&#10094;</a> 
 			<a class="next" onclick="plusSlides(1)">&#10095;</a>
@@ -270,9 +271,12 @@
 		<br>
 
 		<div id="create_dot" style="text-align: center">
-			<span class="dot" onclick="currentSlide(1)"></span> 
+			<c:forEach begin="1" end="${total}" varStatus="count">
+				<span class="dot" onclick="currentSlide(${count.count})"></span> 
+			</c:forEach>
+			<!-- <span class="dot" onclick="currentSlide(1)"></span>
 			<span class="dot" onclick="currentSlide(2)"></span> 
-			<span class="dot" onclick="currentSlide(3)"></span>
+			<span class="dot" onclick="currentSlide(3)"></span> -->
 		</div>
 		
 		<script type="text/javascript">

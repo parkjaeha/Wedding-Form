@@ -15,6 +15,19 @@
   </filter-mapping>
   
   <servlet>
+    <servlet-name>function</servlet-name>
+    <servlet-class>com.weddingform.control.FunctionController</servlet-class>
+    <init-param>
+      <param-name>properties</param-name>
+      <param-value>function.properties</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>function</servlet-name>
+    <url-pattern>*.function</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
     <servlet-name>wedding</servlet-name>
     <servlet-class>com.weddingform.control.WeddingController</servlet-class>
     <init-param>
