@@ -18,6 +18,7 @@ width:1100px;
 margin: 0 auto;
 margin-bottom: 100px;
 margin-top: 150px;
+float: left;
 }
 
 </style>
@@ -40,7 +41,9 @@ $(function(){
 <!-- main -->
 	<div id="all">
  <c:import url="../../../temp/header.jsp"></c:import> 
+<div class="container-fluid">
 
+  <c:import url="../../../temp/sideMenu.jsp"></c:import>
 <div class="contents">
 
 <div class="container">
@@ -94,13 +97,13 @@ $(function(){
 
  </div>
 
-<!--청첩장 best review  -->
+
    
 
 
     
    
-
+</div>
  <c:import url="../../../temp/footer.jsp"></c:import>
 
 

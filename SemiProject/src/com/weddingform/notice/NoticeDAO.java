@@ -1,6 +1,6 @@
 package com.weddingform.notice;
 
-import java.sql.Connection;  
+import java.sql.Connection;   
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -16,6 +16,27 @@ import com.weddingform.util.TableSearch;
 //공지 게시판
 
 public class NoticeDAO implements BoardDAO{
+	
+	
+	
+/*public static void main(String [] args) {
+	NoticeDAO noticeDAO = new NoticeDAO();
+		NoticeDTO noticeDTO = new NoticeDTO();
+	for(int i=30;i<50;i++) {
+		noticeDTO.setWriter("min"+i);
+		noticeDTO.setTitle("minTitle"+i);
+			noticeDTO.setContents("minContents"+i);
+			try {
+				noticeDAO.insert(noticeDTO);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		
+	}
+	*/
 
 	@Override
 	public int getTotalCount(TableSearch tableSearch) throws Exception {

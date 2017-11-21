@@ -41,7 +41,7 @@ public class NoticeUpdateService implements Action {
 			noticeDTO.setNum(Integer.parseInt(request.getParameter("num")));
 			noticeDTO.setTitle(request.getParameter("title"));
 			noticeDTO.setWriter(request.getParameter("writer"));
-			noticeDTO.setContents(request.getParameter("smarteditor"));
+			noticeDTO.setContents(request.getParameter("contents"));
 			
 			
 			int result=0;

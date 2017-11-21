@@ -14,7 +14,8 @@
 width: 1100px;
 height: 600px;
 margin: 0 auto;
-margin-top : 200px;
+margin-top :200px;
+float: left;
 
 }
  #box{
@@ -38,6 +39,7 @@ color : gray;
 
 <div id="all">
  <c:import url="../../../temp/header.jsp"></c:import>
+ <c:import url="../../../temp/sideMenu.jsp"></c:import>
 <div class="contents">
  
 <a href="./reportWrite.report"><div id="box">

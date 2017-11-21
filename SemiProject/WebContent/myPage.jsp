@@ -22,7 +22,17 @@ margin-top: 150px;
 <body> 
 <div id="all">
  <c:import url="./temp/header.jsp"></c:import>
-<div class="contents"  >
+  <div class="col-sm-3 sidenav2">
+      <h4>John's Blog</h4>
+      <ul class="nav nav-pills nav-stacked">
+        <li class="active"><a href="#section1">Home</a></li>
+        <li><a href="#section2">Friends</a></li>
+        <li><a href="#section3">Family</a></li>
+        <li><a href="#section3">Photos</a></li>
+      </ul><br>
+ 
+    </div>
+<div class="contents">
 <h2>My Page</h2>
   
   <pre style="margin: 0 auto; width: 1100px;  margin-top:30px; margin-bottom: 100px; font-size: 15px;">

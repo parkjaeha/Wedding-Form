@@ -91,6 +91,7 @@ text-align: center;
 
 <body>
 	<div id="all">
+	
  <c:import url="../../../temp/header.jsp"></c:import>
 <div id="blank"></div>
 <div class="d container" style="margin-top: 100px;">
@@ -118,6 +119,9 @@ text-align: center;
 
 </div>
 </div>
+
+
+
 	<a href="./reviewList.review?type=${view.type}&&curPage=1">
 	<img alt="" src="../images/main/list.png" style="width: 80px; height: 30px;"></a>
 	
@@ -127,16 +131,11 @@ text-align: center;
 
 	<a href="./reviewDelete.review?num=${view.num}&&type=${view.type}">
 	<img alt="" src="../images/main/delete.png" style="width: 80px; height: 30px;"></a>
-
-
-
 	
 	
-	<div id="blank"></div>	
-<div id="blank"></div>
-<div id="blank"></div>
+
 		
-	<div class="container">		
+	<div class="container" style="margin-top: 200px;">		
 			<form action="../reply/replyWrite.reply?num=${view.num}" method="post">
 		<input type="hidden" value="${view.type}" name="type">
 	
@@ -149,14 +148,14 @@ text-align: center;
 	
 <!-- 댓글 -->
 <div id="result" class="list-group-item"></div>
-	
+	</div>
 </div>
 
 
 	
-	</div>
+
 	
- <c:import url="../../../temp/footer.jsp"></c:import>
  </div>
+ <c:import url="../../../temp/footer.jsp"></c:import>
 </body>
 </html>

@@ -161,7 +161,7 @@ $(document).ready(function(){
          </p>
          </div>
 
-         <p class="panel-body"><textarea name="smarteditor" id="smarteditor" rows="10" cols="100"
+         <p class="panel-body"><textarea name="contents" id="smarteditor" rows="10" cols="100"
             style="width: 700px; height: 312px;"></textarea></p>
             <div id="blank"></div>
             

@@ -23,7 +23,7 @@
 
 <style type="text/css">
 .col-centered {
-	float: none;
+	float: left;
 	margin: 0 auto;
 	margin-bottom: 100px;
 	width: 1100px;
@@ -61,18 +61,20 @@ text-align : center;
 <!-- main -->
 	<div id="all">
  <c:import url="../../../temp/header.jsp"></c:import> 
- <div id="blank"></div>
-  <div id="blank"></div>
+ <div class="container-fluid">
+
+  <c:import url="../../../temp/sideMenu.jsp"></c:import>
+
 	<div class="col-centered">
 
 
 	<table class="table table-hover">
 <div id="blank"></div>
 <c:if test="${param.type eq 'invitation'}">
-		<article class="write_1">INVITATION</article>
+		<p style="text-align: center; font-size: 20px;margin-bottom: 30px;">INVITATION</p>
 		</c:if>
 <c:if test="${param.type eq 'wedding_hall'}">
-		<article class="write_1">WEDDING</article>
+		<p style="text-align: center; font-size: 20px;margin-bottom: 30px;">WEDDING</p>
 		</c:if>
     
 
@@ -115,9 +117,13 @@ text-align : center;
 	<!-- 페이징 처리 -->
 			<div class="w3-bar">
 			
+			
+
+
+					
 					<c:if test="${page.curBlock>1}">
-				
-						<a href="./reviewList.review?type=${param.type}&&curPage=${requestScope.page.StartNum-1}" class="w3-button">&laquo;</a>
+					
+						<a href="./reviewList.review?type=${param.type}&&curPage=${page.startNum-1}" class="w3-button">«</a>
 					</c:if>
 
 					<c:forEach begin="${page.startNum}" end="${page.lastNum}" var="i">
@@ -125,10 +131,10 @@ text-align : center;
 					</c:forEach>
 
 					<c:if test="${page.curBlock < page.totalBlock}">
-						<a href="./reviewList.review?type=${param.type}&&curPage=${requestScope.page.lastNum+1}" class="w3-button">&raquo;</a>
+						<a	href="./reviewList.review?type=${param.type}&&curPage=${page.lastNum+1}" class="w3-button">»</a>
 					</c:if>
+					
 
-			
 
 
 
@@ -140,6 +146,7 @@ text-align : center;
 		<img alt="" src="../images/main/write.png" style="width: 80px; height: 30px;"></a>
 	</div>
 
+</div>
  <c:import url="../../../temp/footer.jsp"></c:import> 
  </div>
 </body>

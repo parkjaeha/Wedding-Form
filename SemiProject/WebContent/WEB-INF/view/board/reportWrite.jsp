@@ -122,7 +122,7 @@ $(function(){
 			
 	       
 	     <p class="panel-body">
-	      <textarea name="smarteditor" id="smarteditor" rows="5" cols="90"
+	      <textarea name="contents" id="smarteditor" rows="5" cols="90"
             style="width: 700px; height: 312px;"></textarea>
             
         <p class="panel-body">

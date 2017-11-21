@@ -22,7 +22,7 @@ public class NoticeWriteService implements Action {
 			NoticeDTO noticeDTO=new NoticeDTO();
 			noticeDTO.setTitle(request.getParameter("title"));
 			noticeDTO.setWriter(request.getParameter("writer"));
-			noticeDTO.setContents(request.getParameter("smarteditor"));
+			noticeDTO.setContents(request.getParameter("contents"));
 			
 			try {
 				int result=noticeDAO.insert(noticeDTO);

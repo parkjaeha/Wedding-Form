@@ -24,24 +24,21 @@
 
 
 <style type="text/css">
-.col-centered {
-	float: none;
+.contents { 
+	float: left;
 	margin: 0 auto;
 	margin-bottom: 100px;
-	width: 1100px;
+	margin-top: 150px;
 }
 
-a
- {
+table a{
 	text-decoration: none;
 	color : gray;
 }
-
-
-.write_1{
-	font-size: 30px;
-
+table a:hover{
+	text-decoration: none;
 }
+
 
 .w3-bar{
 margin : 0 auto;
@@ -55,6 +52,10 @@ width: 100%;
 height: 50px;
 }
 
+.container-fluid {
+
+}
+
 
 </style>
 
@@ -65,7 +66,12 @@ $(function(){
 	$("#btn").click(function(){
 	 document.frm.submit();	
 	});
+	$(".pw").click(function(){
+		var title = $(this).attr('title');
+		$("#hide"+title).slideToggle("slow");
+	});
 	
+
 });
 </script>
 <body>
@@ -76,20 +82,24 @@ $(function(){
  <c:import url="../../../temp/header.jsp"></c:import>
  
  <div id="blank"></div>
+ <div class="container-fluid">
 
-	<div class="col-centered" style="margin-top: 150px;">
+  <c:import url="../../../temp/sideMenu.jsp"></c:import>
 
-			<table class="table table-hover">
+	<div class="contents col-sm-9">
+
+			<table class="table table-hover" style="width: 1000px;">
 
 
 
 
-		<c:if test="${board eq 'notice'}">
-		<article class="write_1">NOTICE</article>
+		<c:if test="${board eq 'notice'}"> 
+                    <p style="text-align: center; font-size: 20px;margin-bottom: 30px;">NOTICE</p>
+                 
 
-         
+    
 			
-				<tr style="color: white; background-color:#2096BA;">
+				<tr style="color: white; background-color:#2096BA;"> 
 					<td>NUM</td>
 					<td></td>
 					<td>TITLE</td>
@@ -116,7 +126,7 @@ $(function(){
 
 
 				<c:if test="${board eq 'qna'}">
-					<article class="write_1">Q&A</article>
+					<p style="text-align: center; font-size: 20px;margin-bottom: 30px;">Q&A</p>
 					<tr style="color: white; background-color: #2096BA;">
 						<td>NUM</td>
 						<td>TITLE</td>
@@ -124,7 +134,7 @@ $(function(){
 						<td>DATE</td>
 						<td>HIT</td>
 					</tr>
-					<c:forEach items="${requestScope.list}" var="dto">
+					<c:forEach items="${requestScope.list}" var="dto" varStatus="count">
 
 						<tr>
 
@@ -133,14 +143,27 @@ $(function(){
 							<td><c:catch>
 			 						<c:forEach begin="0" end="${dto.depth-1}">
 			                            <img alt="" src="../img/reply.gif">
-			</c:forEach>
+		                   </c:forEach>
 								</c:catch> 
+								
 								<!-- 관리자면 그냥보기, 회원이면 pw입력 페이지로 이동 --> 
 								<c:if test="${dto.opencheck eq 'hide'}">
-	                    <a href="./qnaPwCheck.qna?num=${dto.num}">
-										<img alt="" src="../img/자물쇠.gif"> ${dto.title}
-									</a>
-								</c:if> <c:if test="${dto.opencheck eq 'open'}">
+	              <span class="pw" title="${count.count}"><img alt="" src="../img/자물쇠.gif"> ${dto.title}</span>
+	             
+	              
+	              <div id="hide${count.count}" style="display: none; margin-top: 10px;">
+	             <form action="./qnaPwCheck.qna" method="post">
+                  <input type="hidden" name="num" value="${dto.num}">
+               <p><input id="password" type="password" name="password" placeholder="비밀번호 입력">
+              <button class="btn btn-default">확인</button></p>
+                     
+                  </form>
+	              </div>
+								</c:if>
+								
+								
+								
+								 <c:if test="${dto.opencheck eq 'open'}">
 									<a
 										href="./qnaView.qna?num=${dto.num}&&opencheck=${dto.opencheck}">${dto.title}</a>
 								</c:if></td>
@@ -169,27 +192,22 @@ $(function(){
 
       <!-- 페이징 처리 -->
 			<div class="w3-bar">
-				 <c:if test="${page.curBlock>1}"> 
-					
-						<a href="./${requestScope.board}List.${requestScope.board}?curPage=${requestScope.page.StartNum==1}" class="w3-button">«</a>
-					</c:if> 
+				
 					
 					<c:if test="${page.curBlock>1}">
 					
-						<a href="./${requestScope.board}List.${requestScope.board}?curPage=${requestScope.page.StartNum-1}" class="w3-button">«</a>
+						<a href="./${board}List.${board}?curPage=${page.startNum-1}" class="w3-button">«</a>
 					</c:if>
 
 					<c:forEach begin="${page.startNum}" end="${page.lastNum}" var="i">
-						<a href="./${requestScope.board}List.${requestScope.board}?curPage=${i}" class="w3-button">${i}</a>
+						<a href="./${board}List.${board}?curPage=${i}" class="w3-button">${i}</a>
 					</c:forEach>
 
 					<c:if test="${page.curBlock < page.totalBlock}">
-						<a	href="./${requestScope.board}List.${requestScope.board}?curPage=${requestScope.page.lastNum+1}" class="w3-button">»</a>
+						<a	href="./${board}List.${board}?curPage=${page.lastNum+1}" class="w3-button">»</a>
 					</c:if>
 					
-					<c:if test="${page.curBlock < page.totalBlock}">
-						<a	href="./${requestScope.board}List.${requestScope.board}?curPage=${requestScope.page.lastNum}" class="w3-button">»</a>
-					</c:if>
+					
 
 			
 
@@ -201,7 +219,7 @@ $(function(){
 			<img alt="" src="../images/main/write.png" style="width: 80px; height: 30px;"></a>
 	</div>
   
- 
+ </div>
 
  <c:import url="../../../temp/footer.jsp"></c:import> 
  </div>

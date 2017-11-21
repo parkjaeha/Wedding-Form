@@ -38,8 +38,9 @@ public class ReviewListService implements Action {
 	
 		int totalCount;
 		try {
-			totalCount=reviewDAO.getTotalCount(tableSearch);
+			totalCount=reviewDAO.getTotalCount(tableSearch,type);
 			PageMaker pageMaker=new PageMaker(curPage, totalCount);
+			System.out.println("totalCount : "+totalCount);
 			List<BoardDTO> ar=reviewDAO.selectList(pageMaker.getMakeRow(), tableSearch, type);
 			
 			if(type.equals("wedding_hall")) {

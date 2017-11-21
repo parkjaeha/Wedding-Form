@@ -16,6 +16,30 @@ import com.weddingform.util.TableSearch;
 
 public class ReviewDAO implements BoardDAO{
 	
+/*	public static void main(String [] args) {
+		ReviewDAO reviewDAO = new ReviewDAO();
+		ReviewDTO reviewDTO = new ReviewDTO();
+		for(int i=1;i<40;i++) {
+			reviewDTO.setWriter("min"+i);
+			reviewDTO.setTitle("minTitle"+i);
+			reviewDTO.setContents("minContents"+i);
+			reviewDTO.setType("invitation");
+				try {
+					reviewDAO.insert(reviewDTO);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}
+			
+		}*/
+	
+	
+	
+	
+	
+	
 	/*public static void main(String[] args) throws Exception {
 		TableSearch tableSearch = new TableSearch();
 		tableSearch.setKind("title");
@@ -24,13 +48,18 @@ public class ReviewDAO implements BoardDAO{
 		int result = new ReviewDAO().getTotalCount(tableSearch);
 		System.out.println(result);
 	}*/
-
 	@Override
 	public int getTotalCount(TableSearch tableSearch) throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public int getTotalCount(TableSearch tableSearch, String type) throws Exception {
 		Connection con=DBConnector.getConnect();
-		String sql="select nvl(count(num),0) from review where "+tableSearch.getKind()+" like ?";
+		String sql="select nvl(count(num),0) from review where type=? and "+tableSearch.getKind()+" like ?";
 		PreparedStatement st=con.prepareStatement(sql);
-		st.setString(1, "%"+tableSearch.getSearch()+"%");
+		st.setString(1, type);
+		st.setString(2, "%"+tableSearch.getSearch()+"%");
 		ResultSet rs=st.executeQuery();
 		rs.next();
 		int result=rs.getInt(1);
@@ -186,4 +215,6 @@ public class ReviewDAO implements BoardDAO{
 		DBConnector.disConnect(rs, st, con);
 		return ar;
 	}
+
+	
 }

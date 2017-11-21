@@ -24,7 +24,7 @@ public class QnaReplyService implements Action {
 			qnaDTO.setNum(Integer.parseInt(request.getParameter("num")));
 			qnaDTO.setTitle(request.getParameter("title"));
 			qnaDTO.setWriter(request.getParameter("writer"));
-			qnaDTO.setContents(request.getParameter("smarteditor"));
+			qnaDTO.setContents(request.getParameter("contents"));
 			qnaDTO.setOpencheck(request.getParameter("opencheck"));
 			qnaDTO.setPassword(request.getParameter("password"));
 			

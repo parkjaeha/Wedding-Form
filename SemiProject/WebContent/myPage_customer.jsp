@@ -25,6 +25,14 @@ text-decoration: none;
 }
 
 </style>
+<script type="text/javascript">
+$(function(){
+	$("#add").click(function(){
+		$("#hidden").slideToggle("slow");
+	});
+});
+
+</script>
 <body>
 <!--주소 확인할것  -->
 
@@ -34,83 +42,68 @@ text-decoration: none;
 <!-- Page Container -->
 <div class="w3-content w3-margin-top" style="max-width:1200px; margin : 0 auto;margin-bottom: 100px;">
 <p> <a onclick="openNav()">My Page</a></p>
-
+  <!-- The Grid -->
 				<div class="w3-container w3-card w3-white w3-margin-bottom" style="margin-top: 100px;">
-					<h2 class="w3-text-grey w3-padding-16">내 정보</h2>
-					<div class="w3-container">
+					<h2 class="w3-text-grey w3-padding-16">My Page</h2>
+<div class="w3-container"> <h6 class="w3-text-grey">
+<i class="fa fa-arrow-right fa-fw w3-margin-right w3-text-light-blue"></i>ID</h6><hr></div>
+					
+					
+<div class="w3-container"><h6 class="w3-text-grey">
+<i class="fa fa-arrow-right fa-fw w3-margin-right w3-text-light-blue"></i>NAME</h6><hr></div>
+					
+					
+<div class="w3-container"><h6 class="w3-text-grey">
+<i class="fa fa-arrow-right fa-fw w3-margin-right w3-text-light-blue"></i>TEL</h6><hr></div>
+	
+<div class="w3-container"><h6 class="w3-text-grey">
+<i class="fa fa-arrow-right fa-fw w3-margin-right w3-text-light-blue"></i>ADDRESS</h6><hr></div>					
+					
+<div class="w3-container"><h6 class="w3-text-grey">
+<i class="fa fa-arrow-right fa-fw w3-margin-right w3-text-light-blue"></i>MAIL</h6><hr></div>
 
-						<h6 class="w3-text-grey">
-							<i
-								class="fa fa-arrow-right fa-fw w3-margin-right w3-text-light-blue"></i>
-							ID
-						</h6>
+<div class="w3-container"><h6 class="w3-text-grey">
+<i class="fa fa-arrow-right fa-fw w3-margin-right w3-text-light-blue"></i>사업자 번호</h6><hr></div>
+<div class="w3-container" ><h6 class="w3-text-grey" id="add">
+<i class="fa fa-plus fa-fw w3-margin-right w3-text-light-blue"></i>추가 정보</h6><hr></div>
 
-						<hr>
-					</div>
-					<div class="w3-container">
 
-						<h6 class="w3-text-grey">
-							<i
-								class="fa fa-arrow-right fa-fw w3-margin-right w3-text-light-blue"></i>
-							NAME
-						</h6>
+<div id="hidden" style="display: none;">
 
-						<hr>
-					</div>
-					<div class="w3-container">
+<div class="w3-container"><h6 class="w3-text-grey">
+<i class="fa fa-arrow-right fa-fw w3-margin-right w3-text-light-blue"></i>지역</h6><hr></div>
+				
+				
+<div class="w3-container"><h6 class="w3-text-grey">
+<i class="fa fa-arrow-right fa-fw w3-margin-right w3-text-light-blue"></i>웨딩 타입</h6><hr></div>
 
-						<h6 class="w3-text-grey">
-							<i
-								class="fa fa-arrow-right fa-fw w3-margin-right w3-text-light-blue"></i>
-							PASSWORD
-						</h6>
+<div class="w3-container"><h6 class="w3-text-grey">
+<i class="fa fa-arrow-right fa-fw w3-margin-right w3-text-light-blue"></i>식사 가격</h6><hr></div>
 
-						<hr>
-					</div>
-					<div class="w3-container">
+<div class="w3-container"><h6 class="w3-text-grey">
+<i class="fa fa-arrow-right fa-fw w3-margin-right w3-text-light-blue"></i>식사 메뉴</h6><hr></div>
 
-						<h6 class="w3-text-grey">
-							<i
-								class="fa fa-arrow-right fa-fw w3-margin-right w3-text-light-blue"></i>
-							ADDRESS
-						</h6>
+<div class="w3-container"><h6 class="w3-text-grey">
+<i class="fa fa-arrow-right fa-fw w3-margin-right w3-text-light-blue"></i>최대 수용 인원</h6><hr></div>				
+				
+<div class="w3-container"><h6 class="w3-text-grey">
+<i class="fa fa-arrow-right fa-fw w3-margin-right w3-text-light-blue"></i>인근 지하철</h6><hr></div>
 
-						<hr>
-					</div>
+<div class="w3-container"><h6 class="w3-text-grey">
+<i class="fa fa-arrow-right fa-fw w3-margin-right w3-text-light-blue"></i>Hall 가격</h6><hr></div>				
 
-					<div class="w3-container">
-
-						<h6 class="w3-text-grey">
-							<i
-								class="fa fa-arrow-right fa-fw w3-margin-right w3-large w3-text-light-blue"></i>PHONE
-						</h6>
-
-						<hr>
-					</div>
-
-					<div class="w3-container">
-
-						<h6 class="w3-text-grey">
-							<i
-								class="fa fa-arrow-right fa-fw w3-margin-right w3-large w3-text-light-blue"></i>
-							E-MAIL
-						</h6>
-
-						<br>
-					</div>
-				</div>
-				<button
-					class="w3-btn w3-white w3-border w3-border-blue w3-round-large">정보
-					수정</button>
-				<button
-					class="w3-btn w3-white w3-border w3-border-blue w3-round-large">회원
-					탈퇴</button>
+			
+				
+</div>				
+				
+</div>
+<button class="w3-btn w3-white w3-border w3-border-blue w3-round-large">정보 수정</button>
+<button class="w3-btn w3-white w3-border w3-border-blue w3-round-large">회원 탈퇴</button>
 
 
 
 			</div>
 
-</div>
 <c:import url="./temp/footer.jsp"></c:import>
 </div>
 </body>

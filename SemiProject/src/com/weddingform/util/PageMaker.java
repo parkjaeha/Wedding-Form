@@ -1,8 +1,9 @@
-package com.weddingform.util;
+package com.weddingform.util ;
 
 //page 만들기
 
 public class PageMaker {
+	
 	private int curPage;
 	private int perPage;
 	private int totalCount;

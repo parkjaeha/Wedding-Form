@@ -82,7 +82,7 @@
 <!-- header -->
 <nav  class="navbar navbar-inverse" 
 style="margin-bottom: 0px; background-color:white; border:0; 
-position: fixed; top: 0; z-index: 3; width: 100%; border-bottom:5px solid #2096BA;">
+position: fixed; top: 0; z-index: 3; width: 100%; border-bottom:3px solid #2096BA;">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">

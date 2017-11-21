@@ -20,7 +20,7 @@ public class QnaWriteService implements Action {
 			QnaDTO qnaDTO=new QnaDTO();
 			qnaDTO.setTitle(request.getParameter("title"));
 			qnaDTO.setWriter(request.getParameter("writer"));
-			qnaDTO.setContents(request.getParameter("smarteditor"));
+			qnaDTO.setContents(request.getParameter("contents"));
 			qnaDTO.setOpencheck(request.getParameter("opencheck"));
 			qnaDTO.setPassword(request.getParameter("password"));
 			

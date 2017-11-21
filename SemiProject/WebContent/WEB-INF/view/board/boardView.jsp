@@ -59,9 +59,10 @@ $(function(){
 </script>
 <style type="text/css">
 .contents{
-	float: none;
-	width:1200px;
+	float: left;
+	width:1000px;
 	margin: 0 auto;
+	margin-top :150px;
 	margin-bottom: 100px;
 	
 }
@@ -71,19 +72,9 @@ width: 50;
 height: 100px;
 
 }
-.write_1{
-	
-	height: 34px;
-	margin: 0 auto;
-	text-align: center;
-}
 
-.write_2{
-    width: 70px;
-	height: 30px;
-	border-top : 1px solid black;
-	margin: 0 auto;
-}
+
+
 #border{
 width : 1100px;
 border-bottom: 1px solid gray;
@@ -95,10 +86,6 @@ text-align: center;
 }
 
 
-.form-control {
-   width: 800px;
-   height: 30px;
-}
 
 
 </style>
@@ -108,11 +95,19 @@ text-align: center;
  <c:import url="../../../temp/header.jsp"></c:import>
  	<div class=blank></div>
  		
-<div class="contents container">
-<article class="write_1">${board}</article>
-  <article class="write_2"></article>
+ 		<div class="container-fluid">
 
+  <c:import url="../../../temp/sideMenu.jsp"></c:import>
+ 		
+<div class="contents">
 
+ <c:if test="${board eq 'notice' }">
+ <p style="text-align: center; font-size: 20px; margin-bottom: 10px;">NOTICE</p>
+ </c:if>		
+
+ <c:if test="${board eq 'qna' }">
+ <p style="text-align: center; font-size: 20px; margin-bottom: 10px;">Q&A</p>
+ </c:if>
 
   <div class="panel panel-default">
     <div id="t" class="panel-body">${view.title}</div>
@@ -134,7 +129,7 @@ text-align: center;
 	
 	
 	
-		<div class=blank></div>
+		
 	
 	
 	
@@ -147,10 +142,14 @@ text-align: center;
 <!--글쓴이만  -->
 	<a href="./${board}Update.${board}?num=${view.num}">
 	<img alt="" src="../images/main/update.png" style="width: 80px; height: 30px;"></a>
+	
+	<!-- NOTICE -->
 	<c:if test="${board eq 'notice'}" >
 	<a href="./${board}Delete.${board}?num=${view.num}">
 	<img alt="" src="../images/main/delete.png" style="width: 80px; height: 30px;"></a>
 	</c:if>
+	
+	<!--Q&A  -->
 	<c:if test="${board eq 'qna'}" >
 	<a href="./${board}Delete.${board}?ref=${view.ref}">
 	<img alt="" src="../images/main/delete.png" style="width: 80px; height: 30px;"></a>
@@ -176,7 +175,7 @@ text-align: center;
 
          <p><input type="text" name="title" class="form-control" placeholder="제목"></p>
          
-         <textarea name="smarteditor" id="smarteditor" rows="10" cols="100"
+         <textarea name="contents" id="smarteditor" rows="10" cols="100"
             style="width: 800px; height: 312px;"></textarea>
             <div id="blank"></div>
          <input type="submit" class="btn btn-default" id="savebutton" value="글쓰기" />
@@ -188,6 +187,7 @@ text-align: center;
 
 	
 	
+</div>
 </div>
  <c:import url="../../../temp/footer.jsp"></c:import>
  </div>
