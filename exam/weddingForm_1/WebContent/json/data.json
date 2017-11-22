@@ -1,4 +1,4 @@
-var data = { "count": 19,
+{ "count": 19,
  "weddings": [{"ID":"ID 11","wedding_name":"NAME 11","ADDR":"경기도 안산시 단원구 고잔1동 520-2","PHONE":"PHONE 11","MAIL":"MAIL 11","latitude":37.318519,"longitude":126.827269},
 {"ID":"ID 12","wedding_name":"NAME 12","ADDR":"경기도 안산시 단원구 광덕4로 140","PHONE":"PHONE 12","MAIL":"MAIL 12","latitude":37.315121,"longitude":126.827888},
 {"ID":"ID 14","wedding_name":"NAME 14","ADDR":"경기도 안산시 단원구 고잔1길 76 아이스타 컨벤션","PHONE":"PHONE 14","MAIL":"MAIL 14","latitude":37.318470,"longitude":126.841753},

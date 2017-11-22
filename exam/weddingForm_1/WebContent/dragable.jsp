@@ -6,28 +6,42 @@
 <link rel="stylesheet" href="./css/global.css">
 <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet">
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
      
 
 <style>
+	.container {
+		max-width: 630px;
+		margin: auto;
+	}
+	
+	.btn_submit {
+		width: 600px;
+	}
+
     #selectedFiles img {
         max-width: 50px;
         max-height: 50px;
-        float: left;
-        margin-bottom:10px;
     }
     
-      #sortable-8{ list-style-type: none; margin: 0; 
-            padding: 0; width: 25%; float:left;}
-         #sortable-8 > li{ margin: 0 3px 3px 3px; padding: 0.4em; 
-            padding-left: 1.5em; font-size: 17px; height: 16px; }
-         .default {
-            background: #cedc98;
-            border: 1px solid #DDDDDD;
-            color: #333333;
-         }
+	#sortable-9 {
+		display: none;
+	}
+	
+	#show img {
+		margin: 6px;
+	}
+	
+	.default {
+		
+	}
 </style>
 
  
@@ -35,26 +49,26 @@
 </head>
     
 <body>
+    <div class="container">
+	    <form id="myForm" method="post">
+	       <!--  Files: <input type="file" id="files" name="files" multiple><br/> -->
+			<div class="dropzone" id="dropzone" style="width: 600px; height: 300px;"> Drop Files here to upload !non duple!</div>
+	        	<input type="submit" class="btn btn_submit">
+	    </form>
+    </div>
     
-    <form id="myForm" method="post">
-
-       <!--  Files: <input type="file" id="files" name="files" multiple><br/> -->
-	<div class="dropzone" id="dropzone"> Drop Files here to upload !non duple!</div>
+    <div class="container">
+	    <ul id = "sortable-8" class="list-group"></ul>
+		<span id = "sortable-9"></span>
+	</div>
 	
-	      <ul id = "sortable-8">
-   
-		</ul>
-        <input type="submit">
-    </form>
-
- <br>
-      <h3><span id = "sortable-9"></span></h3>
-      
-  <br><br>
-  <br><br>
-      
-      <div class="click">click</div>
-      <div id="show"></div>
+	
+    <div class="container">
+    	<div style="text-align: center;">
+			<i class="click fa fa-angle-double-down" style="font-size:42px"></i>
+    	</div>
+		<div id="show"></div>
+    </div>
 
     <script>
     var selDiv = "";
@@ -119,7 +133,7 @@
           
            for(var i=0; i<(endposition-1); i++){
         	   storedFiles[i] =  storedFiles[i+1];
-        	   console.log(i+" 번 " + endposition);
+        	   console.log(i+" ë² " + endposition);
             }
            storedFiles[(endposition-1)] = temp;
            for(var i=0; i<storedFiles.length; i++){
@@ -142,7 +156,7 @@
         	  }else{
         	  listFiles[i] =  listFiles[i+1];
         	  }
-       	   console.log(i+" 번 " + endposition);
+       	   console.log(i+" ë² " + endposition);
            	}
           }else if(startposition > endposition){
         	   temp = listFiles[startposition];
@@ -152,7 +166,7 @@
             	  }else{
             	  listFiles[i] =  listFiles[i-1];
             	  }
-           	   console.log(i+" 번 " + endposition);
+           	   console.log(i+" ë² " + endposition);
                	}
           }
 //          listFiles[(endposition-1)] = temp;
@@ -239,7 +253,7 @@
 		            
 		            var reader = new FileReader();
 		            reader.onload = function (e) {
-		                html =  "<li id = '"+count+"' class ='default'><img src=\"" + e.target.result +  "\" data-size=\""+f.size+"\"" +  "\" data-file=\""+f.name+"\" data-value='"+count+"' class='selFile' title='Click to remove' width='50px;' height='25px';>" + f.name + "<br clear=\"left\"/></li>";
+		                html =  "<li id = '"+count+"' class ='default list-group-item'><img src=\"" + e.target.result +  "\" data-size=\""+f.size+"\"" +  "\" data-file=\""+f.name+"\" data-value='"+count+"' class='selFile' title='Click to remove' width='50px;' height='25px';>" + f.name + "<br clear=\"left\"/></li>";
 		                selDiv.append(html);
 		                console.log("files name : "+f.name + " 		type : " + f.type  + " 		size : " + f.size  +" count: " + count);
 		                //listFiles.push({name:f.name,type:f.type,size:f.size,count:count,lastModified:f.lastModifiedDate,lastModifiedDate:f.lastModifiedDate.toLocaleDateString()});

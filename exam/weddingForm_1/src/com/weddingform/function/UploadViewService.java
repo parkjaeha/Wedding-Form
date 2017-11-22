@@ -17,7 +17,7 @@ import com.weddingform.upload.UploadDAO;
 import com.weddingform.upload.UploadDTO;
 
 public class UploadViewService implements Action {
-	private String UPLOAD_DIRECTORY = "E:\\eungjin\\workspace\\workspace_jsp\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp1\\wtpwebapps\\weddingForm_1\\uploads";
+	private String UPLOAD_DIRECTORY = "C:\\workspace\\workspace_jsp\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\weddingForm_1\\uploads";
 	
 	@Override
 	public ActionForward doProcess(HttpServletRequest request, HttpServletResponse response) {
