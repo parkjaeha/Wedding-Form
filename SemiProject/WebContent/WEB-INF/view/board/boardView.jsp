@@ -58,6 +58,15 @@ $(function(){
 })
 </script>
 <style type="text/css">
+  /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav2 {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height: auto;} 
+    }
+
 .contents{
 	float: left;
 	width:1000px;
@@ -93,12 +102,35 @@ text-align: center;
 <body>
 	<div id="all">
  <c:import url="../../../temp/header.jsp"></c:import>
- 	<div class=blank></div>
- 		
- 		<div class="container-fluid">
+<div class="container-fluid" style="margin-top: 77px;">
+  
+  
+  <div class="row content">
+    <div class="col-sm-2 sidenav2" >
+      <ul class="nav nav-pills nav-stacked" style="margin-left: 30px;">
+      <li><h3 style="color: gray; margin-top : 50px;">Community</h3></li>
+       <hr style="border: 1px #2096BA solid;">
+       
+       <c:if test="${board eq 'notice'}"> 
+       <li class="active"><a href="${pageContext.request.contextPath}/notice/noticeList.notice">공지사항</a></li>
+       <li><a href="${pageContext.request.contextPath}/qna/qnaList.qna">Q&A</a></li>
+   </c:if>
+  
+   <c:if test="${board eq 'qna'}"> 
+   <li><a href="${pageContext.request.contextPath}/notice/noticeList.notice">공지사항</a></li>
+      <li class="active"><a href="${pageContext.request.contextPath}/qna/qnaList.qna">Q&A</a></li>
+  </c:if>
+       <li><a href="${pageContext.request.contextPath}/report/reportPage.report">신고 하기</a></li>
+       <li><a href="${pageContext.request.contextPath}/review/reviewPage.review">이용 후기</a></li>
+      </ul><br>
+    </div>
 
-  <c:import url="../../../temp/sideMenu.jsp"></c:import>
- 		
+
+
+
+
+    <div class="col-sm-9" style="margin-left:30px;">
+
 <div class="contents">
 
  <c:if test="${board eq 'notice' }">
@@ -186,6 +218,8 @@ text-align: center;
 	</c:if>
 
 	
+	</div>
+	</div>
 	
 </div>
 </div>

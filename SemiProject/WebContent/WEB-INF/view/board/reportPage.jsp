@@ -7,7 +7,7 @@
 <c:import url="../../../temp/ref.jsp"></c:import>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 <style type="text/css">
    @media screen and (max-width: 767px) {
       .sidenav2 {
@@ -52,7 +52,6 @@ margin: 0 auto;
        <hr style="border: 1px #2096BA solid;">
         <li><a href="${pageContext.request.contextPath}/notice/noticeList.notice">공지사항</a></li>
         <li><a href="${pageContext.request.contextPath}/qna/qnaList.qna">Q&A</a></li>
-        <li><a href="#">실시간 상담</a></li>
        <li class="active"><a href="${pageContext.request.contextPath}/report/reportPage.report">신고 하기</a></li>
        <li><a href="${pageContext.request.contextPath}/review/reviewPage.review">이용 후기</a></li>
       </ul><br>

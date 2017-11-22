@@ -28,6 +28,16 @@ margin-top: 100px;
 float: left;
 }
 
+.text{
+margin-top: 30px;
+}
+
+.text a{
+text-decoration: none;
+color: gray;
+}
+
+
 </style>
 
 </head>
@@ -58,7 +68,6 @@ $(function(){
        <hr style="border: 1px #2096BA solid;">
         <li><a href="${pageContext.request.contextPath}/notice/noticeList.notice">공지사항</a></li>
         <li><a href="${pageContext.request.contextPath}/qna/qnaList.qna">Q&A</a></li>
-        <li><a href="#">실시간 상담</a></li>
        <li><a href="${pageContext.request.contextPath}/report/reportPage.report">신고 하기</a></li>
        <li class="active"><a href="${pageContext.request.contextPath}/review/reviewPage.review">이용 후기</a></li>
       </ul><br>
@@ -83,7 +92,7 @@ $(function(){
 
   <div class="tab-content">
     <div id="invitation" class="tab-pane fade in active">
-      <p style="margin-top: 30px;"><a href="./reviewList.review?type=invitation&&curPage=1"> +더 많은 청첩장 후기 보러가기</a></p>
+      <p class="text"><a href="./reviewList.review?type=invitation&&curPage=1"> +더 많은 청첩장 후기 보러가기</a></p>
   <div class="panel panel-default">
     <div class="panel-body">
     <p id="invitation"><img alt="" src="../img/invitation.jpg">  
@@ -106,7 +115,7 @@ $(function(){
     
     
     <div id="wedding" class="tab-pane fade">
-    <p style="margin-top: 30px;"><a href="./reviewList.review?type=wedding_hall&&curPage=1"> +더 많은 웨딩 후기 보러가기</a></p>
+    <p class="text"><a href="./reviewList.review?type=wedding_hall&&curPage=1"> +더 많은 웨딩 후기 보러가기</a></p>
   <div class="panel panel-default">
     <div class="panel-body">
     <p id="wedding_hall"><img alt="" src="../img/wedding_hall.jpg">

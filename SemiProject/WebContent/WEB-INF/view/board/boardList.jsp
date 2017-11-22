@@ -32,6 +32,16 @@ text-align : center;
 
   </style>
 </head>
+<script type="text/javascript">
+$(function(){
+	$(".pw").click(function(){
+		var title = $(this).attr('title');
+		$("#hide"+title).slideToggle("slow");
+	});
+	
+});
+
+</script>
 <body>
 <div id="all">
  <c:import url="../../../temp/header.jsp"></c:import>
@@ -53,7 +63,6 @@ text-align : center;
    <li><a href="${pageContext.request.contextPath}/notice/noticeList.notice">공지사항</a></li>
       <li class="active"><a href="${pageContext.request.contextPath}/qna/qnaList.qna">Q&A</a></li>
   </c:if>
-        <li><a href="#">실시간 상담</a></li>
        <li><a href="${pageContext.request.contextPath}/report/reportPage.report">신고 하기</a></li>
        <li><a href="${pageContext.request.contextPath}/review/reviewPage.review">이용 후기</a></li>
       </ul><br>
@@ -71,7 +80,7 @@ text-align : center;
 
 
 		<c:if test="${board eq 'notice'}"> 
-		<h4 style="text-align: center; margin-top:50px;"><small>NOTICE</small></h4>
+		<h3 style="text-align: center; margin-top:50px;"><small>NOTICE</small></h3>
       <hr>
                  
 				<tr style="color: white; background-color:#2096BA;"> 
@@ -101,7 +110,7 @@ text-align : center;
 
 
 				<c:if test="${board eq 'qna'}">
-					<h4 style="text-align: center; margin-top:50px;"><small>Q&A</small></h4>
+					<h3 style="text-align: center; margin-top:50px;"><small>Q&A</small></h3>
       <hr>
 					<tr style="color: white; background-color: #2096BA;">
 						<td>NUM</td>

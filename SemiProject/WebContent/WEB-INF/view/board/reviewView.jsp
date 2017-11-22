@@ -91,9 +91,27 @@ text-align: center;
 
 <body>
 	<div id="all">
-	
  <c:import url="../../../temp/header.jsp"></c:import>
-<div id="blank"></div>
+<div class="container-fluid" style="margin-top: 77px;">
+  
+  
+  <div class="row content">
+    <div class="col-sm-2 sidenav2" >
+      <ul class="nav nav-pills nav-stacked" style="margin-left: 30px;">
+      <li><h3 style="color: gray; margin-top : 50px;">Community</h3></li>
+       <hr style="border: 1px #2096BA solid;">
+        <li ><a href="${pageContext.request.contextPath}/notice/noticeList.notice">공지사항</a></li>
+        <li><a href="${pageContext.request.contextPath}/qna/qnaList.qna">Q&A</a></li>
+       <li><a href="${pageContext.request.contextPath}/report/reportPage.report">신고 하기</a></li>
+       <li class="active"><a href="${pageContext.request.contextPath}/review/reviewPage.review">이용 후기</a></li>
+      </ul><br>
+    </div>
+
+
+
+
+
+    <div class="col-sm-9" style="margin-left:30px;">
 <div class="d container" style="margin-top: 100px;">
 	<article class="write_1">${view.type}</article>
        <article class="write_2"></article>
@@ -148,12 +166,15 @@ text-align: center;
 	
 <!-- 댓글 -->
 <div id="result" class="list-group-item"></div>
+
 	</div>
 </div>
 
 
 	
-
+</div>
+</div>
+</div>
 	
  </div>
  <c:import url="../../../temp/footer.jsp"></c:import>

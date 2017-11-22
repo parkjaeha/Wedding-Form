@@ -4,4 +4,10 @@ package com.weddingform.memo;
 
 public class MemoDAO {
 
+	
+	//list
+	
+	//delete
+	
+	//insert
 }
