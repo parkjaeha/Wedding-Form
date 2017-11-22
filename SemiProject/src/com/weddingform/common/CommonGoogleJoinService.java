@@ -7,18 +7,35 @@ import javax.servlet.http.HttpSession;
 import com.weddingform.action.Action;
 import com.weddingform.action.ActionForward;
 
-public class CommonLoginService implements Action {
+public class CommonGoogleJoinService implements Action {
 
 	@Override
 	public ActionForward doProcess(HttpServletRequest request, HttpServletResponse response) {
 		ActionForward actionFoward = new ActionForward();
 		String method = request.getMethod();
-		System.out.println("login service");
+		System.out.println("googlelogin service");
 		if(method.equals("GET")) {
-			request.setAttribute("result", "login");
-			actionFoward.setCheck(true);
-			actionFoward.setPath("../WEB-INF/view/common/commonLogin.jsp");
-
+			
+			String type = request.getParameter("type");
+			CommonDAO commonDAO = new CommonDAO();
+			boolean result = false;
+			String id = request.getParameter("id");
+			System.out.println("id: " +id);
+			
+			if(type.equals("google_signup")) {
+				System.out.println("google_signup");
+				try {
+				 result = commonDAO.idCheck(id);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				request.setAttribute("result", result);
+				actionFoward.setCheck(true);
+				actionFoward.setPath("../WEB-INF/view/common/commonAuthResponse.jsp");
+				
+			}
+			
 		}else {
 			HttpSession session = request.getSession();
 			CommonDAO commonDAO= new CommonDAO();
@@ -42,7 +59,7 @@ public class CommonLoginService implements Action {
 				actionFoward.setCheck(true);
 				actionFoward.setPath("../main.jsp");
 			}else {
-				request.setAttribute("message", "Î°úÍ∑∏Ïù∏ Ïã§Ìå®");
+				request.setAttribute("message", "∑Œ±◊¿Œ Ω«∆–");
 				request.setAttribute("path", "../index.jsp");
 				actionFoward.setCheck(true);
 				actionFoward.setPath("../WEB-INF/view/common/result.jsp");

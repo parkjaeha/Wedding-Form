@@ -14,6 +14,7 @@ public class CommonBusinessService implements Action {
 		ActionForward actionFoward = new ActionForward();
 		String method = request.getMethod();
 
+		System.out.println("Business");
 		if(method.equals("GET")) {
 			actionFoward.setCheck(true);
 			actionFoward.setPath("../WEB-INF/view/common/commonBusiness.jsp");

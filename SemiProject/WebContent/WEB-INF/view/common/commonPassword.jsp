@@ -174,7 +174,10 @@ $(function(){
 	$(".passChange").hide();
 	$("#success-alert").hide();
 	$("#btn_auth").hide();
-	 	
+	$("#input_email").css("color","green"); 
+	$("#input_eauth").css("color","black");
+	$("#change_pass").css("color","black");
+	
 	/* 이메일 발송 */
 	$("#btn_auth").click(function(){			
 	var email = $("#email").val().trim();
@@ -199,6 +202,9 @@ $(function(){
  				alert("인증번호가 전송되었습니다. 이메일을 확인해주세요.");
  				$(".email_form").hide();
  				$(".auth_form").show();
+ 				$("#input_email").css("color","black");
+ 				$("#input_eauth").css("color","green");
+ 				$("#change_pass").css("color","black");
  				
  			}else{
  				alert("이메일이 발송되지 않았습니다. 다시 시도해주세요.");	
@@ -235,7 +241,9 @@ $(function(){
 	 				alert("인증 성공");
 					$(".auth_form").hide();
 					$(".passChange").show();
-					
+					$("#input_email").css("color","black");
+	 				$("#input_eauth").css("color","black");
+	 				$("#change_pass").css("color","green");
 				
 	 			}else{
 	 				alert("인증 실패");	
@@ -337,7 +345,7 @@ $(function(){
 		
 		
 <div class="signUp" id="signupForm">
-   <h1 class="signUpTitle">For got Password</h1>
+   <h1 style="font-size: 12px; display: inline-block;"  class="signUpTitle"><div style="display: inline-block;" id="input_email">이메일 입력</div> > <div style="display: inline-block;" id="input_eauth">본인 확인</div> > <div style="display: inline-block;" id="change_pass">비밀번호 변경</div></h1>
    
    <div class="email_form">
    <input type="text" class="signUpInput" placeholder="이메일 입력" id="email" name="email" autofocus required>

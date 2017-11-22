@@ -14,6 +14,7 @@ public class CommonCustomerService implements Action {
 		ActionForward actionFoward = new ActionForward();
 		String method = request.getMethod();
 
+		System.out.println("Customer");
 		if(method.equals("GET")) {
 			actionFoward.setCheck(true);
 			actionFoward.setPath("../WEB-INF/view/common/commonCustomer.jsp");

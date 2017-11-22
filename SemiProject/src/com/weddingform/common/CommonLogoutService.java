@@ -15,7 +15,7 @@ public class CommonLogoutService implements Action {
 	public ActionForward doProcess(HttpServletRequest request, HttpServletResponse response) {
 		ActionForward actionFoward = new ActionForward();
 		String method = request.getMethod();
-
+		System.out.println("logout");
 		if(method.equals("GET")) {
 			HttpSession session = request.getSession();
 			System.out.println("session: " + session);

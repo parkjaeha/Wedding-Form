@@ -97,13 +97,13 @@
         <li><a href="${pageContext.request.contextPath}/main.jsp"><span class="glyphicon glyphicon-home"></span> HOME</a></li>
         <li><a href="#" onclick="openNav()"><span class="glyphicon glyphicon-menu-hamburger"></span> MENU</a></li>
         <li><a href="./index.jsp"><span class="glyphicon glyphicon-briefcase"></span> ABOUT</a></li>
-        <li><a href="./common/commonJoin.common"><span class="glyphicon glyphicon-user"></span> JOIN</a></li>
+        <li><a href="./common/commonJoinUp.common"><span class="glyphicon glyphicon-user"></span> JOIN</a></li>
         
         <c:if test="${empty sessionScope.common}">
 	 <li><a href="./common/commonLogin.common"><span class="glyphicon glyphicon-log-in"></span> LOGIN</a></li>
 </c:if>
 <c:if test="${not empty sessionScope.common}">
-	   <li><a href="./common/commonLogin.common"><span class="glyphicon glyphicon-log-in"></span> LOGOUT</a></li></c:if>
+	   <li><a href="${pageContext.request.contextPath}/common/commonLogout.common"><span class="glyphicon glyphicon-log-in"></span> LOGOUT</a></li></c:if>
       </ul>
 
     </div>

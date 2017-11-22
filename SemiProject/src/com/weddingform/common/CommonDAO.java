@@ -99,13 +99,13 @@ public class CommonDAO {
 			}
 			PreparedStatement st = con.prepareStatement(sql);
 			
-			System.out.println("Data: " + data +" type: "+ type);
+			System.out.println(" selectCheck -- Data: " + data +" type: "+ type);
 			st.setString(1, data);
 			
 			ResultSet rs = st.executeQuery();
 			if(rs.next()) {
-				commonDTO.setName(rs.getString("id"));
-				commonDTO.setAddr(rs.getString("addr"));
+				commonDTO.setId(rs.getString("id"));
+				commonDTO.setName(rs.getString("addr"));
 				commonDTO.setPhone(rs.getString("phone"));
 				commonDTO.setMail(rs.getString("email"));				
 			}else {

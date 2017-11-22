@@ -7,7 +7,6 @@ import javax.servlet.http.HttpSession;
 import com.weddingform.action.Action;
 import com.weddingform.action.ActionForward;
 
-//회원 정보 ID check 서비스
 
 public class CommonIdCheckService implements Action {
 
@@ -19,7 +18,6 @@ public class CommonIdCheckService implements Action {
 		if(method.equals("POST")) {
 			CommonDAO commonDAO = new CommonDAO();
 			boolean result = false;
-			
 			String id = request.getParameter("id");
 			
 			try {

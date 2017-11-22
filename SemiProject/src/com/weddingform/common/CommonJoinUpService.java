@@ -2,6 +2,7 @@ package com.weddingform.common;
 
 import java.sql.Connection;
 
+
 import javax.servlet.http.HttpServletRequest;
 
 import javax.servlet.http.HttpServletResponse;
@@ -23,11 +24,11 @@ public class CommonJoinUpService implements Action {
 	public ActionForward doProcess(HttpServletRequest request, HttpServletResponse response) {
 		ActionForward actionFoward = new ActionForward();
 		String method = request.getMethod();
-
+		System.out.println("Join");
 		if(method.equals("GET")) {
-
+			request.setAttribute("result", "join");
 			actionFoward.setCheck(true);
-			actionFoward.setPath("../WEB-INF/view/common/commonJoin.jsp");
+			actionFoward.setPath("../WEB-INF/view/common/commonLogin.jsp");
 
 		}else {
 
@@ -51,7 +52,7 @@ public class CommonJoinUpService implements Action {
 			
 			String job = request.getParameter("job");
 			String id = request.getParameter("id");
-			String pw = request.getParameter("pw");
+			String pw = request.getParameter("password");
 			String name = request.getParameter("name");
 			String addr_main = request.getParameter("addr_main");
 			String addr_sub = request.getParameter("addr_sub");
@@ -75,14 +76,10 @@ public class CommonJoinUpService implements Action {
 			String hall_name = "";
 			
 			
-		
+			System.out.println("job: " +job);
 			int result1 = 0,result2=0, result3=0;
 			
-			if(job.equals("on")) {
-				job="Customer";
-			}else {
-				job="Business";
-			}
+			
 		System.out.println("id: " +id+" pw: "+pw+" name: "+name);
 			commonDTO.setId(id);
 			commonDTO.setPw(pw);
@@ -92,15 +89,14 @@ public class CommonJoinUpService implements Action {
 			commonDTO.setPhone(phone);
 			commonDTO.setMail(email+"@"+email_sub);
 			
-			extraDTO.setId(id);
-			extraDTO.setRegion(region);
-			extraDTO.setType(type);
-			extraDTO.setMeal_cost(meal_cost);
-			extraDTO.setMeal_menu(meal_menu);
-			extraDTO.setVisitor(visitor);
-			extraDTO.setSubway(subway);
-			extraDTO.setHall_cost(hall_cost);
-			extraDTO.setHall_name(hall_name);
+			 region = request.getParameter("sido1") +" "+ request.getParameter("gugun1");	 
+			 type = request.getParameter("type");
+			 meal_cost = request.getParameter("meal_cost");
+			 meal_menu = request.getParameter("meal_menu");
+			 visitor = request.getParameter("visitor");
+			 subway = request.getParameter("subway01")+" "+request.getParameter("subway02");
+			 hall_cost = request.getParameter("hall_cost");
+			 hall_name = request.getParameter("hall_name");
 			
 			
 			try {
@@ -142,20 +138,14 @@ public class CommonJoinUpService implements Action {
 			company_tel = request.getParameter("company_tel");
 			company_number = request.getParameter("company_number");
 			
-			 region = request.getParameter("region");
-			 type = request.getParameter("type");
-			 meal_cost = request.getParameter("meal_cost");
-			 meal_menu = request.getParameter("meal_menu");
-			 visitor = request.getParameter("visitor");
-			 subway = request.getParameter("subway");
-			 hall_cost = request.getParameter("hall_cost");
-			 hall_name = request.getParameter("hall_name");
+		
 			
+			 System.out.println("region: " +region + " type: "+ type + " meal_cost: "+ meal_cost + "meal_menu: " + meal_menu+ "visitor: "+ visitor +" subway: "+ subway);
+			 
 			companyDTO.setId(id);
 			companyDTO.setCompany_name(company_name);
 			companyDTO.setCompany_tel(company_tel);
 			companyDTO.setCompany_number(company_number);
-			
 			
 				try {
 					result2 = companyDAO.insert(companyDTO, con);
@@ -165,13 +155,26 @@ public class CommonJoinUpService implements Action {
 				}
 			}
 			
+			extraDTO.setId(id);
+			extraDTO.setRegion(region);
+			extraDTO.setType(type);
+			extraDTO.setMeal_cost(meal_cost);
+			extraDTO.setMeal_menu(meal_menu);
+			extraDTO.setVisitor(visitor);
+			extraDTO.setSubway(subway);
+			extraDTO.setHall_cost(hall_cost);
+			extraDTO.setHall_name(hall_name);
+			
 			try {
+
+				 System.out.println("region: " +extraDTO.getRegion() + " type: "+ extraDTO.getType() + " meal_cost: "+ extraDTO.getHall_cost() + "meal_menu: " + extraDTO.getMeal_menu()+ "visitor: "+ visitor +" subway: "+ subway);
+				
 				result3 = extraDAO.insert(extraDTO, con);
+				System.out.println("extra success");
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
 			
 			System.out.println("result: "+ result1 + "result2:" + result2+ "result3:" + result3);
 			
@@ -179,7 +182,7 @@ public class CommonJoinUpService implements Action {
 				actionFoward.setCheck(true);
 				actionFoward.setPath("../WEB-INF/view/common/commonLogin.jsp");
 			}else {
-				request.setAttribute("message", "�쉶�썝媛��엯 �떎�뙣");
+				request.setAttribute("message", "join success");
 				actionFoward.setCheck(true);
 				actionFoward.setPath("../WEB-INF/view/common/result.jsp");
 			}

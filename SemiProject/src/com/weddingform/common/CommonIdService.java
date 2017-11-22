@@ -106,7 +106,7 @@ public class CommonIdService implements Action {
 				}
 				*/
 				
-				//System.out.println("�씤利앸쾲�샇 諛쒖넚");
+				
 				if(result.equals("success")){
 					request.setAttribute("result", check);
 					actionFoward.setCheck(true);
@@ -125,14 +125,14 @@ public class CommonIdService implements Action {
 			}else if(type.equals("auth")) {
 				String auth = request.getParameter("auth");
 				if(auth.equals(Integer.toString(random))) {
-					//System.out.println("�씤利앹꽦怨�");
+				
 					request.setAttribute("result", true);
 					actionFoward.setCheck(true);
 					actionFoward.setPath("../WEB-INF/view/common/commonAuthResponse.jsp");
 					System.out.println("success");
 					
 				}else {
-					//System.out.println("�씤利앹떎�뙣");
+			
 					request.setAttribute("result", false);
 					actionFoward.setCheck(true);
 					actionFoward.setPath("../WEB-INF/view/common/commonAuthResponse.jsp");
@@ -142,14 +142,14 @@ public class CommonIdService implements Action {
 			}else if(type.equals("pauth")) {
 				String auth = request.getParameter("phone_auth");
 				if(auth.equals(Integer.toString(random))) {
-					//System.out.println("�씤利앹꽦怨�");
+					
 					request.setAttribute("result", true);
 					actionFoward.setCheck(true);
 					actionFoward.setPath("../WEB-INF/view/common/commonAuthResponse.jsp");
 					System.out.println("success");
 					
 				}else {
-					//System.out.println("�씤利앹떎�뙣");
+	
 					request.setAttribute("result", false);
 					actionFoward.setCheck(true);
 					actionFoward.setPath("../WEB-INF/view/common/commonAuthResponse.jsp");
@@ -190,7 +190,8 @@ public class CommonIdService implements Action {
 					e.printStackTrace();
 				}
 				result1 = commonDTO.getId();
-				result1 = result1.substring(0, result1.length()-3)+"xxx";
+				System.out.println("result id : " + result1);
+				//result1 = result1.substring(0, result1.length()-3)+"xxx";
 				request.setAttribute("result", result1);
 				actionFoward.setCheck(true);
 				actionFoward.setPath("../WEB-INF/view/common/commonauth_result.jsp");	
@@ -204,7 +205,7 @@ public class CommonIdService implements Action {
 					e.printStackTrace();
 				}
 				result1 = commonDTO.getId();
-				result1 = result1.substring(0, result1.length()-3)+"xxx";
+				//result1 = result1.substring(0, result1.length()-3)+"xxx";
 				request.setAttribute("result", result1);
 				actionFoward.setCheck(true);
 				actionFoward.setPath("../WEB-INF/view/common/commonauth_result.jsp");	

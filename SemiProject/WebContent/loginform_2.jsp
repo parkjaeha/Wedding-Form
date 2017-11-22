@@ -528,6 +528,34 @@ body {
   margin: 0;
   font-size: 1rem;
 }
+//////////////////////////////////////////////
+
+
+.signUpInput {
+   width: 100%;
+   height: 50px;
+   margin-bottom: 25px;
+   padding: 0 15px 2px;
+   font-size: 17px;
+   background: white;
+   border: 2px solid #EBEBEB;
+   border-radius: 4px;
+   -webkit-box-shadow: inset 0 -2px #EBEBEB;
+   box-shadow: inset 0 -2px #EBEBEB;
+}
+
+.signUpInput:focus {
+   border-color: #62C2E4;
+   outline: none;
+   -webkit-box-shadow: inset 0 -2px #62C2E4;
+   box-shadow: inset 0 -2px #62C2E4;
+}
+
+.lt-ie9 .signUpInput {
+   line-height: 48px;
+}
+
+
 
 ///////////////////////////////////////////////////
 .onoffswitch {
@@ -602,7 +630,7 @@ function onSignIn(googleUser){
 	$(".data").css("display","block");
 	$("#pic").attr('src',profile.getImageUrl());
 	$("#email").text(profile.getEmail());
-	
+
 }
 
 function signOut(){
@@ -633,20 +661,20 @@ function signOut(){
 				                 <span class="tab prev"><a href="#signup"> << </a></span>
 				            <span class="tab next"><a href="#signup"> >></a></span>
 				            
+				            
 			        </div>
 			        <div class="content">
 				            <div class="signin-cont cont">
-					                <form action="#" method="post" enctype="multipart/form-data">
+					                <form  action="./common/commonLogin.common" method="post">
 						                    <input type="text" name="id" id="id" class="inpt" required="required" placeholder="Your id">
 						                    <label for="id">Your id</label>
 						                    <input type="password" name="password" id="password" class="inpt" required="required" placeholder="Your password">
                 						    <label for="password">Your password</label>
 						                    <input type="checkbox" id="remember" class="checkbox" checked>
 						                    <label for="remember">Remember me</label>
-						                    <input type="checkbox" id="Customer" class="login_check" checked>
-						                    <label for="Customer">Customer</label>
-						                    <input type="checkbox" id="Business" class="login_check">
-						                    <label for="Business">Business</label>
+						                   <!-- customer business -->
+					customer&nbsp;&nbsp;<input type="checkbox" class="ch" checked="checked" value="Customer" name="job"> 
+					business&nbsp;&nbsp;<input type="checkbox" class="ch" value="Business" name="job"> 
 						                    
 						                    <div class="submit-wrap">
 							                        <input type="submit" value="Sign in" class="submit">
@@ -664,21 +692,22 @@ function signOut(){
         					        </form>
     				        </div>
     				        
-                <form action="#" method="post" enctype="multipart/form-data">
+             <form name="frm" class="form-horizontal"	
+							action="./common/commonJoinUp.common" method="post">
     				        <div class="signup-cont cont">
     				        <span id="result">ID를 입력하세요.</span>
-						                    <input type="text" name="id" id="sign_id" class="inpt" required="required" placeholder="Enter id">
+						                    <input type="text" name="id" id="sign_id" class="inpt signUpInput" required="required" placeholder="Enter id">
 						                    <label for="id">Enter id</label>
-						                    <input type="password" name="password" id="pw1" class="inpt" required="required" placeholder="Enter password">
+						                    <input type="password" name="password" id="pw1" class="inpt signUpInput" required="required" placeholder="Enter password">
                 						    <label for="password">Enter password</label>
-                							<input type="password" name="cpassword" id="pw2" class="inpt" required="required" placeholder="Enter check password">
+                							<input type="password" name="cpassword" id="pw2" class="inpt signUpInput" required="required" placeholder="Enter check password">
                 						    <label for="password_check">Enter check password</label>
-                   							<input type="text" name="name" id="name" class="inpt" required="required" placeholder="Enter name">
+                   							<input type="text" name="name" id="name" class="inpt signUpInput" required="required" placeholder="Enter name">
 						                    <label for="name">Enter name</label>
 						                 	<input type="text"  name="addr_main" id="addr_main" class="inpt postcodify_address" required="required" readonly="readonly" placeholder="press search button">
 						                    <label for="addr">Enter addr_main</label>
 						                    <!-- 주소  -->
-											<input type="text" name="addr_sub" id="addr_sub" class="inpt" required="required" placeholder="Enter detail address">
+											<input type="text" name="addr_sub" id="addr_sub" class="inpt signUpInput" required="required" placeholder="Enter detail address">
 											  <label for="addr">Enter addr_sub</label>
 											   <button type="button" id="postcodify_search_button">검색</button>
 											<!-- 빈칸  -->
@@ -712,13 +741,13 @@ function signOut(){
 										</select>
 										
 		
-											<input type="checkbox" name="sign-cus" id="sign-cus" class="sign_check" >
+										<!-- 	<input type="checkbox" name="sign-cus" id="sign-cus" class="sign_check" >
 						                 <label for="sign-cus"> Customer </label>
 						                    <input type="checkbox" name="sign-bus" id="sign-bus" class="sign_check">
-						                     <label for="sign-bus"> Business </label>
+						                     <label for="sign-bus"> Business </label> -->
 						                     
-cu<input type="radio" id="male" name="gender" class="sign_ch inpt" style="width: 10px; height: 10px;" value="male">
-bu<input type="radio" name="gender" id="female" name="radio" class="sign_ch inpt" style="width: 10px; height: 10px;" value="female">
+cu<input type="radio" id="Customer" name="job" class="sign_ch inpt" style="width: 10px; height: 10px;" value="Customer">
+bu<input type="radio" name="job" id="Business" class="sign_ch inpt" style="width: 10px; height: 10px;" value="Business">
 										
 	
            					 </div>
@@ -987,8 +1016,33 @@ var num = 0;
 		    
     	/* ============================================================================================ */
 		   
+    	
+    	
+    	
+    	$(".sign_ch").change(function(){
+    		
+    		//alert($(this).val());
+    		if ($(this).val() == "Customer") {
+				kind = $(this).attr("value", "Customer").val();
+				$(".require").text("*");
+				$(".require").css("color","black");
+			} else {
+				kind = $(this).attr("value", "Business").val();
+				$(".require").text("*");
+				$(".require").css("color","red");
+			}
+    		
+    		kind = $(this).val();
+   		 
+			$.get("./common/common" + kind + ".common",function(data){
+				$("#add").html(data);
+			});
+    		
+    		
+    	});
+    	
 		   /*---------------------------------- toggle change start ------------------------------------------------ */
-
+/* 
 			$(".ch").on({
 				toggle : function() {
 		
@@ -1005,35 +1059,32 @@ var num = 0;
 						$(".require").css("color","red");
 					}
 					
-					//console.log("change: "+ $(this).val());
-					/* alert($(this).val() +" "+kind); */
 					kind = $(this).val();
 		 
-					/* alert( $(this).attr("value","Student").val());
-					alert($(this).is(':checked')); */
+				
 
 					$.get("./common/common" + kind + ".common",function(data){
 						$("#add").html(data);
 					});
 
 				}
-			});
+			}); */
 
     	
-    	$("#sign-cus").click(function(){
+    /* 	$("#sign-cus").click(function(){
     		$('input:checkbox[name=sign-bus]').css('display','none');
     		alert("hell");
     	});
     	$("#sign-bus").click(function(){
     		
     		$('input:checkbox[name=sign-cus]').attr('checked',false);
-    	});
+    	}); */
     	
     	
 	/*---------------------------------- toggle change end ------------------------------------------------ */
 
 	/*---------------------------------- id 중복확인 start ----------------------------------------------------------*/
-			 $("#id").on({
+			 $("#sign_id").on({
 				change : function() {
 					ch = false;
 				},
@@ -1087,8 +1138,8 @@ var num = 0;
 					
 					//&& !$("email:contains('@')").css("text-decoration", "underline")
 					
-					//alert(document.getElementById('pw1').value.length+" / " +$("#pw1").val());
-					if( ( $("#pw1").val().trim() == $("#pw2").val().trim() ) && document.getElementById('pw1').value.length >=7 ){
+					alert(document.getElementById('pw1').value.length+" / " +$("#pw1").val());
+					if( ( $("#pw1").val().trim() == $("#pw2").val().trim() ) && document.getElementById('pw1').value.length >=8 ){
 					
 					//alert($("#pw1").val() + " / "+$("#pw2").val().trim());
 					if (kind == "Customer") {
@@ -1256,8 +1307,6 @@ var num = 0;
     						$("#timer").css("color","red");
 
     					}
-
-    		 			
     		 		}
     		 		
     		 	}); 
