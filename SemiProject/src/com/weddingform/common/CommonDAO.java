@@ -153,12 +153,36 @@ public class CommonDAO {
 			
 			if(rs.next()) {
 				check =true;
+				System.out.println("이메일 체크 완료");
 			}
 			
 			DBConnector.disConnect(rs, st, con);
 			
 			return check;
 		}
+		
+		// phone check
+				public boolean phoneCheck(String phone) throws Exception{
+					boolean check =false;
+					Connection con = DBConnector.getConnect();
+					
+					String sql = "select * from common where phone=?";
+					
+					PreparedStatement st = con.prepareStatement(sql);
+				
+					st.setString(1, phone);
+					ResultSet rs = st.executeQuery();
+					
+					if(rs.next()) {
+						check =true;
+						System.out.println("핸드폰 체크 완료");
+					}
+					
+					DBConnector.disConnect(rs, st, con);
+					
+					return check;
+				}
+			
 	
 	
 	

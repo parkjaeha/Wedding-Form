@@ -637,8 +637,8 @@ function signOut(){
 			        <div class="content">
 				            <div class="signin-cont cont">
 					                <form action="#" method="post" enctype="multipart/form-data">
-						                    <input type="email" name="email" id="email" class="inpt" required="required" placeholder="Your id">
-						                    <label for="email">Your id</label>
+						                    <input type="text" name="id" id="id" class="inpt" required="required" placeholder="Your id">
+						                    <label for="id">Your id</label>
 						                    <input type="password" name="password" id="password" class="inpt" required="required" placeholder="Your password">
                 						    <label for="password">Your password</label>
 						                    <input type="checkbox" id="remember" class="checkbox" checked>
@@ -650,8 +650,8 @@ function signOut(){
 						                    
 						                    <div class="submit-wrap">
 							                        <input type="submit" value="Sign in" class="submit">
-							                       <p style="height: 10px;"><a href="./commonId.common">Forgot &nbsp;id?</a> &nbsp; or &nbsp;
-					 <a href="./commonPassword.common">Forgot &nbsp;password?</a></p>
+							                       <p style="height: 10px;"><a href="./common/commonId.common">Forgot &nbsp;id?</a> &nbsp; or &nbsp;
+					 <a href="./common/commonPassword.common">Forgot &nbsp;password?</a></p>
 					 <!-- login api google -->
 				
 					 						<div style="display:inline-block;" class="g-signin2" data-onsuccess="onSignIn"></div>
@@ -667,11 +667,11 @@ function signOut(){
                 <form action="#" method="post" enctype="multipart/form-data">
     				        <div class="signup-cont cont">
     				        <span id="result">ID를 입력하세요.</span>
-						                    <input type="text" name="id" id="id" class="inpt" required="required" placeholder="Enter id">
+						                    <input type="text" name="id" id="sign_id" class="inpt" required="required" placeholder="Enter id">
 						                    <label for="id">Enter id</label>
-						                    <input type="password" name="password" id="password" class="inpt" required="required" placeholder="Enter password">
+						                    <input type="password" name="password" id="pw1" class="inpt" required="required" placeholder="Enter password">
                 						    <label for="password">Enter password</label>
-                							<input type="password" name="password" id="password" class="inpt" required="required" placeholder="Enter check password">
+                							<input type="password" name="cpassword" id="pw2" class="inpt" required="required" placeholder="Enter check password">
                 						    <label for="password_check">Enter check password</label>
                    							<input type="text" name="name" id="name" class="inpt" required="required" placeholder="Enter name">
 						                    <label for="name">Enter name</label>
