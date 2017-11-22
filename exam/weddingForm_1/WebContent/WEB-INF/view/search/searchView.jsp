@@ -252,18 +252,6 @@
 				</div>
 			</c:forEach>
 	
-			<!-- <div class="mySlides fading">
-				<div class="numbertext">2 / 3</div>
-				<img src="../image/hall/sample_2.jpg" style="width: 100%">
-				<div class="text">wedding_sample Two</div>
-			</div>
-	
-			<div class="mySlides fading">
-				<div class="numbertext">3 / 3</div>
-				<img src="../image/hall/sample_3.jpg" style="width: 100%">
-				<div class="text">wedding_sample Three</div>
-			</div> -->
-	
 			<a class="prev" onclick="plusSlides(-1)">&#10094;</a> 
 			<a class="next" onclick="plusSlides(1)">&#10095;</a>
 		</div>

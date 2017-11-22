@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -64,13 +65,207 @@
 		});
 	}
 	
+	function openModal() {
+		document.getElementById('myModal').style.display = "block";
+	}
+	
+	function closeModal() {
+		document.getElementById('myModal').style.display = "none";
+	}
+	
+	var slideIndex = 1;
+	showSlides(slideIndex);
+	
+	function plusSlides(n) {
+		showSlides(slideIndex += n);
+	}
+	
+	function currentSlide(n) {
+		showSlides(slideIndex = n);
+	}
+	
+	function showSlides(n) {
+		var i;
+		var slides = document.getElementsByClassName("mySlides");
+		var dots = document.getElementsByClassName("demo");
+		var captionText = document.getElementById("caption");
+		if (n > slides.length) {slideIndex = 1}
+		if (n < 1) {slideIndex = slides.length}
+		for (i = 0; i < slides.length; i++) {
+		    slides[i].style.display = "none";
+		}
+		for (i = 0; i < dots.length; i++) {
+		    dots[i].className = dots[i].className.replace(" active", "");
+		}
+		slides[slideIndex-1].style.display = "block";
+		dots[slideIndex-1].className += " active";
+		captionText.innerHTML = dots[slideIndex-1].alt;
+	}
 </script>
 
 <style type="text/css">
 
+/* The Modal (background) */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: black;
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  width: 90%;
+  max-width: 1200px;
+}
+
+/* The Close Button */
+.close {
+  color: white;
+  position: absolute;
+  top: 10px;
+  right: 25px;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #999;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.mySlides {
+  display: none;
+}
+
+.cursor {
+  cursor: pointer
+}
+
+/* Next & previous buttons */
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -50px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover,
+.next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+img {
+  margin-bottom: -4px;
+}
+
+.caption-container {
+  text-align: center;
+  background-color: black;
+  padding: 2px 16px;
+  color: white;
+}
+
+.demo {
+  opacity: 0.6;
+}
+
+.active,
+.demo:hover {
+  opacity: 1;
+}
+
+img.hover-shadow {
+  transition: 0.3s
+}
+
+.hover-shadow:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
+}
+</style>
+
+<style type="text/css">
+	._header {
+		text-align: center;
+    	padding: 20px;
+	}
+	
+	/* Create four equal columns that floats next to each other */
+	._column {
+	    float: left;
+	    width: 33%;
+	    padding: 10px;
+	}
+	
+	._column img {
+	    margin-top: 12px;
+	}
+	
+	._row {
+	
+	}
+	
+	/* Clear floats after the columns */
+	._row:after {
+	    content: "";
+	    display: table;
+	    clear: both;
+	}
+	
+	/* Responsive layout - makes a two column-layout instead of four columns */
+	@media (max-width: 800px) {
+	    ._column {
+	        width: 50%;
+	    }
+	}
+	
+	/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+	@media (max-width: 600px) {
+	    ._column {
+	        width: 100%;
+	    }
+	}
+
 	.margin01 {
 		margin-top: 60px;
-		text-align: center;
 	}
 	
 	.img_box  {
@@ -166,58 +361,19 @@
 	line-height: 60px;
 	}
 	
+	.imgBox {
+		max-width: 1400px;
+		margin: auto;
+	}
+	
+	.sub_title {
+		padding: 20px 10px;
+		border-bottom: 2px solid black;
+		font-size: 30px;
+		font-weight: bold;
+	}
+	
 </style>
-
-<!----------------------------SLICE IMAGE------------------------------------------>
-<script src="../slick/slick.min.js" type="text/javascript" charset="utf-8"></script>
-<script type="text/javascript">
-	$(function() {
-		$(".regular").slick({
-	        dots: true,
-	        infinite: true,
-	        slidesToShow: 3,
-	        slidesToScroll: 3
-	      });
-	});
-</script>
-
-<link rel="stylesheet" type="text/css" href="../slick/slick.css">
-<link rel="stylesheet" type="text/css" href="../slick/slick-theme.css">
-<style type="text/css">
-	.slider {
-	    width: 50%;
-	    margin: 100px auto;
-	}
-	
-	.slick-slide {
-	  margin: 0px 20px;
-	}
-	
-	.slick-slide img {
-	  width: 100%;
-	  height: 250px;
-	}
-	
-	.slick-prev:before,
-	.slick-next:before {
-	  color: black;
-	}
-	
-	
-	.slick-slide {
-	  	transition: all ease-in-out .3s;
-	}
-	
-	.slick-active {
-	  	opacity: 1;
-	}
-	
-	.slick-current {
-		box-shadow: 10px 10px 10px;
-  	  	opacity: 1;
-	}
-</style>
-
 
 </head>
 <body>
@@ -243,82 +399,78 @@
 		</div>
 	</div>
 	
-	<div class="container margin01">
+	<div class="container margin01" style="text-align: center;">
 		<img src="../image/house/house_info.PNG">
 	</div>
 	
 	<div id="result" class="margin01">
-		<div class="houseSet">
-			<div class="container bgColor">
+		<div class="container">
+		
+			<!-- Header -->
+			<div class="_header">
+			  <h1>하우스 웨딩 갤러리</h1>
+			  <p>아름다운 하우스 웨딩 사진들을 감상해보세요!</p>
 			</div>
-		
-			<section class="regular slider">
-				<div>
-					<h1 class="line">Hotel <br>House <br>Wedding</h1>
+	
+			<!-- Photo Grid -->
+			<div class="_row"> 
+				<div class="_column">
+					<img src="../image/house/hotel/hotel_1.jpg" style="width:100%" onclick="openModal();currentSlide(1)">
+					<img src="../image/house/hotel/hotel_2.jpg" style="width:100%" onclick="openModal();currentSlide(2)">
+					<img src="../image/house/hotel/hotel_3.jpg" style="width:100%" onclick="openModal();currentSlide(3)">
+					<img src="../image/house/hotel/hotel_4.jpg" style="width:100%" onclick="openModal();currentSlide(4)">
+					<img src="../image/house/hotel/hotel_5.jpg" style="width:100%" onclick="openModal();currentSlide(5)">
+					<img src="../image/house/hotel/hotel_6.jpg" style="width:100%" onclick="openModal();currentSlide(6)">
 				</div>
-				<div>
-					<img src="../image/house/hotel/hotel_1.jpg">
+				<div class="_column">
+					<img src="../image/house/outdoor/outdoor_1.jpg" style="width:100%" onclick="openModal();currentSlide(8)">
+					<img src="../image/house/outdoor/outdoor_2.jpg" style="width:100%" onclick="openModal();currentSlide(9)">
+					<img src="../image/house/outdoor/outdoor_3.jpg" style="width:100%" onclick="openModal();currentSlide(10)">
+					<img src="../image/house/outdoor/outdoor_4.jpg" style="width:100%" onclick="openModal();currentSlide(11)">
+					<img src="../image/house/outdoor/outdoor_5.jpg" style="width:100%" onclick="openModal();currentSlide(11)">
+				</div>  
+				<div class="_column">
+					<img src="../image/house/tradition/tradition_1.jpg" style="width:100%" onclick="openModal();currentSlide(12)">
+					<img src="../image/house/tradition/tradition_2.jpg" style="width:100%" onclick="openModal();currentSlide(13)">
+					<img src="../image/house/tradition/tradition_3.jpg" style="width:100%" onclick="openModal();currentSlide(14)">
+					<img src="../image/house/tradition/tradition_4.jpg" style="width:100%" onclick="openModal();currentSlide(15)">
+					<img src="../image/house/tradition/tradition_5.jpg" style="width:100%" onclick="openModal();currentSlide(16)">
+					<img src="../image/house/tradition/tradition_6.jpg" style="width:100%" onclick="openModal();currentSlide(17)">
 				</div>
-				<div>
-				  <img src="../image/house/hotel/hotel_2.jpg">
-				</div>
-				<div>
-				  <img src="../image/house/hotel/hotel_3.jpg">
-				</div>
-				<div>
-				  <img src="../image/house/hotel/hotel_4.jpg">
-				</div>
-				<div>
-				  <img src="../image/house/hotel/hotel_5.jpg">
-				</div>
-			</section>
+			</div>
 		</div>
 		
-		<div class="houseSet">
-			<section class="regular slider">
-				<div>
-					<h1 class="line">Outdoor <br>House <br>Wedding</h1>
-				</div>
-				<div>
-				  <img src="../image/house/outdoor/outdoor_3.jpg">
-				</div>
-				<div>
-				  <img src="../image/house/outdoor/outdoor_1.jpg">
-				</div>
-				<div>
-				  <img src="../image/house/outdoor/outdoor_5.jpg">
-				</div>
-				<div>
-				  <img src="../image/house/outdoor/outdoor_4.jpg">
-				</div>
-				<div>
-				  <img src="../image/house/outdoor/outdoor_2.jpg">
-				</div>
-			</section>
+		<div id="myModal" class="modal">
+		  <span class="close cursor" onclick="closeModal()">&times;</span>
+		  <div class="modal-content">
+		
+			<c:forEach begin="1" end="6" varStatus="count">
+			    <div class="mySlides">
+			      <div class="numbertext">${count.count} / 17</div>
+			      <img src="../image/house/hotel/hotel_${count.count}.jpg" style="width:100%">
+			    </div>
+			</c:forEach>
+			
+			<c:forEach begin="1" end="5" varStatus="count">
+			    <div class="mySlides">
+			      <div class="numbertext">${count.count+6} / 17</div>
+			      <img src="../image/house/outdoor/outdoor_${count.count}.jpg" style="width:100%">
+			    </div>
+			</c:forEach>
+			
+			<c:forEach begin="1" end="6" varStatus="count">
+			    <div class="mySlides">
+			      <div class="numbertext">${count.count+11} / 17</div>
+			      <img src="../image/house/tradition/tradition_${count.count}.jpg" style="width:100%">
+			    </div>
+			</c:forEach>
+		
+		    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+		    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+		
+		  </div>
 		</div>
 		
-		<div class="houseSet">
-			<section class="regular slider">
-				<div>
-					<h1 class="line">Traditional <br>House <br>Wedding</h1>
-				</div>
-				<div>
-				  <img src="../image/house/tradition/tradition_1.jpg">
-				</div>
-				<div>
-				  <img src="../image/house/tradition/tradition_2.jpg">
-				</div>
-				<div>
-				  <img src="../image/house/tradition/tradition_3.jpg">
-				</div>
-				<div>
-				  <img src="../image/house/tradition/tradition_4.jpg">
-				</div>
-				<div>
-				  <img src="../image/house/tradition/tradition_5.jpg">
-				</div>
-			</section>
-		</div>
 	</div>
 
 </body>
