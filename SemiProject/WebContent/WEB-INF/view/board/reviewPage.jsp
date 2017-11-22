@@ -10,14 +10,21 @@
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<title>Insert title here</title>
+
 <style type="text/css">
+   @media screen and (max-width: 767px) {
+      .sidenav2 {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height: auto;} 
+    }
 
 .contents{
-width:1100px;
+width:100%;
 margin: 0 auto;
 margin-bottom: 100px;
-margin-top: 150px;
+margin-top: 100px;
 float: left;
 }
 
@@ -40,14 +47,43 @@ $(function(){
     
 <!-- main -->
 	<div id="all">
- <c:import url="../../../temp/header.jsp"></c:import> 
-<div class="container-fluid">
+ <c:import url="../../../temp/header.jsp"></c:import>
+<div class="container-fluid" style="margin-top: 77px;">
+  
+  
+  <div class="row content">
+    <div class="col-sm-2 sidenav2" >
+      <ul class="nav nav-pills nav-stacked" style="margin-left: 30px;">
+        <li><h3 style="color: gray; margin-top : 50px;">Community</h3></li>
+       <hr style="border: 1px #2096BA solid;">
+        <li><a href="${pageContext.request.contextPath}/notice/noticeList.notice">공지사항</a></li>
+        <li><a href="${pageContext.request.contextPath}/qna/qnaList.qna">Q&A</a></li>
+        <li><a href="#">실시간 상담</a></li>
+       <li><a href="${pageContext.request.contextPath}/report/reportPage.report">신고 하기</a></li>
+       <li class="active"><a href="${pageContext.request.contextPath}/review/reviewPage.review">이용 후기</a></li>
+      </ul><br>
+    </div>
 
-  <c:import url="../../../temp/sideMenu.jsp"></c:import>
+
+
+
+
+    <div class="col-sm-9" style="margin-left:20px;">
+    
 <div class="contents">
 
-<div class="container">
-  <h3>청첩장 Review BEST <a href="./reviewList.review?type=invitation&&curPage=1"> +더보기</a></h3>
+<div class="container" style="margin-bottom: 100px;">
+
+<h2 style="color : gray;">BEST REVIEW</h2>
+ 
+  <ul class="nav nav-tabs">
+  <li class="active"><a data-toggle="tab" href="#invitation">청첩장</a></li> 
+    <li><a data-toggle="tab" href="#wedding">웨딩</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div id="invitation" class="tab-pane fade in active">
+      <p style="margin-top: 30px;"><a href="./reviewList.review?type=invitation&&curPage=1"> +더 많은 청첩장 후기 보러가기</a></p>
   <div class="panel panel-default">
     <div class="panel-body">
     <p id="invitation"><img alt="" src="../img/invitation.jpg">  
@@ -65,10 +101,12 @@ $(function(){
     </div>
   </div>
 </div>
-
-
-
-  <h3 style="margin-top: 100px;">웨딩홀 Review BEST <a href="./reviewList.review?type=wedding_hall&&curPage=1"> +더보기</a></h3>
+      
+    </div>
+    
+    
+    <div id="wedding" class="tab-pane fade">
+    <p style="margin-top: 30px;"><a href="./reviewList.review?type=wedding_hall&&curPage=1"> +더 많은 웨딩 후기 보러가기</a></p>
   <div class="panel panel-default">
     <div class="panel-body">
     <p id="wedding_hall"><img alt="" src="../img/wedding_hall.jpg">
@@ -90,8 +128,25 @@ $(function(){
       </p>
     
     </div>
+
   </div>
 </div>
+
+  
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="container">
+<img src="../images/reviewEvent.png" style="margin-bottom: 70px;" >
+<img src="../images/review_1.png" style="height:400px; margin-bottom: 70px;">
+<img src="../images/review_2.png" style="height:350px;margin-bottom: 150px;">
+
+
+
 
 </div>
 
@@ -100,6 +155,8 @@ $(function(){
 
    
 
+</div>
+</div>
 
     
    

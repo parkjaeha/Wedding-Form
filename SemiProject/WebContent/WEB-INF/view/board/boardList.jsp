@@ -1,104 +1,79 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<!DOCTYPE html PUBLIC >
-<html>
+    pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
 
-<!-- jQuery library -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-<!-- Latest compiled JavaScript -->
- <script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-
-<style type="text/css">
-.contents { 
-	float: left;
-	margin: 0 auto;
-	margin-bottom: 100px;
-	margin-top: 150px;
-}
-
-table a{
-	text-decoration: none;
-	color : gray;
-}
-table a:hover{
-	text-decoration: none;
-}
-
-
-.w3-bar{
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav2 {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height: auto;} 
+    }
+    
+    .w3-bar{
 margin : 0 auto;
+
 text-align : center;
 }
-
-
-
-.blank{
-width: 100%;
-height: 50px;
-}
-
-.container-fluid {
-
-}
-
-
-</style>
-
-</head>
-<script type="text/javascript">
-/*search 버튼  */
-$(function(){
-	$("#btn").click(function(){
-	 document.frm.submit();	
-	});
-	$(".pw").click(function(){
-		var title = $(this).attr('title');
-		$("#hide"+title).slideToggle("slow");
-	});
-	
-
-});
-</script>
-<body>
-
-    
-<!-- main -->
-	<div id="all">
- <c:import url="../../../temp/header.jsp"></c:import>
  
- <div id="blank"></div>
- <div class="container-fluid">
 
-  <c:import url="../../../temp/sideMenu.jsp"></c:import>
+  </style>
+</head>
+<body>
+<div id="all">
+ <c:import url="../../../temp/header.jsp"></c:import>
+<div class="container-fluid" style="margin-top: 77px;">
+  
+  
+  <div class="row content">
+    <div class="col-sm-2 sidenav2" >
+      <ul class="nav nav-pills nav-stacked" style="margin-left: 30px;">
+      <li><h3 style="color: gray; margin-top : 50px;">Community</h3></li>
+       <hr style="border: 1px #2096BA solid;">
+       
+       <c:if test="${board eq 'notice'}"> 
+       <li class="active"><a href="${pageContext.request.contextPath}/notice/noticeList.notice">공지사항</a></li>
+       <li><a href="${pageContext.request.contextPath}/qna/qnaList.qna">Q&A</a></li>
+   </c:if>
+  
+   <c:if test="${board eq 'qna'}"> 
+   <li><a href="${pageContext.request.contextPath}/notice/noticeList.notice">공지사항</a></li>
+      <li class="active"><a href="${pageContext.request.contextPath}/qna/qnaList.qna">Q&A</a></li>
+  </c:if>
+        <li><a href="#">실시간 상담</a></li>
+       <li><a href="${pageContext.request.contextPath}/report/reportPage.report">신고 하기</a></li>
+       <li><a href="${pageContext.request.contextPath}/review/reviewPage.review">이용 후기</a></li>
+      </ul><br>
+    </div>
 
-	<div class="contents col-sm-9">
 
-			<table class="table table-hover" style="width: 1000px;">
+
+
+
+    <div class="col-sm-9" style="margin-left:30px;">
+
+     <table class="table table-hover" style="width: 100%;">
 
 
 
 
 		<c:if test="${board eq 'notice'}"> 
-                    <p style="text-align: center; font-size: 20px;margin-bottom: 30px;">NOTICE</p>
+		<h4 style="text-align: center; margin-top:50px;"><small>NOTICE</small></h4>
+      <hr>
                  
-
-    
-			
 				<tr style="color: white; background-color:#2096BA;"> 
 					<td>NUM</td>
 					<td></td>
@@ -126,7 +101,8 @@ $(function(){
 
 
 				<c:if test="${board eq 'qna'}">
-					<p style="text-align: center; font-size: 20px;margin-bottom: 30px;">Q&A</p>
+					<h4 style="text-align: center; margin-top:50px;"><small>Q&A</small></h4>
+      <hr>
 					<tr style="color: white; background-color: #2096BA;">
 						<td>NUM</td>
 						<td>TITLE</td>
@@ -191,7 +167,7 @@ $(function(){
 
 
       <!-- 페이징 처리 -->
-			<div class="w3-bar">
+			<div class="w3-bar" style="margin : 0 auto;">
 				
 					
 					<c:if test="${page.curBlock>1}">
@@ -220,12 +196,18 @@ $(function(){
 	</div>
   
  </div>
+      
+    
+          </div>
+        </div>
+      </div>
+  
+ 
 
- <c:import url="../../../temp/footer.jsp"></c:import> 
- </div>
+
+  <c:import url="../../../temp/footer.jsp"></c:import> 
+
+</div>
 </body>
 </html>
-
-
-
-
+    

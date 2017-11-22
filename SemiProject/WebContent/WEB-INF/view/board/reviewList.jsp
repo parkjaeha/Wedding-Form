@@ -26,14 +26,9 @@
 	float: left;
 	margin: 0 auto;
 	margin-bottom: 100px;
-	width: 1100px;
 	margin-top: 150px;
 }
 
-	a {
-		text-decoration: none;
-		color:gray;
-	}
 #blank {
 	height: 50px;
 }
@@ -44,6 +39,13 @@ font-size: 30px;
 	
 }
 
+table a{
+	text-decoration: none;
+	color : gray;
+}
+table a:hover{
+	text-decoration: none;
+}
 
 
 .w3-bar{
@@ -60,21 +62,38 @@ text-align : center;
 
 <!-- main -->
 	<div id="all">
- <c:import url="../../../temp/header.jsp"></c:import> 
- <div class="container-fluid">
+ <c:import url="../../../temp/header.jsp"></c:import>
+<div class="container-fluid" style="margin-top: 77px;">
+  
+  
+  <div class="row content">
+    <div class="col-sm-2 sidenav2" >
+      <ul class="nav nav-pills nav-stacked" style="margin-left: 30px;">
+      <li><h3 style="color: gray; margin-top : 50px;">Community</h3></li>
+       <hr style="border: 1px #2096BA solid;">
+        <li ><a href="${pageContext.request.contextPath}/notice/noticeList.notice">공지사항</a></li>
+        <li><a href="${pageContext.request.contextPath}/qna/qnaList.qna">Q&A</a></li>
+        <li><a href="#">실시간 상담</a></li>
+       <li><a href="${pageContext.request.contextPath}/report/reportPage.report">신고 하기</a></li>
+       <li class="active"><a href="${pageContext.request.contextPath}/review/reviewPage.review">이용 후기</a></li>
+      </ul><br>
+    </div>
 
-  <c:import url="../../../temp/sideMenu.jsp"></c:import>
-
-	<div class="col-centered">
 
 
-	<table class="table table-hover">
+
+
+    <div class="col-sm-9" style="margin-left:30px;">
+
+	<table class="table table-hover" style="width: 100%;">
 <div id="blank"></div>
 <c:if test="${param.type eq 'invitation'}">
-		<p style="text-align: center; font-size: 20px;margin-bottom: 30px;">INVITATION</p>
+		<h4 style="text-align: center; margin-top:50px;"><small>Invitation Review</small></h4>
+      <hr>
 		</c:if>
 <c:if test="${param.type eq 'wedding_hall'}">
-		<p style="text-align: center; font-size: 20px;margin-bottom: 30px;">WEDDING</p>
+		<h4 style="text-align: center; margin-top:50px;"><small>Wedding Review</small></h4>
+      <hr>
 		</c:if>
     
 
@@ -117,9 +136,6 @@ text-align : center;
 	<!-- 페이징 처리 -->
 			<div class="w3-bar">
 			
-			
-
-
 					
 					<c:if test="${page.curBlock>1}">
 					
@@ -145,6 +161,7 @@ text-align : center;
 		<a href="./reviewWrite.review?type=${param.type}">
 		<img alt="" src="../images/main/write.png" style="width: 80px; height: 30px;"></a>
 	</div>
+</div>
 
 </div>
  <c:import url="../../../temp/footer.jsp"></c:import> 
