@@ -14,18 +14,6 @@
     <url-pattern>/*</url-pattern>
   </filter-mapping>
   <servlet>
-    <servlet-name>pay</servlet-name>
-    <servlet-class>com.weddingform.control.PayController</servlet-class>
-    <init-param>
-      <param-name>property</param-name>
-      <param-value>pay.properties</param-value>
-    </init-param>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>pay</servlet-name>
-    <url-pattern>*.pay</url-pattern>
-  </servlet-mapping>
-  <servlet>
     <servlet-name>report</servlet-name>
     <servlet-class>com.weddingform.control.ReportController</servlet-class>
     <init-param>
@@ -96,5 +84,17 @@
   <servlet-mapping>
     <servlet-name>search</servlet-name>
     <url-pattern>*.search</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>memo</servlet-name>
+    <servlet-class>com.weddingform.control.MemoController</servlet-class>
+    <init-param>
+      <param-name>properties</param-name>
+      <param-value>memo.properties</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>memo</servlet-name>
+    <url-pattern>*.memo</url-pattern>
   </servlet-mapping>
 </web-app>

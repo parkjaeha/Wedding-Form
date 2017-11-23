@@ -19,79 +19,88 @@ import com.weddingform.action.Action;
 import com.weddingform.action.ActionForward;
 
 /**
- * Servlet implementation class PayController
+ * Servlet implementation class MemoController
  */
-@WebServlet("/PayController")
-public class PayController extends HttpServlet {
+@WebServlet("/MemoController")
+public class MemoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private HashMap<String, Object> map;
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public PayController() {
+    public MemoController() {
         super();
         // TODO Auto-generated constructor stub
     }
-    
+
     @Override
-    @SuppressWarnings("rawtypes")
     public void init(ServletConfig config) throws ServletException {
     	map = new HashMap<>();
-    	
     	//1. 파일명 구하기
-    	String filename = config.getInitParameter("property");
-    	//2. 실제경로 구하기
-    	String realPath = config.getServletContext().getRealPath("WEB-INF/property");
+    	String fileName= config.getInitParameter("properties");
+    	//2. 파일 실제 경로 구하기
+    	String realPath= config.getServletContext().getRealPath("WEB-INF/property");
     	
-    	File file = new File(realPath, filename);
     	
+    	File f = new File(realPath, fileName);
     	//3. 파싱 준비
-    	FileInputStream fi = null;
+    	FileInputStream fi=null;
     	Properties properties = new Properties();
-    	
     	try {
-    	// 4. 파일 파싱하기
-			fi = new FileInputStream(file);
+		//4. 파일을 파싱
+    		fi = new FileInputStream(f);
 			properties.load(fi);
-			
+		//5. key를 이용해서 value 구하기
 			Iterator<Object> it = properties.keySet().iterator();
 			while(it.hasNext()) {
 				String key = (String)it.next();
 				String value = (String)properties.get(key);
-				
-		// 6. value를 이용해 객체 생성
-				Class obj = Class.forName(value);
+		//6. value를 이용해서 객체 생성하기		
+				Class obj= Class.forName(value);
 				Object instance = obj.newInstance();
-				
+				System.out.println("Key : "+key);
+				System.out.println("instance : "+instance);
+		//7. key와 instance를 맵에 저장		
 				map.put(key, instance);
 			}
 			
 		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
+			try {
+				fi.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
+    	
+    	
     }
-
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		
 		String uri = request.getRequestURI();
-		int startIndex = request.getContextPath().length();
-		int lastIndex = request.getRequestURI().lastIndexOf('.');
-		uri = uri.substring(startIndex, lastIndex);
-		
-		Action action = null;
-		ActionForward actionForward = new ActionForward();
-		
+		int sIndex = request.getContextPath().length();
+		int lIndex = uri.lastIndexOf(".");
+		uri = uri.substring(sIndex, lIndex);
+		ActionForward actionFoward=null;
+		Action action=null;
+		//-------------------------------
 		action = (Action)map.get(uri);
-		actionForward = action.doProcess(request, response);
+		actionFoward = action.doProcess(request, response);		//-------------------------------
 		
-		if(actionForward.isCheck()) {
-			RequestDispatcher view = request.getRequestDispatcher(actionForward.getPath());
+		if(actionFoward.isCheck()) {
+			RequestDispatcher view = request.getRequestDispatcher(actionFoward.getPath());
 			view.forward(request, response);
-		} else {
-			response.sendRedirect(actionForward.getPath());
+		}else {
+			response.sendRedirect(actionFoward.getPath());
 		}
 	}
 
