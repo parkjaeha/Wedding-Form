@@ -14,7 +14,7 @@
 	String[] visitor = request.getParameter("visitor").split(",");
 	String[] hall_cost = request.getParameter("hall_cost").split(",");
 	
-	/* ArrayList<String> region = new ArrayList<String>();
+	ArrayList<String> region = new ArrayList<String>();
 	for(int i=0; i<addr.length; i++) {
 		String[] temp = addr[i].split(" "); 
 		region.add(temp[0] + " " + temp[1]);
@@ -23,7 +23,7 @@
 	
 	int result = 0;
 	//Extra Insert
-	for(int i =0; i<id.length; i++) {
+	for(int i =200; i<236; i++) {
 		Connection con = DBConnector.getConnect();
 	
 		String sql = "insert into extra values(?,?,?,?,?,?,?,?,?)";
@@ -42,7 +42,7 @@
 		result = st.executeUpdate();
 		
 		DBConnector.disConnect(st, con);
-	} */
+	}
 %>
 
 <%= addr.length %>

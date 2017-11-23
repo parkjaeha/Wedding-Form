@@ -32,7 +32,7 @@
 			}
 		});
 		
-		for(var i=0; i<16; i++) {
+		for(var i=0; i<20; i++) {
 			$.ajax({
 				type: "GET",
 				url: "https://maps.googleapis.com/maps/api/geocode/json?address="+addrs[i]+"&key=AIzaSyAOUu60DDyAcyY5lpmQY1go7BuBibCGqhI",

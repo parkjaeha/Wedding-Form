@@ -15,7 +15,7 @@
 
 <%
 	// Common Insert
-	for(int i =140; i<id.length; i++) {
+	for(int i =210; i<id.length; i++) {
 		Connection con = DBConnector.getConnect();
 	
 		String sql = "insert into common values(?,?,?,?,?,?,?)";
